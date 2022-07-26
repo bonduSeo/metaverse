@@ -1,44 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Tilemaps examples</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-</head>
-<body>
+  <head>
+    <title>Tilemaps examples - Collisions</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../styles.css" type="text/css" />
 
-<header class="main-header">
-    <h1><a href="index.html">Tilemaps examples</a></h1>
-    <p class="subtitle">Index</p>
-</header>
+    <script src="common.js"></script>
+    <script src="logic-grid.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="node/src/js/chat.js"></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <h1><a href="../index.html">Tilemaps examples</a></h1>
+      <p>Collisions <br />Use arrow keys to move</p>
+      <button onclick="sendMesege()">메시지전송</button>
+    </header>
 
-<div class="main-wrapper">
-    <p>This is a collection of demos and examples on how to use and implement
-    <strong>tilemaps</strong> in HTML 5 games.</p>
-    <p>It is recommended to also read the companion articles at the
-    <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps" target="_top">Mozilla Developer Network</a>.
-    </p>
+    <div class="main-wrapper">
+      <canvas id="demo" width="512" height="512"></canvas>
 
-    <nav>
-        <h1>Square tiles</h1>
-        <ul>
-            <li><a href="square/no-scroll.html">Non-scrolling tilemaps</a></li>
-            <li><a href="square/layers.html">Tilemaps with layers</a></li>
-            <li><a href="square/scroll.html">Scrolling tilemaps</a></li>
-            <li><a href="square/logic-grid.html">Collisions in tilemaps</a></li>
-        </ul>
-        <h1>Performance improvements</h1>
-        <ul>
-            <li><a href="performance/offcanvas.html">Offcanvas drawing</a></li>
-        </ul>
-        <h1>Isometric tiles</h1>
-        <p>Coming soon.</p>
-    </nav>
-
-    <footer class="main-footer">
-        <p>Source code on <a href="https://github.com/mozdevs/gamedev-js-tiles" target="_top">the Github repository</a>.</p>
-    </footer>
-</div><!-- main wrapper -->
-
-</body>
+      <footer class="main-footer">
+        <p>
+          Source code on
+          <a href="https://github.com/mozdevs/gamedev-js-tiles" target="_top"
+            >the Github repository</a
+          >.
+        </p>
+      </footer>
+    </div>
+    <!-- main wrapper -->
+    <script>
+      function sendMesege() {
+        socket.emit("players", "aa");
+        console.log("메시지전송됨");
+      }
+    </script>
+  </body>
 </html>

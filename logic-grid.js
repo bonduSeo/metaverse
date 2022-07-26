@@ -4,32 +4,20 @@ var map = {
   tsize: 64,
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-      3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 
-      3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 
-      3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 
-      3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2,
+      2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
+      2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1,
+      2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
     ],
     [
-      4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 
-      4, 4, 4, 0, 5, 4, 4, 4, 4, 4, 4, 4, 
-      4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
+      4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 4, 4, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 5,
+      4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
     ],
   ],
   getTile: function (layer, col, row) {
@@ -118,6 +106,7 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+  this.id = Math.random().toString(36).substring(2, 11);
 
   this.image = Loader.getImage("hero");
 }
@@ -209,8 +198,22 @@ Game.update = function (delta) {
   } else if (Keyboard.isDown(Keyboard.DOWN)) {
     diry = 1;
   }
-
   this.hero.move(delta, dirx, diry);
+
+  //통신, 통신빈도줄이는 조건문
+  if (!Game.ts) {
+    socket.emit("players", this.hero);
+    socket.on("players", (data) => {
+      Game.players = data;
+      // console.log(Game.players);
+    });
+  }
+  if (Game.ts === 10) {
+    Game.ts = -1;
+  }
+  Game.ts++;
+  //
+
   this.camera.update();
 };
 
@@ -254,7 +257,7 @@ Game._drawGrid = function () {
     y = r * map.tsize - this.camera.y;
     this.ctx.beginPath();
     this.ctx.moveTo(x, y);
-   
+
     this.ctx.lineTo(width, y);
     this.ctx.stroke();
   }
@@ -268,6 +271,13 @@ Game._drawGrid = function () {
   }
 };
 
+Game._playersDraw = function () {
+  console.log(this.players);
+  // for (player in this.players) {
+  //   console.log(player);
+  // }
+};
+
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
@@ -278,6 +288,7 @@ Game.render = function () {
     this.hero.screenX - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2
   );
+  this._playersDraw();
 
   // draw map top layer
   this._drawLayer(1);

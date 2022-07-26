@@ -10,4 +10,5 @@ socket.on("chatting", (data) => {
   console.log(data);
 });
 
+
 console.log(socket);

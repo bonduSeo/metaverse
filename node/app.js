@@ -4,10 +4,13 @@ const app = express();
 const path = require("path");
 const server = http.createServer(app);
 const socketIO = require("socket.io");
+const players = {};
 
 const io = socketIO(server);
-// console.log(__dirname);
-app.use(express.static(path.join(__dirname, "src")));
+console.log(__dirname);
+// app.use(express.static(path.join(__dirname, "src")));
+// app.use(express.static(path.join(__dirname, "../square")));
+app.use(express.static(path.join(__dirname, "../")));
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,5 +25,11 @@ io.on("connection", (socket) => {
 
     //되돌려주는코드
     io.emit("chatting", `그래 반가워 ${data}`);
+  });
+
+  socket.on("players", (player) => {
+    players[player["id"]] = player;
+    //되돌려주는코드
+    io.emit("players", players);
   });
 });
