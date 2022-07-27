@@ -83,8 +83,6 @@ Keyboard.isDown = function (keyCode) {
 
 var Game = {};
 
-Game.ts = 0;
-
 Game.run = function (context) {
   this.ctx = context;
   this._previousElapsed = 0;

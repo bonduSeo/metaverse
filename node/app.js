@@ -7,9 +7,8 @@ const socketIO = require("socket.io");
 const players = {};
 
 const io = socketIO(server);
-console.log(__dirname);
 // app.use(express.static(path.join(__dirname, "src")));
-// app.use(express.static(path.join(__dirname, "../square")));
+
 app.use(express.static(path.join(__dirname, "../")));
 
 const PORT = process.env.PORT || 5000;
@@ -28,6 +27,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("players", (player) => {
+    console.log(player);
     players[player["id"]] = player;
     //되돌려주는코드
     io.emit("players", players);

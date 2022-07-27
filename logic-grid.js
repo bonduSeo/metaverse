@@ -106,6 +106,8 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+
+  //임시로 아이디값 랜덤한 문자열
   this.id = Math.random().toString(36).substring(2, 11);
 
   this.image = Loader.getImage("hero");
@@ -181,8 +183,15 @@ Game.init = function () {
   this.tileAtlas = Loader.getImage("tiles");
 
   this.hero = new Hero(map, 160, 160);
+  console.log(this.hero.image);
+  console.log(this.hero);
   this.camera = new Camera(map, 512, 512);
   this.camera.follow(this.hero);
+
+  socket.on("players", (data) => {
+    Game.players = data;
+    // console.log(Game.players);
+  });
 };
 
 Game.update = function (delta) {
@@ -200,19 +209,10 @@ Game.update = function (delta) {
   }
   this.hero.move(delta, dirx, diry);
 
-  //통신, 통신빈도줄이는 조건문
-  if (!Game.ts) {
-    socket.emit("players", this.hero);
-    socket.on("players", (data) => {
-      Game.players = data;
-      // console.log(Game.players);
-    });
-  }
-  if (Game.ts === 10) {
-    Game.ts = -1;
-  }
-  Game.ts++;
-  //
+  const heroCopy = JSON.parse(JSON.stringify(this.hero));
+  delete heroCopy.map;
+
+  socket.emit("players", heroCopy);
 
   this.camera.update();
 };
@@ -272,23 +272,31 @@ Game._drawGrid = function () {
 };
 
 Game._playersDraw = function () {
-  console.log(this.players);
-  // for (player in this.players) {
-  //   console.log(player);
-  // }
+  const playersKeys = Object.keys(this.players);
+
+  playersKeys.forEach((key) => {
+    console.log(this.players[key]);
+    if (this.players[key].id !== this.hero.id) {
+      this.ctx.drawImage(
+        this.hero.image,
+        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2
+      );
+    }
+  });
 };
 
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
 
+  this._playersDraw();
   // draw main character
   this.ctx.drawImage(
     this.hero.image,
     this.hero.screenX - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2
   );
-  this._playersDraw();
 
   // draw map top layer
   this._drawLayer(1);
