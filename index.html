@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tilemaps examples - Collisions</title>
+    <title>✨meta demo</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../styles.css" type="text/css" />
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="common.js"></script>
     <script src="logic-grid.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="node/src/js/chat.js"></script>
   </head>
   <body>
     <header class="main-header">
-      <h1><a href="../index.html">Tilemaps examples</a></h1>
+      <h1><a href="../index.html">✨meta demo</a></h1>
       <p>Collisions <br />Use arrow keys to move</p>
-      <button onclick="sendMesege()">메시지전송</button>
+
+      <form id="lookInfo">
+        <div class="headInfo">
+          얼굴모양:
+          <label
+            ><input
+              type="radio"
+              name="head"
+              value="0"
+              checked="checked"
+            />네모</label
+          >
+          <label><input type="radio" name="head" value="1" />원형</label><br />
+        </div>
+        <div class="bodyInfo">
+          바디모양:
+          <label
+            ><input
+              type="radio"
+              name="body"
+              value="0"
+              checked="checked"
+            />네모블루</label
+          >
+          <label><input type="radio" name="body" value="1" />네모오렌지</label>
+          <label><input type="radio" name="body" value="2" />세모블루</label>
+          <label><input type="radio" name="body" value="3" />세모오렌지</label>
+          <br />
+        </div>
+      </form>
     </header>
 
     <div class="main-wrapper">
       <canvas id="demo" width="512" height="512"></canvas>
 
       <footer class="main-footer">
-        <p>
-          Source code on
-          <a href="https://github.com/mozdevs/gamedev-js-tiles" target="_top"
-            >the Github repository</a
-          >.
-        </p>
+        <div id="status"></div>
       </footer>
     </div>
     <!-- main wrapper -->
-    <script>
-      function sendMesege() {
-        socket.emit("players", "aa");
-        console.log("메시지전송됨");
-      }
-    </script>
   </body>
 </html>

@@ -106,11 +106,19 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+  //body파츠 관련 추가내용
+  this.headInfo = "0";
+  this.bodyInfo = "0";
 
   //임시로 아이디값 랜덤한 문자열
-  this.id = Math.random().toString(36).substring(2, 11);
+  // this.id = "";
+  this.id = uuidv4();
 
   this.image = Loader.getImage("hero");
+
+  //body파츠 이미지파일
+  this.headsImage = Loader.getImage("heads");
+  this.bodysImage = Loader.getImage("bodys");
 }
 
 Hero.SPEED = 256; // pixels per second
@@ -170,6 +178,8 @@ Game.load = function () {
   return [
     Loader.loadImage("tiles", "../assets/tiles.png"),
     Loader.loadImage("hero", "../assets/character.png"),
+    Loader.loadImage("heads", "../assets/heads.png"),
+    Loader.loadImage("bodys", "../assets/bodys.png"),
   ];
 };
 
@@ -183,14 +193,30 @@ Game.init = function () {
   this.tileAtlas = Loader.getImage("tiles");
 
   this.hero = new Hero(map, 160, 160);
-  console.log(this.hero.image);
-  console.log(this.hero);
   this.camera = new Camera(map, 512, 512);
   this.camera.follow(this.hero);
 
+  socket.on("socketId", (id) => {
+    this.hero.id = id;
+  });
   socket.on("players", (data) => {
     Game.players = data;
     // console.log(Game.players);
+  });
+  this.lookEvent();
+};
+
+Game.lookEvent = function () {
+  const lookSelect = document.querySelectorAll("#lookInfo input");
+
+  lookSelect.forEach((radio) => {
+    radio.addEventListener("click", () => {
+      if (radio.name === "head") {
+        this.hero.headInfo = radio.value;
+      } else if (radio.name === "body") {
+        this.hero.bodyInfo = radio.value;
+      }
+    });
   });
 };
 
@@ -211,6 +237,7 @@ Game.update = function (delta) {
 
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
+
 
   socket.emit("players", heroCopy);
 
@@ -272,18 +299,76 @@ Game._drawGrid = function () {
 };
 
 Game._playersDraw = function () {
+  console.log(this.players);
+  if (!this.players) {
+    return;
+  }
   const playersKeys = Object.keys(this.players);
+  //하단 status표기 (임시)
+  const status = document.querySelector("#status");
+  status.innerHTML = "";
+  playersKeys.forEach((key) => {
+    const div = document.createElement("div");
+    status.append(div);
+    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
+      this.players[key].x
+    )} | y: ${Math.floor(this.players[key].y)}`;
+  });
+  //
 
   playersKeys.forEach((key) => {
-    console.log(this.players[key]);
     if (this.players[key].id !== this.hero.id) {
       this.ctx.drawImage(
-        this.hero.image,
+        this.hero.headsImage, // image
+        this.players[key].headInfo * this.hero.width, // source x
+        0, // source y
+        this.players[key].width, // source width
+        this.players[key].height, // source height
         this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2
+        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].width,
+        this.players[key].height
+      );
+      this.ctx.drawImage(
+        this.hero.bodysImage, // image
+        this.players[key].bodyInfo * this.hero.width, // source x
+        0, // source y
+        this.players[key].width, // source width
+        this.players[key].height, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].width,
+        this.players[key].height
       );
     }
   });
+};
+
+Game._heroDraw = function () {
+  //머리드로잉
+  this.ctx.drawImage(
+    this.hero.headsImage, // image
+    this.hero.headInfo * this.hero.width, // source x
+    0, // source y
+    this.hero.width, // source width
+    this.hero.height, // source height
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2,
+    this.hero.width,
+    this.hero.height
+  );
+  //바디드로잉
+  this.ctx.drawImage(
+    this.hero.bodysImage, // image
+    this.hero.bodyInfo * this.hero.width, // source x
+    0, // source y
+    this.hero.width, // source width
+    this.hero.height, // source height
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2,
+    this.hero.width,
+    this.hero.height
+  );
 };
 
 Game.render = function () {
@@ -292,11 +377,13 @@ Game.render = function () {
 
   this._playersDraw();
   // draw main character
-  this.ctx.drawImage(
-    this.hero.image,
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2
-  );
+
+  this._heroDraw();
+  // this.ctx.drawImage(
+  //   this.hero.image,
+  //   this.hero.screenX - this.hero.width / 2,
+  //   this.hero.screenY - this.hero.height / 2
+  // );
 
   // draw map top layer
   this._drawLayer(1);
