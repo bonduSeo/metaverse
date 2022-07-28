@@ -20,6 +20,14 @@ var map = {
       4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
     ],
   ],
+  color: {
+    lightGreen: "#84dbb8",
+    green: "#22ebbf",
+    lightPink: "#fce7f0",
+    pink: "#f9bdd9",
+    yellow: "#f4b108",
+    Beige: "#f8f1c3",
+  },
   getTile: function (layer, col, row) {
     return this.layers[layer][row * map.cols + col];
   },
@@ -47,8 +55,94 @@ var map = {
   getX: function (col) {
     return col * this.tsize;
   },
+
   getY: function (row) {
     return row * this.tsize;
+  },
+  rect: function (context, col, row, w, h, color) {
+    const radius = 16;
+    const innerRadius = radius - 4;
+    const x = col * this.tsize;
+    const y = row * this.tsize;
+    const rx = x - Game.camera.x;
+    const ry = y - Game.camera.y;
+    const width = w * this.tsize;
+    const height = h * this.tsize;
+    const gap = 5;
+    if (color === "pink") {
+      context.fillStyle = this.color.pink;
+    } else if ("green") {
+      context.fillStyle = this.color.green;
+    } else {
+      context.fillStyle = color;
+    }
+
+    if (
+      rx + width > 0 &&
+      rx < Game.camera.x + this.rows * this.tsize &&
+      ry + height > 0 &&
+      ry < Game.camera.y + this.cols * this.tsize
+    ) {
+      context.beginPath();
+      // 왼쪽 상단 모서리
+      context.moveTo(rx + radius, ry);
+      // 오른쪽 상단 모서리
+      context.arcTo(rx + width, ry, rx + width, ry + height, radius);
+      // 오른쪽 하단 모서리
+      context.arcTo(rx + width, ry + height, rx, ry + height, radius);
+      // 왼쪽 하단 모서리
+      context.arcTo(rx, ry + height, rx, ry, radius);
+      // 왼쪽 상단 모서리
+      context.arcTo(rx, ry, rx + radius, ry, radius);
+      // 선 그리기
+      context.stroke();
+      context.fill();
+
+      if (color === "pink") {
+        context.fillStyle = this.color.lightPink;
+      } else if ("green") {
+        context.fillStyle = this.color.lightGreen;
+      }
+      //안쪽선
+      context.beginPath();
+      // 왼쪽 상단 모서리
+      context.moveTo(rx + innerRadius + gap, ry + gap);
+      // 오른쪽 상단 모서리
+      context.arcTo(
+        rx + width - gap,
+        ry + gap,
+        rx + width - gap,
+        ry + height - gap,
+        innerRadius
+      );
+      // 오른쪽 하단 모서리
+      context.arcTo(
+        rx + width - gap,
+        ry + height - gap,
+        rx + gap,
+        ry + height - gap,
+        innerRadius
+      );
+      // // 왼쪽 하단 모서리
+      context.arcTo(
+        rx + gap,
+        ry + height - gap,
+        rx + gap,
+        ry + gap,
+        innerRadius
+      );
+      // // 왼쪽 상단 모서리
+      context.arcTo(
+        rx + gap,
+        ry + gap,
+        rx + width - gap,
+        ry + gap,
+        innerRadius
+      );
+      // // 선 그리기
+      context.stroke();
+      context.fill();
+    }
   },
 };
 
@@ -110,9 +204,7 @@ function Hero(map, x, y) {
   this.headInfo = "0";
   this.bodyInfo = "0";
 
-  //임시로 아이디값 랜덤한 문자열
-  // this.id = "";
-  this.id = uuidv4();
+  this.id = utils.uuidv4();
 
   this.image = Loader.getImage("hero");
 
@@ -238,7 +330,6 @@ Game.update = function (delta) {
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
-
   socket.emit("players", heroCopy);
 
   this.camera.update();
@@ -299,7 +390,7 @@ Game._drawGrid = function () {
 };
 
 Game._playersDraw = function () {
-  console.log(this.players);
+  // console.log(this.players);
   if (!this.players) {
     return;
   }
@@ -370,10 +461,15 @@ Game._heroDraw = function () {
     this.hero.height
   );
 };
+Game._drawReck = function () {
+  map.rect(this.ctx, 5, 4, 3, 3, "green");
+  map.rect(this.ctx, 4, 3, 2, 2, "pink");
+};
 
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
+  this._drawReck();
 
   this._playersDraw();
   // draw main character
