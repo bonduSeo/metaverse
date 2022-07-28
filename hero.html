@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      div,
+      td,
+      tr {
+        border: 1px solid gray;
+      }
+    </style>
+    <title>hero</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <div class="lookDiv"><a href="#"></a></div>
+        <canvas class="heroLook"></canvas>
+      </div>
+      <div class="menuTab">
+        <label
+          ><div class="menuTab__head">
+            head <input type="radio" name="menuTab" value="head" checked /></div
+        ></label>
+        <label
+          ><div class="menuTab__body">
+            body<input type="radio" name="menuTab" value="body" /></div
+        ></label>
+        <label
+          ><div class="menuTab__ accessory">
+            accessory <input type="radio" name="menuTab" value="acc" /></div
+        ></label>
+      </div>
+
+      <div class="menu__main">
+        <div class="menu__main-head">
+          <div class="toneColor">
+            <div class="toneColor__title">Tone Color</div>
+            <div class="toneColor__table">
+              <table>
+                <tr>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="0" /></td>
+                  </label>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="1" /></td>
+                  </label>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="2" /></td>
+                  </label>
+                </tr>
+                <tr>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="3" /></td>
+                  </label>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="4" /></td>
+                  </label>
+                  <label>
+                    <td><input type="radio" name="toneColor" value="5" /></td>
+                  </label>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="headShape">
+            <div class="headShape__title">Head Shape</div>
+            <div class="headShape__body">
+            <label><div><input type="radio" name="headShape" value="0"></div></label>
+              
+            </div>
+          </div>
+          <div class="hairColor">
+            <div class="hairColor__table">
+              <table>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="hairShape">
+            <div class="hairShape__title">Hair Style</div>
+            <div class="hairShape__body">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="menu__main-body">menu__main-body</div>
+        <div class="menu__accessory">menu__accessory</div>
+      </div>
+      <div>
+        <button>Finish Customization</button>
+      </div>
+    </div>
+  </body>
+</html>
