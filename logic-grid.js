@@ -178,7 +178,7 @@ Camera.prototype.update = function () {
     this.following.screenY = this.following.y - this.y;
   }
 };
-
+//test
 function Hero(map, x, y) {
   this.map = map;
   this.x = x;
