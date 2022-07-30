@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles.css" type="text/css" />
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="js/utils.js"></script>
     <script src="common.js"></script>
     <script src="logic-grid.js"></script>
   </head>
@@ -17,26 +18,12 @@
       <form id="lookInfo">
         <div class="headInfo">
           얼굴모양:
-          <label
-            ><input
-              type="radio"
-              name="head"
-              value="0"
-              checked="checked"
-            />네모</label
-          >
+          <label><input type="radio" name="head" value="0" checked="checked" />네모</label>
           <label><input type="radio" name="head" value="1" />원형</label><br />
         </div>
         <div class="bodyInfo">
           바디모양:
-          <label
-            ><input
-              type="radio"
-              name="body"
-              value="0"
-              checked="checked"
-            />네모블루</label
-          >
+          <label><input type="radio" name="body" value="0" checked="checked" />네모블루</label>
           <label><input type="radio" name="body" value="1" />네모오렌지</label>
           <label><input type="radio" name="body" value="2" />세모블루</label>
           <label><input type="radio" name="body" value="3" />세모오렌지</label>
