@@ -7,39 +7,16 @@
     <title>Document</title>
   </head>
   <body>
-    <style>
-      canvas {
-        border: 1px solid black;
-      }
-    </style>
-    <canvas id="mycanvas" />
-
-    <script type="text/javascript">
-      var canvas = document.getElementById("mycanvas");
-      canvas.width = 700;
-      canvas.height = 700;
-      var context = canvas.getContext("2d");
-
-      function rect(context, x, y, width, height, radius) {
-        context.beginPath();
-        // 오른쪽 상단 모서리
-        context.moveTo(x + radius, y);
-        // 오른쪽 상단 모서리
-        context.arcTo(x + width, y, x + width, y + height, radius);
-        // 오른쪽 하단 모서리
-        context.arcTo(x + width, y + height, x, y + height, radius);
-        // 왼쪽 하단 모서리
-        context.arcTo(x, y + height, x, y, radius);
-        // 왼쪽 상단 모서리
-        context.arcTo(x, y, x + radius, y, radius);
-        // 선 그리기
-        context.stroke();
-      }
-
-      rect(context, 50, 50, 100, 100, 10);
-      rect(context, 200, 50, 100, 100, 20);
-      rect(context, 350, 50, 100, 100, 30);
-      rect(context, 500, 50, 100, 100, 40);
+    <div class="test1">
+      <div>
+        <div class="test2"></div>
+      </div>
+    </div>
+    <script>
+      const test1 = document.querySelectorAll(".test1");
+      console.log(test1);
+      const test2 = test1[0].querySelector(".test2");
+      console.log(test2);
     </script>
   </body>
 </html>

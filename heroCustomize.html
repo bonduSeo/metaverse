@@ -37,7 +37,7 @@
         <div class="menu__main-head">
           <div class="toneColor">
             <div class="toneColor__title">Tone Color</div>
-            <div class="toneColor__table">
+            <div class="toneColor__table eachCustom">
               <table>
                 <tr>
                   <label>
@@ -66,7 +66,7 @@
           </div>
           <div class="headShape">
             <div class="headShape__title">Head Shape</div>
-            <div class="headShape__body">
+            <div class="headShape__body eachCustom">
               <label
                 ><div>
                   <img src="./assets/forCustomize/head0_sq.png" alt="" /><input
@@ -90,7 +90,7 @@
             </div>
           </div>
           <div class="hairColor">
-            <div class="hairColor__table">
+            <div class="hairColor__table eachCustom">
               <table>
                 <tr>
                   <label
@@ -117,7 +117,7 @@
           </div>
           <div class="hairShape">
             <div class="hairShape__title">Hair Style</div>
-            <div class="hairShape__body">
+            <div class="hairShape__body eachCustom">
               <label
                 ><div>
                   <img src="./assets/forCustomize/hair0_default.png" alt="" /><input
@@ -144,11 +144,11 @@
         <div class="menu__main-body" style="display: none">
           <div class="bodyColor">
             <div class="bodyColor__title">Clothing Color</div>
-            <div class="bodyColor__table">
+            <div class="bodyColor__table eachCustom">
               <table>
                 <tr>
                   <label
-                    ><td><input type="radio" name="bodyColor" value="0" /></td
+                    ><td><input type="radio" name="bodyColor" value="0" checked /></td
                   ></label>
                   <label
                     ><td><input type="radio" name="bodyColor" value="1" /></td
@@ -173,9 +173,9 @@
           </div>
           <div class="bodyShape">
             <div class="bodyShape__title">Body Shape</div>
-            <div class="bodyShape__body">
+            <div class="bodyShape__body eachCustom">
               <label
-                ><div><input type="radio" name="bodyShape" value="0" /></div
+                ><div><input type="radio" name="bodyShape" value="0" checked /></div
               ></label>
               <label
                 ><div><input type="radio" name="bodyShape" value="1" /></div
@@ -195,10 +195,38 @@
             </div>
           </div>
         </div>
-        <div class="menu__accessory" style="display: none">menu__accessory</div>
+        <div class="menu__accessory" style="display: none">
+          <div class="accType eachCustom">
+            <label
+              ><div>
+                <img src="./assets/forCustomize/hand0_default.png" /><input
+                  type="radio"
+                  name="acc"
+                  value="0"
+                  checked
+                /></div
+            ></label>
+            <label
+              ><div>
+                <img src="./assets/forCustomize/hand1_pen.png" /><input
+                  type="radio"
+                  name="acc"
+                  value="1"
+                /></div
+            ></label>
+            <label
+              ><div>
+                <img src="./assets/forCustomize/hand2_flower.png" /><input
+                  type="radio"
+                  name="acc"
+                  value="2"
+                /></div
+            ></label>
+          </div>
+        </div>
       </div>
       <div>
-        <button>Finish Customization</button>
+        <button class="submitBtn">Finish Customization</button>
       </div>
     </div>
     <script src="js/utils.js"></script>

@@ -195,8 +195,19 @@ function Hero(map, x, y) {
   this.divisorArr = this.getDivisors();
 
   //body파츠 관련 추가내용
-  this.headInfo = "0";
-  this.bodyInfo = "0";
+  const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
+  this.customInfo =
+    customInfoLocal !== null
+      ? customInfoLocal
+      : {
+          toneColor: 0,
+          headShape: 0,
+          hairColor: 0,
+          hairShape: 0,
+          bodyColor: 0,
+          bodyShape: 0,
+          acc: 0,
+        };
 
   this.id = utils.uuidv4();
 
@@ -204,7 +215,9 @@ function Hero(map, x, y) {
 
   //body파츠 이미지파일
   this.headsImage = Loader.getImage("heads");
+  this.hairsImage = Loader.getImage("hairs");
   this.bodysImage = Loader.getImage("bodys");
+  this.handsImage = Loader.getImage("hands");
 }
 
 Hero.SPEED = 256; // pixels per second
@@ -384,7 +397,9 @@ Game.load = function () {
     Loader.loadImage("tiles", "../assets/tiles.png"),
     Loader.loadImage("hero", "../assets/character.png"),
     Loader.loadImage("heads", "../assets/heads.png"),
+    Loader.loadImage("hairs", "../assets/hairs.png"),
     Loader.loadImage("bodys", "../assets/bodys.png"),
+    Loader.loadImage("hands", "../assets/hands.png"),
   ];
 };
 
@@ -596,7 +611,7 @@ Game._heroDraw = function () {
   //머리드로잉
   this.ctx.drawImage(
     this.hero.headsImage, // image
-    this.hero.headInfo * this.hero.width, // source x
+    this.hero.customInfo.headShape * this.hero.width, // source x
     0, // source y
     this.hero.width, // source width
     this.hero.height, // source height
@@ -608,7 +623,31 @@ Game._heroDraw = function () {
   //바디드로잉
   this.ctx.drawImage(
     this.hero.bodysImage, // image
-    this.hero.bodyInfo * this.hero.width, // source x
+    this.hero.customInfo.bodyShape * this.hero.width, // source x
+    0, // source y
+    this.hero.width, // source width
+    this.hero.height, // source height
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2,
+    this.hero.width,
+    this.hero.height
+  );
+  //헤어드로잉
+  this.ctx.drawImage(
+    this.hero.hairsImage, // image
+    this.hero.customInfo.hairShape * this.hero.width, // source x
+    0, // source y
+    this.hero.width, // source width
+    this.hero.height, // source height
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2,
+    this.hero.width,
+    this.hero.height
+  );
+  //acc / hands 드로잉
+  this.ctx.drawImage(
+    this.hero.handsImage, // image
+    this.hero.customInfo.acc * this.hero.width, // source x
     0, // source y
     this.hero.width, // source width
     this.hero.height, // source height

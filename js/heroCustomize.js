@@ -13,13 +13,19 @@ Customize.run = function () {
   this.menuTapSet();
   this.canvas = document.querySelector(".heroLook");
   this.ctx = this.canvas.getContext("2d");
-  this.customInfo = {
-    toneColor: 0,
-    headShape: 0,
-    hairColor: 0,
-    hairShape: 0,
-    bodyColor: 0,
-  };
+  const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
+  this.customInfo =
+    customInfoLocal !== null
+      ? customInfoLocal
+      : {
+          toneColor: 0,
+          headShape: 0,
+          hairColor: 0,
+          hairShape: 0,
+          bodyColor: 0,
+          bodyShape: 0,
+          acc: 0,
+        };
 
   var p = this.load();
   Promise.all(p).then(
@@ -28,7 +34,21 @@ Customize.run = function () {
     }.bind(this)
   );
 
+  Customize.customCheck = function () {
+    const eachCustoms = document.querySelectorAll(".eachCustom");
+    console.log(eachCustoms);
+    const customInfoKeys = Object.keys(this.customInfo);
+    console.log(customInfoKeys);
+    customInfoKeys.forEach((key, index) => {
+      const inputs = eachCustoms[index].querySelectorAll("input");
+      const val = this.customInfo[key];
+      inputs[val].checked = "checked";
+    });
+  };
+
   Customize.init = function () {
+    this.customCheck();
+
     this.hero = new Hero();
     this.drawHero();
     const inputs = document.querySelectorAll(".menu__main input");
@@ -39,6 +59,12 @@ Customize.run = function () {
         console.log(this.customInfo);
         this.drawHero();
       });
+    });
+    document.querySelector(".submitBtn").addEventListener("click", () => {
+      const customInfoJson = JSON.stringify(this.customInfo);
+      localStorage.setItem("customInfo", customInfoJson);
+      // const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
+      location.href = "meta.html";
     });
   };
 };
@@ -116,6 +142,18 @@ Customize.drawHero = function () {
   this.ctx.drawImage(
     this.hero.customImgs.bodys, // image
     this.hero.customInfo.bodyShape * this.hero.size, // source x
+    0, // source y
+    this.hero.size, // source width
+    this.hero.size, // source height
+    0, //그리기 좌표
+    0,
+    this.hero.size,
+    this.hero.size
+  );
+  //Acc
+  this.ctx.drawImage(
+    this.hero.customImgs.hands, // image
+    this.hero.customInfo.acc * this.hero.size, // source x
     0, // source y
     this.hero.size, // source width
     this.hero.size, // source height
