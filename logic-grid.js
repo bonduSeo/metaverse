@@ -44,21 +44,7 @@ var map = {
       false
     );
   },
-  isSolidTileAtXY2: function (x, y) {
-    var col = Math.floor(x / this.tsize);
-    var row = Math.floor(y / this.tsize);
 
-    return this.layers.reduce(
-      function (res, layer, index) {
-        // console.log(index);
-        var tile = this.getTile(index, col, row);
-        var isSolid = this.blocks.includes(tile);
-
-        return res || isSolid;
-      }.bind(this),
-      false
-    );
-  },
   // 인수는 좌표값, 리턴은 행,열 값
   getCol: function (x) {
     return Math.floor(x / this.tsize);
