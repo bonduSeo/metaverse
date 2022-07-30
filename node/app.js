@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5001;
 
 server.listen(PORT, () => console.log(`server is running ${PORT}`));
 
-io.on("connection", (socket) => {
+io.on("connection", (socket) => { 
   // console.log("연결이 이루어짐");
   // console.log("socket.id : " + socket.id);
   // io.emit("socketId", socket.id);
