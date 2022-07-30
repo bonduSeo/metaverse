@@ -4,20 +4,18 @@ var map = {
   tsize: 64,
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3,
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2,
-      2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
-      2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1,
-      2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
+      1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1,
+      1, 1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
+      1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
     ],
     [
-      4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 4, 4, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 5,
-      4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
+      4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 4, 4, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0,
+      5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
     ],
   ],
   color: {
@@ -46,12 +44,29 @@ var map = {
       false
     );
   },
+  isSolidTileAtXY2: function (x, y) {
+    var col = Math.floor(x / this.tsize);
+    var row = Math.floor(y / this.tsize);
+
+    return this.layers.reduce(
+      function (res, layer, index) {
+        // console.log(index);
+        var tile = this.getTile(index, col, row);
+        var isSolid = this.blocks.includes(tile);
+
+        return res || isSolid;
+      }.bind(this),
+      false
+    );
+  },
+  // 인수는 좌표값, 리턴은 행,열 값
   getCol: function (x) {
     return Math.floor(x / this.tsize);
   },
   getRow: function (y) {
     return Math.floor(y / this.tsize);
   },
+  // 그 열에 해당하는 X의 픽셀좌표값
   getX: function (col) {
     return col * this.tsize;
   },
@@ -108,37 +123,13 @@ var map = {
       // 왼쪽 상단 모서리
       context.moveTo(rx + innerRadius + gap, ry + gap);
       // 오른쪽 상단 모서리
-      context.arcTo(
-        rx + width - gap,
-        ry + gap,
-        rx + width - gap,
-        ry + height - gap,
-        innerRadius
-      );
+      context.arcTo(rx + width - gap, ry + gap, rx + width - gap, ry + height - gap, innerRadius);
       // 오른쪽 하단 모서리
-      context.arcTo(
-        rx + width - gap,
-        ry + height - gap,
-        rx + gap,
-        ry + height - gap,
-        innerRadius
-      );
+      context.arcTo(rx + width - gap, ry + height - gap, rx + gap, ry + height - gap, innerRadius);
       // // 왼쪽 하단 모서리
-      context.arcTo(
-        rx + gap,
-        ry + height - gap,
-        rx + gap,
-        ry + gap,
-        innerRadius
-      );
+      context.arcTo(rx + gap, ry + height - gap, rx + gap, ry + gap, innerRadius);
       // // 왼쪽 상단 모서리
-      context.arcTo(
-        rx + gap,
-        ry + gap,
-        rx + width - gap,
-        ry + gap,
-        innerRadius
-      );
+      context.arcTo(rx + gap, ry + gap, rx + width - gap, ry + gap, innerRadius);
       // // 선 그리기
       context.stroke();
       context.fill();
@@ -179,17 +170,11 @@ Camera.prototype.update = function () {
   // and we have to change its screen coordinates
 
   // left and right sides
-  if (
-    this.following.x < this.width / 2 ||
-    this.following.x > this.maxX + this.width / 2
-  ) {
+  if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
     this.following.screenX = this.following.x - this.x;
   }
   // top and bottom sides
-  if (
-    this.following.y < this.height / 2 ||
-    this.following.y > this.maxY + this.height / 2
-  ) {
+  if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
     this.following.screenY = this.following.y - this.y;
   }
 };
@@ -200,6 +185,15 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+
+  this.c = 0;
+  this.tempX = 0;
+  this.tempY = 0;
+
+  this.min = map.tsize;
+  this.realSpeed = 0;
+  this.divisorArr = this.getDivisors();
+
   //body파츠 관련 추가내용
   this.headInfo = "0";
   this.bodyInfo = "0";
@@ -215,13 +209,42 @@ function Hero(map, x, y) {
 
 Hero.SPEED = 256; // pixels per second
 
-Hero.prototype.move = function (delta, dirx, diry) {
+// tsize에 따른 가능한 픽셀 속도 산출(배열값)
+// 객체지향으로 수정
+Hero.prototype.getDivisors = function () {
+  let i = 1;
+  const arr = [];
+  while (i <= map.tsize) {
+    if (map.tsize % i === 0) {
+      arr.push(i);
+    }
+    i++;
+  }
+  return arr;
+};
+Hero.prototype.move = function (delta, dirX, dirY) {
   // move hero
-  this.x += dirx * Hero.SPEED * delta;
-  this.y += diry * Hero.SPEED * delta;
+  // 픽셀 속도 배열값에서 캐릭터 움직값에 가장 가까운 숫자를 찾아 속도지정
+  for (let i = 0; i < this.divisorArr.length; i++) {
+    c =
+      this.divisorArr[i] - Hero.SPEED * delta < 0
+        ? -(this.divisorArr[i] - Hero.SPEED * delta)
+        : this.divisorArr[i] - Hero.SPEED * delta;
+
+    if (c < this.min) {
+      this.min = c;
+      realSpeed = this.divisorArr[i];
+    }
+  }
+
+  this.x += dirX * realSpeed;
+  this.x = Math.round(this.x);
+
+  this.y += dirY * realSpeed;
+  this.y = Math.round(this.y);
 
   // check if we walked into a non-walkable tile
-  this._collide(dirx, diry);
+  this._collide(dirX, dirY);
 
   // clamp values
   var maxX = this.map.cols * this.map.tsize;
@@ -230,7 +253,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
   this.y = Math.max(0, Math.min(this.y, maxY));
 };
 
-Hero.prototype._collide = function (dirx, diry) {
+Hero.prototype._collide = function (dirX, dirY) {
   var row, col;
   // -1 in right and bottom is because image ranges from 0..63
   // and not up to 64
@@ -238,29 +261,118 @@ Hero.prototype._collide = function (dirx, diry) {
   var right = this.x + this.width / 2 - 1;
   var top = this.y - this.height / 2;
   var bottom = this.y + this.height / 2 - 1;
+  // 부딪힘 판정(아래)
 
   // check for collisions on sprite sides
-  var collision =
-    this.map.isSolidTileAtXY(left, top) ||
-    this.map.isSolidTileAtXY(right, top) ||
-    this.map.isSolidTileAtXY(right, bottom) ||
-    this.map.isSolidTileAtXY(left, bottom);
-  if (!collision) {
-    return;
-  }
+  const blockLeftUp = this.map.isSolidTileAtXY(left, top);
+  const blockLeftDown = this.map.isSolidTileAtXY(left, bottom);
+  const blockRightUp = this.map.isSolidTileAtXY(right, top);
+  const blockRightDown = this.map.isSolidTileAtXY(right, bottom);
 
-  if (diry > 0) {
-    row = this.map.getRow(bottom);
-    this.y = -this.height / 2 + this.map.getY(row);
-  } else if (diry < 0) {
+  // 위로만 부딪혔을 때
+  if (blockLeftUp && blockRightUp && !(blockRightDown || blockLeftDown)) {
     row = this.map.getRow(top);
     this.y = this.height / 2 + this.map.getY(row + 1);
-  } else if (dirx > 0) {
-    col = this.map.getCol(right);
-    this.x = -this.width / 2 + this.map.getX(col);
-  } else if (dirx < 0) {
+    console.log("되나?");
+  }
+  //아래로만 부딪혔을 때
+  else if (blockLeftDown && blockRightDown && !(blockRightUp || blockLeftUp)) {
+    row = this.map.getRow(bottom); //y축(아래)으로 이동하다 충돌한 오브젝트의 top 행 번호
+    this.y = -this.height / 2 + this.map.getY(row);
+    console.log("되는건가?");
+  }
+  //왼쪽으로만 막혔을 때
+  else if (blockLeftUp && blockLeftDown && !(blockRightUp || blockRightDown)) {
     col = this.map.getCol(left);
     this.x = this.width / 2 + this.map.getX(col + 1);
+    console.log("제발?");
+  } // 오른쪽으로만 막혔을 때
+  else if (blockRightUp && blockRightDown && !(blockLeftDown || blockLeftUp)) {
+    col = this.map.getCol(right);
+    this.x = -this.width / 2 + this.map.getX(col);
+    console.log("되어라!");
+  } // 왼쪽과 위쪽 함께 막혔을때
+  else if (blockLeftUp && blockRightUp && blockLeftDown) {
+    col = this.map.getCol(left);
+    this.x = this.width / 2 + this.map.getX(col + 1);
+    row = this.map.getRow(top);
+    this.y = this.height / 2 + this.map.getY(row + 1);
+    console.log("왼위");
+  } // 오른쪽, 위쪽 함께 막혔을때
+  else if (blockRightUp && blockLeftUp && blockRightDown) {
+    row = this.map.getRow(top);
+    this.y = this.height / 2 + this.map.getY(row + 1);
+    col = this.map.getCol(right);
+    this.x = -this.width / 2 + this.map.getX(col);
+    console.log("오위");
+  } // 왼쪽, 아래쪽 함께 막혔을때
+  else if (blockLeftDown && blockRightDown && blockLeftUp) {
+    col = this.map.getCol(left);
+    this.x = this.width / 2 + this.map.getX(col + 1);
+    row = this.map.getRow(bottom);
+    this.y = -this.height / 2 + this.map.getY(row);
+    console.log("왼아");
+  } // 오른쪽, 아래쪽 함께 막혔을때
+  else if (blockRightDown && blockRightUp && blockLeftDown) {
+    row = this.map.getRow(bottom);
+    this.y = -this.height / 2 + this.map.getY(row);
+    col = this.map.getCol(right);
+    this.x = -this.width / 2 + this.map.getX(col);
+    console.log("오아");
+  } // 왼위 대각에 블럭이 있을때, 그 타일로 이동시
+  else if (blockLeftUp && !(blockRightDown && blockRightUp && blockLeftDown)) {
+    let blockX = this.map.getX(this.map.getCol(left) + 1) + this.width / 2;
+    let blockY = this.map.getY(this.map.getRow(top) + 1) + this.height / 2;
+
+    if (blockX - this.x > blockY - this.y) {
+      this.y = blockY;
+    } else if (blockX - this.x < blockY - this.y) {
+      this.x = blockX;
+    } else {
+      this.y = blockY;
+      this.x = blockX;
+    }
+  } // 왼아래 대각에 블럭이 있을때, 그 타일로 이동시
+  else if (blockLeftDown && !(blockRightDown && blockRightUp && blockLeftUp)) {
+    let blockX = this.map.getX(this.map.getCol(left) + 1) + this.width / 2;
+    let blockY = this.map.getY(this.map.getRow(bottom)) - this.height / 2;
+
+    if (blockX - this.x > this.y - blockY) {
+      this.y = blockY;
+    } else if (blockX - this.x < this.y - blockY) {
+      this.x = blockX;
+    } else {
+      this.y = blockY;
+      this.x = blockX;
+    }
+  }
+  // 우위 대각에 블럭이 있을때, 그 타일로 이동시
+  else if (blockRightUp && !(blockRightDown && blockLeftDown && blockLeftUp)) {
+    let blockX = this.map.getX(this.map.getCol(right)) - this.width / 2;
+    let blockY = this.map.getY(this.map.getRow(top) + 1) + this.height / 2;
+
+    if (this.x - blockX > blockY - this.y) {
+      this.y = blockY;
+    } else if (this.x - blockX < blockY - this.y) {
+      this.x = blockX;
+    } else {
+      this.y = blockY;
+      this.x = blockX;
+    }
+  }
+  // 우아래 대각에 블럭이 있을때, 그 타일로 이동시
+  else if (blockRightDown && !(blockLeftDown && blockRightUp && blockLeftUp)) {
+    let blockX = this.map.getX(this.map.getCol(right)) - this.width / 2;
+    let blockY = this.map.getY(this.map.getRow(bottom)) - this.height / 2;
+
+    if (this.x - blockX > this.y - blockY) {
+      this.y = blockY;
+    } else if (this.x - blockX < this.y - blockY) {
+      this.x = blockX;
+    } else {
+      this.y = blockY;
+      this.x = blockX;
+    }
   }
 };
 
@@ -276,12 +388,7 @@ Game.load = function () {
 };
 
 Game.init = function () {
-  Keyboard.listenForEvents([
-    Keyboard.LEFT,
-    Keyboard.RIGHT,
-    Keyboard.UP,
-    Keyboard.DOWN,
-  ]);
+  Keyboard.listenForEvents([Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
   this.tileAtlas = Loader.getImage("tiles");
 
   this.hero = new Hero(map, 160, 160);
@@ -314,18 +421,67 @@ Game.lookEvent = function () {
 
 Game.update = function (delta) {
   // handle hero movement with arrow keys
-  var dirx = 0;
-  var diry = 0;
+  var dirX = 0;
+  var dirY = 0;
+  // -----------------------------temp 변수 넣어 블락이동 구현-------------------------------
   if (Keyboard.isDown(Keyboard.LEFT)) {
-    dirx = -1;
+    this.hero.tempX = -1;
+    dirX = -1;
+
+    if (Keyboard.isDown(Keyboard.UP)) {
+      dirY = -1;
+      this.hero.tempY = -1;
+    }
+    if (Keyboard.isDown(Keyboard.DOWN)) {
+      dirY = 1;
+      this.hero.tempY = 1;
+    }
   } else if (Keyboard.isDown(Keyboard.RIGHT)) {
-    dirx = 1;
-  } else if (Keyboard.isDown(Keyboard.UP)) {
-    diry = -1;
-  } else if (Keyboard.isDown(Keyboard.DOWN)) {
-    diry = 1;
+    dirX = 1;
+    this.hero.tempX = 1;
+
+    if (Keyboard.isDown(Keyboard.UP)) {
+      dirY = -1;
+      this.hero.tempY = -1;
+    }
+    if (Keyboard.isDown(Keyboard.DOWN)) {
+      dirY = 1;
+      this.hero.tempY = 1;
+    }
   }
-  this.hero.move(delta, dirx, diry);
+
+  if (Keyboard.isDown(Keyboard.UP)) {
+    dirY = -1;
+    this.hero.tempY = -1;
+  } else if (Keyboard.isDown(Keyboard.RIGHT)) {
+    dirX = 1;
+    this.hero.tempX = 1;
+  } else if (Keyboard.isDown(Keyboard.LEFT)) {
+    dirX = -1;
+    this.hero.tempX = -1;
+  }
+
+  if (Keyboard.isDown(Keyboard.DOWN)) {
+    dirY = 1;
+    this.hero.tempY = 1;
+  } else if (Keyboard.isDown(Keyboard.RIGHT)) {
+    dirX = 1;
+    this.hero.tempX = 1;
+  } else if (Keyboard.isDown(Keyboard.LEFT)) {
+    dirX = -1;
+    this.hero.tempX = -1;
+  }
+
+  let locatX = (this.hero.x - 160) % map.tsize !== 0;
+  let locatY = (this.hero.y - 160) % map.tsize !== 0;
+
+  if (dirX !== 0 || locatX) {
+    dirX = this.hero.tempX;
+  }
+  if (dirY !== 0 || locatY) {
+    dirY = this.hero.tempY;
+  }
+  this.hero.move(delta, dirX, dirY);
 
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
