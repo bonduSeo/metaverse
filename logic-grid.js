@@ -439,21 +439,6 @@ Game.init = function () {
     Game.players = data;
     // console.log(Game.players);
   });
-  this.lookEvent();
-};
-
-Game.lookEvent = function () {
-  const lookSelect = document.querySelectorAll("#lookInfo input");
-
-  lookSelect.forEach((radio) => {
-    radio.addEventListener("click", () => {
-      if (radio.name === "head") {
-        this.hero.headInfo = radio.value;
-      } else if (radio.name === "body") {
-        this.hero.bodyInfo = radio.value;
-      }
-    });
-  });
 };
 
 Game.update = function (delta) {
