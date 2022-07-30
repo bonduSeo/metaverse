@@ -225,6 +225,7 @@ Hero.prototype.getDivisors = function () {
 Hero.prototype.move = function (delta, dirX, dirY) {
   // move hero
   // 픽셀 속도 배열값에서 캐릭터 움직값에 가장 가까운 숫자를 찾아 속도지정
+  delta = delta > 0.1 ? 0.1 : delta;
   for (let i = 0; i < this.divisorArr.length; i++) {
     c =
       this.divisorArr[i] - Hero.SPEED * delta < 0
