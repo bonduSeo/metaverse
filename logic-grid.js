@@ -2,6 +2,12 @@ var map = {
   cols: 12,
   rows: 12,
   tsize: 64,
+  logic: false,
+  //상호작용시 반응할 타일
+  interRow: 0,
+  interCol: 0,
+  fontX: 0,
+  fontY: 0,
   layers: [
     [
       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
@@ -12,7 +18,7 @@ var map = {
     ],
     [
       4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 4, 4, 0, 0, 5, 11, 0, 0, 0, 0, 5, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0,
+      0, 0, 0, 0, 4, 4, 0, 0, 5, 11, 0, 11, 0, 0, 5, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0,
       5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
@@ -20,6 +26,7 @@ var map = {
   ],
   // 블록타일 -- 충돌 발생하는 타일
   block: [3, 5],
+  // 상호타일 -- 상호작용 타일
   Interactive: [11],
   color: {
     lightGreen: "#84dbb8",
@@ -28,6 +35,7 @@ var map = {
     pink: "#f9bdd9",
     yellow: "#f4b108",
     Beige: "#f8f1c3",
+    Red: "ff0000",
   },
   getTile: function (layer, col, row) {
     return this.layers[layer][row * map.cols + col];
@@ -142,6 +150,40 @@ var map = {
       context.fill();
     }
   },
+  rectBorder: function (context, col, row, w, h, color) {
+    const radius = 16;
+    const innerRadius = radius - 4;
+    const x = col * this.tsize;
+    const y = row * this.tsize;
+    const rx = x - Game.camera.x;
+    const ry = y - Game.camera.y;
+    const width = w * this.tsize;
+    const height = h * this.tsize;
+    const gap = 5;
+    context.strokeStyle = color;
+    context.lineWidth = 5;
+
+    if (
+      rx + width > 0 &&
+      rx < Game.camera.x + this.rows * this.tsize &&
+      ry + height > 0 &&
+      ry < Game.camera.y + this.cols * this.tsize
+    ) {
+      context.beginPath();
+      // 왼쪽 상단 모서리
+      context.moveTo(rx + radius, ry);
+      // 오른쪽 상단 모서리
+      context.arcTo(rx + width, ry, rx + width, ry + height, radius);
+      // 오른쪽 하단 모서리
+      context.arcTo(rx + width, ry + height, rx, ry + height, radius);
+      // 왼쪽 하단 모서리
+      context.arcTo(rx, ry + height, rx, ry, radius);
+      // 왼쪽 상단 모서리
+      context.arcTo(rx, ry, rx + radius, ry, radius);
+      // 선 그리기
+      context.stroke();
+    }
+  },
 };
 
 function Camera(map, width, height) {
@@ -184,6 +226,9 @@ Camera.prototype.update = function () {
   if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
     this.following.screenY = this.following.y - this.y;
   }
+
+  map.fontX = this.following.screenX;
+  map.fontY = this.following.screenY - map.tsize / 2;
 };
 //test
 function Hero(map, x, y) {
@@ -275,21 +320,38 @@ Hero.prototype.move = function (delta, dirX, dirY) {
   this.y = Math.max(0, Math.min(this.y, maxY));
 };
 Hero.prototype._interactive = function () {
-  var row, col;
-  // -1 in right and bottom is because image ranges from 0..63
-  // and not up to 64
   var left = this.x - this.width / 2 - 1;
   var right = this.x + this.width / 2;
   var top = this.y - this.height / 2 - 1;
   var bottom = this.y + this.height / 2;
+  const ctx = Game.ctx;
 
-  const interLeft = this.map.isInteractiveAtXY(left, bottom - this.height / 2);
-  const interDown = this.map.isInteractiveAtXY(bottom, right - this.width / 2);
-  const interUp = this.map.isInteractiveAtXY(top, right - this.width / 2);
+  const interLeft = this.map.isInteractiveAtXY(left, bottom - this.height / 2); //성공
+  const interDown = this.map.isInteractiveAtXY(right - this.width / 2, bottom);
+  const interUp = this.map.isInteractiveAtXY(right - this.width / 2, top);
   const interRight = this.map.isInteractiveAtXY(right, bottom - this.height / 2);
 
   if (interLeft || interDown || interRight || interUp) {
-    console.log("상호작용");
+    map.logic = true;
+    // map.heroX = this.x;
+    // map.heroY = this.y;
+    if (interLeft) {
+      map.interRow = map.getRow(this.y);
+      map.interCol = map.getCol(this.x) - 1;
+    } else if (interDown) {
+      map.interRow = map.getRow(this.y) + 1;
+      map.interCol = map.getCol(this.x);
+    } else if (interUp) {
+      map.interRow = map.getRow(this.y) - 1;
+      map.interCol = map.getCol(this.x);
+    } else if (interRight) {
+      map.interRow = map.getRow(this.y);
+      map.interCol = map.getCol(this.x) + 1;
+    }
+  } else {
+    map.logic = false;
+    // map.heroX = 0;
+    // map.heroY = 0;
   }
 };
 
@@ -543,11 +605,12 @@ Game._drawLayer = function (layer) {
     }
   }
 };
-// dsfafdkjflkadjfklads
 Game._drawGrid = function () {
   var width = map.cols * map.tsize;
   var height = map.rows * map.tsize;
   var x, y;
+  this.ctx.strokeStyle = "black";
+  this.ctx.lineWidth = 1;
   for (var r = 0; r < map.rows; r++) {
     x = -this.camera.x;
     y = r * map.tsize - this.camera.y;
@@ -666,17 +729,28 @@ Game._heroDraw = function () {
 Game._drawReck = function () {
   map.rect(this.ctx, 5, 4, 3, 3, "green");
   map.rect(this.ctx, 4, 3, 2, 2, "pink");
+  if (map.logic) {
+    map.rectBorder(this.ctx, map.interCol, map.interRow, 1, 1, "Red");
+  }
+};
+Game._text = function () {
+  if (map.logic) {
+    this.ctx.font = "16px serif";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText("[F]", map.fontX, map.fontY);
+  }
 };
 
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
   this._drawReck();
+  this._text();
 
   this._playersDraw();
   // draw main character
-
   this._heroDraw();
+
   // this.ctx.drawImage(
   //   this.hero.image,
   //   this.hero.screenX - this.hero.width / 2,
