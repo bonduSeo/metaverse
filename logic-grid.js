@@ -333,8 +333,9 @@ Hero.prototype._interactive = function () {
 
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
-    // map.heroX = this.x;
-    // map.heroY = this.y;
+    document.addEventListener("ArrowLeft", () => {
+      console.log("왼쪽");
+    });
     if (interLeft) {
       map.interRow = map.getRow(this.y);
       map.interCol = map.getCol(this.x) - 1;
@@ -350,8 +351,6 @@ Hero.prototype._interactive = function () {
     }
   } else {
     map.logic = false;
-    // map.heroX = 0;
-    // map.heroY = 0;
   }
 };
 
