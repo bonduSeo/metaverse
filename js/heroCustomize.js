@@ -5,12 +5,14 @@ Customize.load = function () {
     Loader.loadImage("heads", "../assets/heads.png"),
     Loader.loadImage("hairs", "../assets/hairs.png"),
     Loader.loadImage("bodys", "../assets/bodys.png"),
+    Loader.loadImage("accs", "../assets/accs.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
   ];
 };
 
 Customize.run = function () {
   this.menuTapSet();
+
   this.canvas = document.querySelector(".heroLook");
   this.ctx = this.canvas.getContext("2d");
   const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
@@ -26,6 +28,15 @@ Customize.run = function () {
           bodyShape: 0,
           acc: 0,
         };
+  this.customVol = {
+    toneColor: 5,
+    headShape: 2,
+    hairColor: 4,
+    hairShape: 9,
+    bodyColor: 4,
+    bodyShape: 5,
+    acc: 4,
+  };
 
   var p = this.load();
   Promise.all(p).then(
@@ -47,9 +58,9 @@ Customize.run = function () {
   };
 
   Customize.init = function () {
-    this.customCheck();
-
     this.hero = new Hero();
+    this.makeMenu();
+    this.customCheck();
     this.drawHero();
     const inputs = document.querySelectorAll(".menu__main input");
     inputs.forEach((input) => {
@@ -95,6 +106,25 @@ Customize.menuTapSet = function () {
   });
 };
 
+Customize.makeMenu = function () {
+  const headShape = document.querySelector(".headShape__body");
+  for (let i = 0; i <= 2; i++) {
+    const label = document.createElement("label");
+    const div = document.createElement("div");
+    const canvas = document.createElement("canvas");
+    const input = document.createElement("input");
+    canvas.width = 64;
+    canvas.height = 64;
+    headShape.appendChild(label).appendChild(div).appendChild(canvas);
+    div.appendChild(input);
+    input.type = "radio";
+    input.name = "headShape";
+    input.value = i;
+    const ctx = canvas.getContext("2d");
+    this.drawParts(ctx, "head", i * this.hero.size, 0);
+  }
+};
+
 function Hero() {
   this.size = 64;
   this.width = this.size;
@@ -112,49 +142,44 @@ function Hero() {
 Customize.drawHero = function () {
   this.ctx.clearRect(0, 0, 300, 200);
 
-  //Head
-  this.ctx.drawImage(
-    this.hero.customImgs.heads, // image
-    this.hero.customInfo.headShape * this.hero.size, // source x
-    0, // source y
-    this.hero.size, // source width
-    this.hero.size, // source height
-    0, //그리기 좌표
-    0,
-    this.hero.size,
-    this.hero.size
-  );
-  //Hair
-  this.ctx.drawImage(
-    this.hero.customImgs.hairs, // image
-    this.hero.customInfo.hairShape * this.hero.size, // source x
-
-    0, // source y
-    this.hero.size, // source width
-    this.hero.size, // source height
-    0, //그리기 좌표
-    0,
-    this.hero.size,
-    this.hero.size
-  );
-
   //Body
-  this.ctx.drawImage(
-    this.hero.customImgs.bodys, // image
-    this.hero.customInfo.bodyShape * this.hero.size, // source x
-    0, // source y
-    this.hero.size, // source width
-    this.hero.size, // source height
-    0, //그리기 좌표
-    0,
-    this.hero.size,
-    this.hero.size
-  );
-  //Acc
-  this.ctx.drawImage(
-    this.hero.customImgs.hands, // image
-    this.hero.customInfo.acc * this.hero.size, // source x
-    0, // source y
+  this.drawParts(this.ctx, "body", this.hero.customInfo.bodyShape * this.hero.size, 0);
+
+  //Head
+  this.drawParts(this.ctx, "head", this.hero.customInfo.headShape * this.hero.size, 0);
+
+  //Hair
+  this.drawParts(this.ctx, "hair", this.hero.customInfo.hairShape * this.hero.size, 0);
+
+  // //acc
+  this.drawParts(this.ctx, "acc", this.hero.customInfo.acc * this.hero.size, 0);
+
+  // //hand
+  this.drawParts(this.ctx, "hand", 0, 0);
+};
+Customize.drawParts = function (canvas, partName, sourceX, sourceY) {
+  let image;
+  switch (partName) {
+    case "head":
+      image = this.hero.customImgs.heads;
+      break;
+    case "body":
+      image = this.hero.customImgs.bodys;
+      break;
+    case "hand":
+      image = this.hero.customImgs.hands;
+      break;
+    case "acc":
+      image = this.hero.customImgs.accs;
+      break;
+    case "hair":
+      image = this.hero.customImgs.hairs;
+      break;
+  }
+  canvas.drawImage(
+    image, // image
+    sourceX,
+    sourceY,
     this.hero.size, // source width
     this.hero.size, // source height
     0, //그리기 좌표
