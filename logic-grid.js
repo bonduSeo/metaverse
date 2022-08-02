@@ -72,6 +72,21 @@ var map = {
       false
     );
   },
+  // 상호작용할 대상의 타일넘버 구하기
+  InteractiveObject: function (x, y) {
+    var col = Math.floor(x / this.tsize);
+    var row = Math.floor(y / this.tsize);
+
+    // tiles 3 and 5 are solid -- the rest are walkable
+    // loop through all layers and return TRUE if any tile is solid
+    return this.layers.reduce(
+      function (res, layer, index) {
+        var tile = this.getTile(index, col, row);
+        var InteractiveObj = this.Interactive[this.Interactive.indexOf(tile)];
+        return InteractiveObj;
+      }.bind(this)
+    );
+  },
 
   // 인수는 좌표값, 리턴은 행,열 값
   getCol: function (x) {
@@ -335,11 +350,21 @@ Hero.prototype._interactive = function () {
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
     const modalClick = document.querySelector(".modalClick");
+    let interactiveNumber = this.map.InteractiveObject(left, bottom - this.height / 2);
     document.addEventListener(
       "keydown",
       (e) => {
-        if (e.code === "KeyF") {
+        if (e.code === "Space") {
           modalClick.click();
+          if (interactiveNumber === 11) {
+            const modalBody = document.querySelector(".modal-body");
+            modalBody.innerHTML = `<iframe id="inlineFrameExample"
+    title="Inline Frame Example"
+    width="100%"
+    height="100%"
+    src="http://localhost/owner_login.php">
+</iframe>`;
+          }
         }
       },
       { once: true }
@@ -360,6 +385,7 @@ Hero.prototype._interactive = function () {
     }
   } else {
     map.logic = false;
+    // document.removeEventListener
   }
 };
 
@@ -744,28 +770,55 @@ Game._drawReck = function () {
 Game._text = function () {
   if (map.logic) {
     //반응 타일 상단 위치 구하는 공식
-    const reactTileX = map.interCol * map.tsize - Game.camera.x + 2;
+    const reactTileX = map.interCol * map.tsize - Game.camera.x;
     const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2;
-    const radius = 16;
-    this.ctx.font = "16px serif";
-    this.ctx.fillStyle = "black";
-    context.beginPath();
+    const radius = 4;
+    const boxHeight = 10;
+
+    this.ctx.font = "14px serif";
+    this.ctx.fillStyle = "#00000070";
+    this.ctx.beginPath();
     // 왼쪽 상단 모서리
-    context.moveTo(rx + radius, ry);
+    this.ctx.moveTo(reactTileX + radius, reactTileY - boxHeight);
     // 오른쪽 상단 모서리
-    context.arcTo(rx + width, ry, rx + width, ry + height, radius);
+    this.ctx.arcTo(
+      reactTileX + map.tsize,
+      reactTileY - boxHeight,
+      reactTileX + map.tsize,
+      reactTileY,
+      radius
+    );
     // 오른쪽 하단 모서리
-    context.arcTo(rx + width, ry + height, rx, ry + height, radius);
+    this.ctx.arcTo(
+      reactTileX + map.tsize,
+      reactTileY + boxHeight,
+      reactTileX + map.tsize - radius,
+      reactTileY + boxHeight + radius,
+      radius
+    );
     // 왼쪽 하단 모서리
-    context.arcTo(rx, ry + height, rx, ry, radius);
+    this.ctx.arcTo(
+      reactTileX,
+      reactTileY + boxHeight + radius - 2,
+      reactTileX,
+      reactTileY + boxHeight,
+      radius
+    );
     // 왼쪽 상단 모서리
-    context.arcTo(rx, ry, rx + radius, ry, radius);
+    this.ctx.arcTo(
+      reactTileX,
+      reactTileY - boxHeight,
+      reactTileX + radius,
+      reactTileY - boxHeight,
+      radius
+    );
     // 선 그리기
-    context.stroke();
-    context.fill();
+    this.ctx.stroke();
+    this.ctx.fill();
 
     this.ctx.fillStyle = "white";
-    this.ctx.fillText("[Space]", reactTileX, reactTileY);
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("[Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
   }
 };
 
