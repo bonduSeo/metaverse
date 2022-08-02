@@ -44,6 +44,7 @@ Customize.run = function () {
     bodyShape: 5,
     acc: 4,
   };
+  this.nickName = "";
 
   var p = this.load();
   Promise.all(p).then(
@@ -69,11 +70,22 @@ Customize.run = function () {
     this.makeMenu();
     this.customCheck();
     this.drawHero();
+    const nickNameLocal = document.querySelector(".nameBox input");
+    nickNameLocal.addEventListener("change", (e) => {
+      localStorage.setItem("nickName", nickNameLocal.value);
+      console.log(document.querySelector(".nameBox input").value);
+    });
     document.querySelector(".submitBtn").addEventListener("click", () => {
+      this.nickName = nickNameLocal.value;
+      localStorage.setItem("nickName", this.nickName);
       const customInfoJson = JSON.stringify(this.customInfo);
       localStorage.setItem("customInfo", customInfoJson);
+      if (this.nickName === "") {
+        alert("이름 설정은 필수입니다");
+      } else {
+        location.href = "meta.html";
+      }
       // const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
-      location.href = "meta.html";
     });
   };
 };
@@ -105,6 +117,7 @@ Customize.menuTapSet = function () {
 };
 
 Customize.makeMenu = function () {
+  document.querySelector(".nameBox input").value = localStorage.getItem("nickName");
   const eachCustom = document.querySelectorAll(".eachCustom");
 
   eachCustom.forEach((item) => {

@@ -215,6 +215,8 @@ function Hero(map, x, y) {
           bodyShape: 0,
           acc: 0,
         };
+  const nickName = localStorage.getItem("nickName");
+  this.nickName = nickName !== null ? nickName : "";
 
   this.id = utils.uuidv4();
 
@@ -586,11 +588,11 @@ Game._playersDraw = function () {
 
   playersKeys.forEach((key) => {
     if (this.players[key].id !== this.hero.id) {
-      //
+      //바디드로잉
       this.ctx.drawImage(
-        this.hero.headsImage, // image
-        this.players[key].headInfo * this.hero.width, // source x
-        0, // source y
+        this.hero.bodysImage, // image
+        this.players[key].customInfo.bodyShape * this.players[key].width, // source x
+        this.players[key].customInfo.bodyColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
         this.players[key].x - this.camera.x - this.players[key].width / 2,
@@ -598,10 +600,48 @@ Game._playersDraw = function () {
         this.players[key].width,
         this.players[key].height
       );
+      //머리드로잉
       this.ctx.drawImage(
-        this.hero.bodysImage, // image
-        this.players[key].bodyInfo * this.hero.width, // source x
-        0, // source y
+        this.hero.headsImage, // image
+        this.players[key].customInfo.headShape * this.players[key].width, // source x
+        this.players[key].customInfo.toneColor * this.players[key].height, // source y
+        this.players[key].width, // source width
+        this.players[key].height, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.hero.width,
+        this.hero.height
+      );
+      //헤어드로잉
+      this.ctx.drawImage(
+        this.hero.hairsImage, // image
+        this.players[key].customInfo.hairShape * this.players[key].width, // source x
+        this.players[key].customInfo.hairColor * this.players[key].height, // source y
+        this.players[key].width, // source width
+        this.players[key].height, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].width,
+        this.players[key].height
+      );
+
+      // acc 드로잉
+      this.ctx.drawImage(
+        this.hero.AccsImage, // image
+        this.players[key].customInfo.acc * this.players[key].width, // source x
+        0,
+        this.players[key].width, // source width
+        this.players[key].height, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].width,
+        this.players[key].height
+      );
+      // hands 드로잉
+      this.ctx.drawImage(
+        this.hero.handsImage, // image
+        0,
+        this.players[key].customInfo.toneColor * this.players[key].height, // source x
         this.players[key].width, // source width
         this.players[key].height, // source height
         this.players[key].x - this.camera.x - this.players[key].width / 2,
@@ -612,8 +652,8 @@ Game._playersDraw = function () {
     }
   });
 };
-// this.heroDraw(this.ctx);
-Game._heroDraw = function (canvas, customInfoObj, sourceX, sourceY, screenX, screenY) {
+
+Game._heroDraw = function () {
   //바디드로잉
   this.ctx.drawImage(
     this.hero.bodysImage, // image
@@ -675,8 +715,49 @@ Game._heroDraw = function (canvas, customInfoObj, sourceX, sourceY, screenX, scr
     this.hero.width,
     this.hero.height
   );
+  //네임바 드로잉
+  this.ctx.beginPath();
+  // 왼쪽 상단 모서리
+  this.ctx.moveTo(
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2
+  );
 };
-Game._drawReck = function () {
+Game._drawNameBox = function () {
+  //nameBox 그리기
+  const drawEachNameBox = (name, sX, sY) => {
+    this.ctx.fillStyle = "white";
+    const textWidth = this.ctx.measureText(name).width + 5;
+    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 10, textWidth, 10);
+    this.ctx.fillStyle = "black";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(name, sX + this.hero.width / 2, sY);
+  };
+  drawEachNameBox(
+    this.hero.nickName,
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2
+  );
+  if (!this.players) {
+    return;
+  }
+  const playerKeys = Object.keys(this.players);
+
+  playerKeys.forEach((key) => {
+    if (this.players[key].id !== this.hero.id) {
+      drawEachNameBox(
+        this.players[key].nickName,
+        this.players[key].x - this.camera.x - this.hero.width / 2,
+        this.players[key].y - this.camera.y - this.hero.height / 2
+      );
+    }
+  });
+
+  // this.players.forEach((player) => {
+  //   drawEachNameBox(player.nickName, player.screenX, player.screenY);
+  // });
+};
+Game._drawRect = function () {
   map.rect(this.ctx, 5, 4, 3, 3, "green");
   map.rect(this.ctx, 4, 3, 2, 2, "pink");
 };
@@ -684,11 +765,10 @@ Game._drawReck = function () {
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
-  this._drawReck();
+  this._drawRect();
 
   this._playersDraw();
   // draw main character
-
   this._heroDraw();
   // this.ctx.drawImage(
   //   this.hero.image,
@@ -698,6 +778,7 @@ Game.render = function () {
 
   // draw map top layer
   this._drawLayer(1);
+  this._drawNameBox();
 
   this._drawGrid();
 };
