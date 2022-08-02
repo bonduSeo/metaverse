@@ -1,4 +1,11 @@
 const Customize = {};
+Customize.colorInfo = {
+  toneColor: ["#efc796", "#e7af94", "#ef8d48", "#b67349", "#94573f", "#735032"],
+
+  hairColor: ["#343433", "#ffd400", "#ff331f", "#039e2b", "#fcc76e"],
+
+  bodyColor: ["#4387f6", "#ffbd29", "#ff301f", "#009f2b"],
+};
 
 Customize.load = function () {
   return [
@@ -33,7 +40,7 @@ Customize.run = function () {
     headShape: 2,
     hairColor: 4,
     hairShape: 9,
-    bodyColor: 4,
+    bodyColor: 3,
     bodyShape: 5,
     acc: 4,
   };
@@ -62,15 +69,6 @@ Customize.run = function () {
     this.makeMenu();
     this.customCheck();
     this.drawHero();
-    const inputs = document.querySelectorAll(".menu__main input");
-    inputs.forEach((input) => {
-      input.addEventListener("click", () => {
-        this.customInfo[input.name] = input.value;
-
-        console.log(this.customInfo);
-        this.drawHero();
-      });
-    });
     document.querySelector(".submitBtn").addEventListener("click", () => {
       const customInfoJson = JSON.stringify(this.customInfo);
       localStorage.setItem("customInfo", customInfoJson);
@@ -107,22 +105,87 @@ Customize.menuTapSet = function () {
 };
 
 Customize.makeMenu = function () {
-  const headShape = document.querySelector(".headShape__body");
-  for (let i = 0; i <= 2; i++) {
-    const label = document.createElement("label");
-    const div = document.createElement("div");
-    const canvas = document.createElement("canvas");
-    const input = document.createElement("input");
-    canvas.width = 64;
-    canvas.height = 64;
-    headShape.appendChild(label).appendChild(div).appendChild(canvas);
-    div.appendChild(input);
-    input.type = "radio";
-    input.name = "headShape";
-    input.value = i;
-    const ctx = canvas.getContext("2d");
-    this.drawParts(ctx, "head", i * this.hero.size, 0);
-  }
+  const eachCustom = document.querySelectorAll(".eachCustom");
+
+  eachCustom.forEach((item) => {
+    if (item.id.includes("Color")) {
+      for (let i = 0; i <= Customize.customVol[item.id]; i++) {
+        const label = document.createElement("label");
+        const div = document.createElement("div");
+        const input = document.createElement("input");
+        label.appendChild(input);
+        item.appendChild(label).appendChild(div);
+        input.type = "radio";
+        input.name = item.id;
+        input.value = i;
+        const colorInfo = this.colorInfo[item.id];
+        if (item.id == "bodyColor") {
+          console.log(colorInfo);
+          console.log(colorInfo[i]);
+        }
+        div.style.backgroundColor = colorInfo[i];
+
+        input.addEventListener("click", () => {
+          this.customInfo[input.name] = input.value;
+          console.log(this.customInfo);
+          this.drawHero();
+          eachCustom.forEach((item) => {
+            item.innerHTML = "";
+          });
+          Customize.makeMenu();
+          this.customCheck();
+        });
+      }
+    } else {
+      for (let i = 0; i <= Customize.customVol[item.id]; i++) {
+        const label = document.createElement("label");
+        const div = document.createElement("div");
+        const canvas = document.createElement("canvas");
+        const input = document.createElement("input");
+        canvas.width = 64;
+        canvas.height = 64;
+        item.appendChild(label).appendChild(input);
+        label.appendChild(div);
+        div.appendChild(canvas);
+        input.type = "radio";
+        input.name = item.id;
+        input.value = i;
+        const ctx = canvas.getContext("2d");
+
+        const checkWhatColor = (id) => {
+          const part = id.replace("Shape", "");
+          let whatColor = "";
+          switch (part) {
+            case "head":
+              whatColor = this.customInfo["toneColor"];
+              break;
+            case "acc":
+              whatColor = 0;
+              break;
+            case "body":
+              whatColor = this.customInfo["bodyColor"];
+              break;
+            case "hair":
+              whatColor = this.customInfo["hairColor"];
+          }
+          this.drawParts(ctx, part, i * this.hero.size, whatColor * this.hero.size);
+        };
+        checkWhatColor(item.id);
+
+        input.addEventListener("click", () => {
+          this.customInfo[input.name] = input.value;
+          console.log(this.customInfo);
+          this.drawHero();
+
+          eachCustom.forEach((item) => {
+            item.innerHTML = "";
+          });
+          Customize.makeMenu();
+          this.customCheck();
+        });
+      }
+    }
+  });
 };
 
 function Hero() {
@@ -143,19 +206,34 @@ Customize.drawHero = function () {
   this.ctx.clearRect(0, 0, 300, 200);
 
   //Body
-  this.drawParts(this.ctx, "body", this.hero.customInfo.bodyShape * this.hero.size, 0);
+  this.drawParts(
+    this.ctx,
+    "body",
+    this.hero.customInfo.bodyShape * this.hero.size,
+    this.hero.customInfo.bodyColor * this.hero.size
+  );
 
   //Head
-  this.drawParts(this.ctx, "head", this.hero.customInfo.headShape * this.hero.size, 0);
+  this.drawParts(
+    this.ctx,
+    "head",
+    this.hero.customInfo.headShape * this.hero.size,
+    this.hero.customInfo.toneColor * this.hero.size
+  );
 
   //Hair
-  this.drawParts(this.ctx, "hair", this.hero.customInfo.hairShape * this.hero.size, 0);
+  this.drawParts(
+    this.ctx,
+    "hair",
+    this.hero.customInfo.hairShape * this.hero.size,
+    this.hero.customInfo.hairColor * this.hero.size
+  );
 
   // //acc
   this.drawParts(this.ctx, "acc", this.hero.customInfo.acc * this.hero.size, 0);
 
   // //hand
-  this.drawParts(this.ctx, "hand", 0, 0);
+  this.drawParts(this.ctx, "hand", 0, this.hero.customInfo.toneColor * this.hero.size);
 };
 Customize.drawParts = function (canvas, partName, sourceX, sourceY) {
   let image;
@@ -192,3 +270,7 @@ Customize.drawParts = function (canvas, partName, sourceX, sourceY) {
 window.onload = function () {
   Customize.run();
 };
+
+function goBack() {
+  window.history.back();
+}

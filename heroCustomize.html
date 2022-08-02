@@ -4,206 +4,72 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      div,
-      td,
-      tr {
-        border: 1px solid gray;
-      }
-    </style>
-    <title>hero</title>
+    <link rel="stylesheet" href="css/heroCustomize.css" />
+    <script src="https://kit.fontawesome.com/9a7cd08fef.js" crossorigin="anonymous"></script>
+    <title>Customize</title>
   </head>
   <body>
     <div class="container">
-      <div>
-        <div class="lookDiv"><a href="#"></a></div>
-        <canvas class="heroLook" width="300" height="200"></canvas>
+      <div class="heroLookBox">
+        <div class="backIcon">
+          <a href="#" onclick="goBack();"
+            ><div><i class="fa-solid fa-arrow-left"></i></div
+          ></a>
+        </div>
+        <div class="nameBox">
+          <span>name</span>
+          <input type="text" name="" id="" />
+        </div>
+
+        <canvas class="heroLook" width="64" height="64"></canvas>
       </div>
       <div class="menuTab">
         <label
-          ><div class="menuTab__head">
-            head <input type="radio" name="menuTab" value="head" checked /></div
-        ></label>
+          ><input type="radio" name="menuTab" value="head" checked />
+          <div class="menuTab__head">head</div></label
+        >
         <label
-          ><div class="menuTab__body">body<input type="radio" name="menuTab" value="body" /></div
-        ></label>
+          ><input type="radio" name="menuTab" value="body" />
+          <div class="menuTab__body">body</div></label
+        >
         <label
-          ><div class="menuTab__ accessory">
-            accessory <input type="radio" name="menuTab" value="acc" /></div
-        ></label>
+          ><input type="radio" name="menuTab" value="acc" />
+          <div class="menuTab__ accessory">accessory</div></label
+        >
       </div>
 
       <div class="menu__main">
         <div class="menu__main-head">
           <div class="toneColor">
             <div class="toneColor__title">Tone Color</div>
-            <div class="toneColor__table eachCustom">
-              <table>
-                <tr>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="0" checked /></td>
-                  </label>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="1" /></td>
-                  </label>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="2" /></td>
-                  </label>
-                </tr>
-                <tr>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="3" /></td>
-                  </label>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="4" /></td>
-                  </label>
-                  <label>
-                    <td><input type="radio" name="toneColor" value="5" /></td>
-                  </label>
-                </tr>
-              </table>
-            </div>
+            <div class="toneColor__table eachCustom" id="toneColor"></div>
           </div>
           <div class="headShape">
             <div class="headShape__title">Head Shape</div>
-            <div class="headShape__body eachCustom">
-              
-            </div>
+            <div class="headShape__body eachCustom" id="headShape"></div>
           </div>
           <div class="hairColor">
-            <div class="hairColor__table eachCustom">
-              <table>
-                <tr>
-                  <label
-                    ><td><input type="radio" name="hairColor" value="0" checked /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="hairColor" value="1" /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="hairColor" value="2" /></td
-                  ></label>
-                </tr>
-                <tr>
-                  <label
-                    ><td><input type="radio" name="hairColor" value="3" /></td></label
-                  ><label
-                    ><td><input type="radio" name="hairColor" value="4" /></td></label
-                  ><label
-                    ><td><input type="radio" name="hairColor" value="5" /></td
-                  ></label>
-                </tr>
-              </table>
-            </div>
+            <div class="hairColor__title">hair Color</div>
+            <div class="hairColor__table eachCustom" id="hairColor"></div>
           </div>
           <div class="hairShape">
             <div class="hairShape__title">Hair Style</div>
-            <div class="hairShape__body eachCustom">
-              <label
-                ><div>
-                  <img src="./assets/forCustomize/hair0_default.png" alt="" /><input
-                    type="radio"
-                    name="hairShape"
-                    value="0"
-                    checked
-                  /></div
-              ></label>
-              <label
-                ><div>
-                  <img src="./assets/forCustomize/hair1.png" alt="" /><input
-                    type="radio"
-                    name="hairShape"
-                    value="2"
-                  /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="hairShape" value="" /></div
-              ></label>
-            </div>
+            <div class="hairShape__body eachCustom" id="hairShape"></div>
           </div>
         </div>
         <div class="menu__main-body" style="display: none">
           <div class="bodyColor">
             <div class="bodyColor__title">Clothing Color</div>
-            <div class="bodyColor__table eachCustom">
-              <table>
-                <tr>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="0" checked /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="1" /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="2" /></td
-                  ></label>
-                </tr>
-                <tr>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="3" /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="4" /></td
-                  ></label>
-                  <label
-                    ><td><input type="radio" name="bodyColor" value="5" /></td
-                  ></label>
-                </tr>
-              </table>
-            </div>
+            <div class="bodyColor__table eachCustom" id="bodyColor"></div>
           </div>
           <div class="bodyShape">
             <div class="bodyShape__title">Body Shape</div>
-            <div class="bodyShape__body eachCustom">
-              <label
-                ><div><input type="radio" name="bodyShape" value="0" checked /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="bodyShape" value="1" /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="bodyShape" value="2" /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="bodyShape" value="3" /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="bodyShape" value="4" /></div
-              ></label>
-              <label
-                ><div><input type="radio" name="bodyShape" value="5" /></div
-              ></label>
-            </div>
+            <div class="bodyShape__body eachCustom" id="bodyShape"></div>
           </div>
         </div>
         <div class="menu__accessory" style="display: none">
-          <div class="accType eachCustom">
-            <label
-              ><div>
-                <img src="./assets/forCustomize/hand0_default.png" /><input
-                  type="radio"
-                  name="acc"
-                  value="0"
-                  checked
-                /></div
-            ></label>
-            <label
-              ><div>
-                <img src="./assets/forCustomize/hand1_pen.png" /><input
-                  type="radio"
-                  name="acc"
-                  value="1"
-                /></div
-            ></label>
-            <label
-              ><div>
-                <img src="./assets/forCustomize/hand2_flower.png" /><input
-                  type="radio"
-                  name="acc"
-                  value="2"
-                /></div
-            ></label>
-          </div>
+          <div class="acc__title">Accessory</div>
+          <div class="accType eachCustom" id="acc"></div>
         </div>
       </div>
       <div>

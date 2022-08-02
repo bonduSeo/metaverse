@@ -218,13 +218,12 @@ function Hero(map, x, y) {
 
   this.id = utils.uuidv4();
 
-  this.image = Loader.getImage("hero");
-
   //body파츠 이미지파일
   this.headsImage = Loader.getImage("heads");
   this.hairsImage = Loader.getImage("hairs");
   this.bodysImage = Loader.getImage("bodys");
   this.handsImage = Loader.getImage("hands");
+  this.AccsImage = Loader.getImage("accs");
 }
 
 Hero.SPEED = 256; // pixels per second
@@ -416,11 +415,11 @@ Hero.prototype._collide = function () {
 Game.load = function () {
   return [
     Loader.loadImage("tiles", "../assets/tiles.png"),
-    Loader.loadImage("hero", "../assets/character.png"),
     Loader.loadImage("heads", "../assets/heads.png"),
     Loader.loadImage("hairs", "../assets/hairs.png"),
     Loader.loadImage("bodys", "../assets/bodys.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
+    Loader.loadImage("accs", "../assets/accs.png"),
   ];
 };
 
@@ -587,6 +586,7 @@ Game._playersDraw = function () {
 
   playersKeys.forEach((key) => {
     if (this.players[key].id !== this.hero.id) {
+      //
       this.ctx.drawImage(
         this.hero.headsImage, // image
         this.players[key].headInfo * this.hero.width, // source x
@@ -612,13 +612,13 @@ Game._playersDraw = function () {
     }
   });
 };
-
-Game._heroDraw = function () {
-  //머리드로잉
+// this.heroDraw(this.ctx);
+Game._heroDraw = function (canvas, customInfoObj, sourceX, sourceY, screenX, screenY) {
+  //바디드로잉
   this.ctx.drawImage(
-    this.hero.headsImage, // image
-    this.hero.customInfo.headShape * this.hero.width, // source x
-    0, // source y
+    this.hero.bodysImage, // image
+    this.hero.customInfo.bodyShape * this.hero.width, // source x
+    this.hero.customInfo.bodyColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX - this.hero.width / 2,
@@ -626,11 +626,11 @@ Game._heroDraw = function () {
     this.hero.width,
     this.hero.height
   );
-  //바디드로잉
+  //머리드로잉
   this.ctx.drawImage(
-    this.hero.bodysImage, // image
-    this.hero.customInfo.bodyShape * this.hero.width, // source x
-    0, // source y
+    this.hero.headsImage, // image
+    this.hero.customInfo.headShape * this.hero.width, // source x
+    this.hero.customInfo.toneColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX - this.hero.width / 2,
@@ -642,7 +642,7 @@ Game._heroDraw = function () {
   this.ctx.drawImage(
     this.hero.hairsImage, // image
     this.hero.customInfo.hairShape * this.hero.width, // source x
-    0, // source y
+    this.hero.customInfo.hairColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX - this.hero.width / 2,
@@ -650,11 +650,24 @@ Game._heroDraw = function () {
     this.hero.width,
     this.hero.height
   );
-  //acc / hands 드로잉
+
+  // acc 드로잉
+  this.ctx.drawImage(
+    this.hero.AccsImage, // image
+    this.hero.customInfo.acc * this.hero.width, // source x
+    0,
+    this.hero.width, // source width
+    this.hero.height, // source height
+    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2,
+    this.hero.width,
+    this.hero.height
+  );
+  // hands 드로잉
   this.ctx.drawImage(
     this.hero.handsImage, // image
-    this.hero.customInfo.acc * this.hero.width, // source x
-    0, // source y
+    0,
+    this.hero.customInfo.toneColor * this.hero.height, // source x
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX - this.hero.width / 2,
