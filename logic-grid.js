@@ -3,14 +3,13 @@ var map = {
   rows: 12,
   tsize: 64,
   logic: false,
-  //상호작용시 반응할 타일
+  //상호작용시 반응할 타일 구하기 위한 변수
   interRow: 0,
   interCol: 0,
-  fontX: 0,
-  fontY: 0,
+
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
       1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1,
       1, 1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
@@ -94,6 +93,7 @@ var map = {
     const innerRadius = radius - 4;
     const x = col * this.tsize;
     const y = row * this.tsize;
+    // Game.camera.x,y - 카메라 영역 좌측 위의 x값과 y값
     const rx = x - Game.camera.x;
     const ry = y - Game.camera.y;
     const width = w * this.tsize;
@@ -155,6 +155,7 @@ var map = {
     const innerRadius = radius - 4;
     const x = col * this.tsize;
     const y = row * this.tsize;
+    // Game.camera.x,y - 카메라 영역 좌측 위의 x값과 y값
     const rx = x - Game.camera.x;
     const ry = y - Game.camera.y;
     const width = w * this.tsize;
@@ -228,7 +229,8 @@ Camera.prototype.update = function () {
   }
 
   map.fontX = this.following.screenX;
-  map.fontY = this.following.screenY - map.tsize / 2;
+  map.fontY = this.following.screenY;
+  // map.fontY = this.following.screenY - map.tsize / 2;
 };
 //test
 function Hero(map, x, y) {
@@ -324,7 +326,6 @@ Hero.prototype._interactive = function () {
   var right = this.x + this.width / 2;
   var top = this.y - this.height / 2 - 1;
   var bottom = this.y + this.height / 2;
-  const ctx = Game.ctx;
 
   const interLeft = this.map.isInteractiveAtXY(left, bottom - this.height / 2); //성공
   const interDown = this.map.isInteractiveAtXY(right - this.width / 2, bottom);
@@ -333,9 +334,17 @@ Hero.prototype._interactive = function () {
 
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
-    document.addEventListener("ArrowLeft", () => {
-      console.log("왼쪽");
-    });
+    const modalClick = document.querySelector(".modalClick");
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        if (e.code === "KeyF") {
+          modalClick.click();
+        }
+      },
+      { once: true }
+    );
+
     if (interLeft) {
       map.interRow = map.getRow(this.y);
       map.interCol = map.getCol(this.x) - 1;
@@ -734,9 +743,29 @@ Game._drawReck = function () {
 };
 Game._text = function () {
   if (map.logic) {
+    //반응 타일 상단 위치 구하는 공식
+    const reactTileX = map.interCol * map.tsize - Game.camera.x + 2;
+    const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2;
+    const radius = 16;
     this.ctx.font = "16px serif";
     this.ctx.fillStyle = "black";
-    this.ctx.fillText("[F]", map.fontX, map.fontY);
+    context.beginPath();
+    // 왼쪽 상단 모서리
+    context.moveTo(rx + radius, ry);
+    // 오른쪽 상단 모서리
+    context.arcTo(rx + width, ry, rx + width, ry + height, radius);
+    // 오른쪽 하단 모서리
+    context.arcTo(rx + width, ry + height, rx, ry + height, radius);
+    // 왼쪽 하단 모서리
+    context.arcTo(rx, ry + height, rx, ry, radius);
+    // 왼쪽 상단 모서리
+    context.arcTo(rx, ry, rx + radius, ry, radius);
+    // 선 그리기
+    context.stroke();
+    context.fill();
+
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText("[Space]", reactTileX, reactTileY);
   }
 };
 
@@ -744,7 +773,6 @@ Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
   this._drawReck();
-  this._text();
 
   this._playersDraw();
   // draw main character
@@ -760,4 +788,5 @@ Game.render = function () {
   this._drawLayer(1);
 
   this._drawGrid();
+  this._text();
 };
