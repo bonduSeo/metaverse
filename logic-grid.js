@@ -12,7 +12,7 @@ let base = {
         title="Inline Frame Example"
         width="100%"
         height="100%"
-        src="http://localhost/owner_login.php">
+        src="http://192.168.0.39:8080/">
         </iframe>`;
       }
     }
