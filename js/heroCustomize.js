@@ -287,3 +287,4 @@ window.onload = function () {
 function goBack() {
   window.history.back();
 }
+//
