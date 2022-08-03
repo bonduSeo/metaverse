@@ -953,7 +953,7 @@ Game._text = function () {
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
-  // this._drawTiles();
+  this._drawTiles();
   this._drawRect();
 
   this._playersDraw();
