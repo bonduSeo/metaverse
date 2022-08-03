@@ -518,12 +518,24 @@ Game.load = function () {
     Loader.loadImage("bodys", "../assets/bodys.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
     Loader.loadImage("accs", "../assets/accs.png"),
+    Loader.loadImage("fences", "../assets/tiles/fences.png"),
+    Loader.loadImage("grass", "../assets/tiles/Grass.png"),
+    Loader.loadImage("hills", "../assets/tiles/Hills.png"),
+    Loader.loadImage("tilledDirt", "../assets/tiles/TilledDirt.png"),
+    Loader.loadImage("water", "../assets/tiles/Water.png"),
+    Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
   ];
 };
 
 Game.init = function () {
   Keyboard.listenForEvents([Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
   this.tileAtlas = Loader.getImage("tiles");
+  this.fences = Loader.getImage("fences");
+  this.grass = Loader.getImage("grass");
+  this.hills = Loader.getImage("hills");
+  this.tilledDirt = Loader.getImage("tilledDirt");
+  this.water = Loader.getImage("water");
+  this.woodenHouse = Loader.getImage("woodenHouse");
 
   this.hero = new Hero(map, 160, 160);
   this.camera = new Camera(map, 512, 512);
@@ -534,7 +546,6 @@ Game.init = function () {
   });
   socket.on("players", (data) => {
     Game.players = data;
-    // console.log(Game.players);
   });
 };
 
@@ -919,6 +930,7 @@ Game._text = function () {
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
+  this._drawTiles();
   this._drawRect();
 
   this._playersDraw();
@@ -933,6 +945,7 @@ Game.render = function () {
 
   // draw map top layer
   this._drawLayer(1);
+
   this._drawNameBox();
 
   this._drawGrid();
