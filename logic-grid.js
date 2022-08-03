@@ -562,6 +562,8 @@ Game.init = function () {
   this.camera = new Camera(map, 512, 512);
   this.camera.follow(this.hero);
 
+  this.chatInit();
+
   socket.on("socketId", (id) => {
     this.hero.id = id;
   });
@@ -951,7 +953,7 @@ Game._text = function () {
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
-  this._drawTiles();
+  // this._drawTiles();
   this._drawRect();
 
   this._playersDraw();

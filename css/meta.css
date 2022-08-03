@@ -23,7 +23,8 @@ a:hover {
 }
 
 .main-wrapper {
-  width: 512px;
+  /* width: 512px; */
+  width: 100%;
   padding-left: 1em;
   padding-right: 1em;
   margin: 0 auto;
@@ -65,4 +66,24 @@ p {
 
 li {
   margin: 0.5em 0;
+}
+
+/* 윗줄까지 원래있던내용 */
+
+.gameAndChat {
+  display: flex;
+}
+.chat {
+  border: 1px solid black;
+  width: 200px;
+  position: relative;
+}
+.chatContext {
+  border: 1px solid black;
+  height: 410px;
+  overflow: auto;
+}
+.textInput {
+  position: absolute;
+  bottom: 0;
 }
