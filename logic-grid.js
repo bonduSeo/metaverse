@@ -1,24 +1,3 @@
-// 기초 베이스 객체
-let base = {
-  //상호작용을 위한 값들과 함수
-  hasKeydown: 0,
-  interactiveNumber: 0,
-  event1: function (e) {
-    if (e.code === "Space") {
-      document.querySelector(".modalClick").click();
-      if (base.interactiveNumber === 11) {
-        const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<iframe id="inlineFrameExample"
-        title="Inline Frame Example"
-        width="100%"
-        height="100%"
-        src="http://192.168.0.39:8080/">
-        </iframe>`;
-      }
-    }
-  },
-};
-
 let map = {
   cols: 12,
   rows: 12,
@@ -46,6 +25,7 @@ let map = {
   ],
   // 블록타일 -- 충돌 발생하는 타일
   block: [3, 5],
+  blocksLayer: [0, 2],
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
   color: {
@@ -69,13 +49,36 @@ let map = {
     return this.layers.reduce(
       function (res, layer, index) {
         var tile = this.getTile(index, col, row);
-        var isSolid = this.block.includes(tile);
+        var tile2;
+        map.blocksLayer.forEach((item) => {
+          tile2 = this.getTile2(item, col, row);
+          console.log(tile2);
+        });
 
-        return res || isSolid;
+        //해당 타일에 해당하는 레이어값 구하기
+        // var isSolid = this.blocksLayer.includes(layer);
+
+        return res || tile2;
       }.bind(this),
       false
     );
   },
+  // isSolidTileAtXY: function (x, y) {
+  //   var col = Math.floor(x / this.tsize);
+  //   var row = Math.floor(y / this.tsize);
+
+  //   // tiles 3 and 5 are solid -- the rest are walkable
+  //   // loop through all layers and return TRUE if any tile is solid
+  //   return this.layers.reduce(
+  //     function (res, layer, index) {
+  //       var tile = this.getTile(index, col, row);
+  //       var isSolid = this.block.includes(tile);
+
+  //       return res || isSolid;
+  //     }.bind(this),
+  //     false
+  //   );
+  // },
 
   isInteractiveAtXY: function (x, y) {
     var col = Math.floor(x / this.tsize);
