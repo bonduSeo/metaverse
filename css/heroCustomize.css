@@ -1,11 +1,17 @@
 div {
-  border: 1px solid gray;
+  border: 1px solid var(--dark-gray);
 }
 
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--blue-bg);
 }
 
 body {
@@ -33,6 +39,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--beige-bg);
 }
 
 a {
@@ -48,7 +55,7 @@ a {
   width: 100%;
   height: 150px;
   position: relative;
-  background-color: #b5ece7;
+  background-color: var(--lightBlue-bg);
   gap: 10px;
 }
 .nameBox {
@@ -77,12 +84,16 @@ a {
 
 .menuTab {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 .menuTab div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.menu__main {
+  height: 400px;
+  background-color: var(--lightBlue-bg);
 }
 
 .menu__main > div {
@@ -90,7 +101,7 @@ a {
 }
 
 input:checked + div {
-  border: 1px solid red;
+  border: 3px solid var(--pink-bg);
 }
 
 .headShape__body,
@@ -128,4 +139,8 @@ input[type="radio"] {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.canvasDiv {
+  background-color: var(--beige-bg);
 }

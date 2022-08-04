@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/heroCustomize.css" />
     <script src="https://kit.fontawesome.com/9a7cd08fef.js" crossorigin="anonymous"></script>
     <title>Customize</title>
@@ -29,6 +30,10 @@
           <div class="menuTab__head">head</div></label
         >
         <label
+          ><input type="radio" name="menuTab" value="hair" />
+          <div class="menuTab__hair">hair</div></label
+        >
+        <label
           ><input type="radio" name="menuTab" value="body" />
           <div class="menuTab__body">body</div></label
         >
@@ -48,6 +53,8 @@
             <div class="headShape__title">Head Shape</div>
             <div class="headShape__body eachCustom" id="headShape"></div>
           </div>
+        </div>
+        <div class="menu__main-hair" style="display: none">
           <div class="hairColor">
             <div class="hairColor__title">hair Color</div>
             <div class="hairColor__table eachCustom" id="hairColor"></div>

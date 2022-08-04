@@ -100,16 +100,25 @@ Customize.menuTapSet = function () {
           menuMain[0].style.display = "block";
           menuMain[1].style.display = "none";
           menuMain[2].style.display = "none";
+          menuMain[3].style.display = "none";
           break;
-        case "body":
+        case "hair":
           menuMain[0].style.display = "none";
           menuMain[1].style.display = "block";
           menuMain[2].style.display = "none";
+          menuMain[2].style.display = "none";
+          break;
+        case "body":
+          menuMain[0].style.display = "none";
+          menuMain[1].style.display = "none";
+          menuMain[2].style.display = "block";
+          menuMain[3].style.display = "none";
           break;
         case "acc":
           menuMain[0].style.display = "none";
           menuMain[1].style.display = "none";
-          menuMain[2].style.display = "block";
+          menuMain[2].style.display = "none";
+          menuMain[3].style.display = "block";
           break;
       }
     });
@@ -132,10 +141,7 @@ Customize.makeMenu = function () {
         input.name = item.id;
         input.value = i;
         const colorInfo = this.colorInfo[item.id];
-        if (item.id == "bodyColor") {
-          console.log(colorInfo);
-          console.log(colorInfo[i]);
-        }
+
         div.style.backgroundColor = colorInfo[i];
 
         input.addEventListener("click", () => {
@@ -160,6 +166,7 @@ Customize.makeMenu = function () {
         item.appendChild(label).appendChild(input);
         label.appendChild(div);
         div.appendChild(canvas);
+        div.className = "canvasDiv";
         input.type = "radio";
         input.name = item.id;
         input.value = i;
