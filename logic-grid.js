@@ -499,7 +499,7 @@ Hero.prototype._collide = function () {
       this.x = blockX;
     }
   }
-  // 우위 대각에 블럭이 있을때, 그 타일로 이동시
+  // 우위 대각에 블럭이 있을때, 그 타일로 이동시.
   else if (blockRightUp && !(blockRightDown && blockLeftDown && blockLeftUp)) {
     let blockX = this.map.getX(this.map.getCol(right)) - this.width / 2;
     let blockY = this.map.getY(this.map.getRow(top) + 1) + this.height / 2;
