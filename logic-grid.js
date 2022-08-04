@@ -1,4 +1,25 @@
-var map = {
+// 기초 베이스 객체
+let base = {
+  //상호작용을 위한 값들과 함수
+  hasKeydown: 0,
+  interactiveNumber: 0,
+  event1: function (e) {
+    if (e.code === "Space") {
+      document.querySelector(".modalClick").click();
+      if (base.interactiveNumber === 11) {
+        const modalBody = document.querySelector(".modal-body");
+        modalBody.innerHTML = `<iframe id="inlineFrameExample"
+        title="Inline Frame Example"
+        width="100%"
+        height="100%"
+        src="http://192.168.0.39:8080/">
+        </iframe>`;
+      }
+    }
+  },
+};
+
+let map = {
   cols: 12,
   rows: 12,
   tsize: 64,
@@ -9,7 +30,7 @@ var map = {
 
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
       1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1,
       1, 1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
@@ -337,6 +358,7 @@ Hero.prototype.move = function (delta, dirX, dirY) {
   this.x = Math.max(0, Math.min(this.x, maxX));
   this.y = Math.max(0, Math.min(this.y, maxY));
 };
+
 Hero.prototype._interactive = function () {
   var left = this.x - this.width / 2 - 1;
   var right = this.x + this.width / 2;
@@ -350,43 +372,42 @@ Hero.prototype._interactive = function () {
 
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
-    const modalClick = document.querySelector(".modalClick");
-    let interactiveNumber = this.map.InteractiveObject(left, bottom - this.height / 2);
-    document.addEventListener(
-      "keydown",
-      (e) => {
-        if (e.code === "Space") {
-          modalClick.click();
-          if (interactiveNumber === 11) {
-            const modalBody = document.querySelector(".modal-body");
-            modalBody.innerHTML = `<iframe id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="100%"
-    height="100%"
-    src="http://localhost/owner_login.php">
-</iframe>`;
-          }
-        }
-      },
-      { once: true }
-    );
+    //이벤트 한번만 걸기 위한 if와 변수값
+    if (base.hasKeydown === 0) {
+      base.hasKeydown = 1;
+      document.addEventListener("keydown", base.event1, true);
+      //document.onkeydown = event1;
+    }
 
     if (interLeft) {
       map.interRow = map.getRow(this.y);
       map.interCol = map.getCol(this.x) - 1;
+      //좌측 상호작용 타일 구하기
+      base.interactiveNumber = this.map.InteractiveObject(left, bottom - this.height / 2);
     } else if (interDown) {
       map.interRow = map.getRow(this.y) + 1;
       map.interCol = map.getCol(this.x);
+      //아래쪽 상호작용 타일 구하기
+      base.interactiveNumber = this.map.InteractiveObject(right - this.width / 2, bottom);
     } else if (interUp) {
       map.interRow = map.getRow(this.y) - 1;
       map.interCol = map.getCol(this.x);
+      //위쪽 상호작용 타일 구하기
+      base.interactiveNumber = this.map.InteractiveObject(right - this.width / 2, top);
     } else if (interRight) {
       map.interRow = map.getRow(this.y);
       map.interCol = map.getCol(this.x) + 1;
+      //우측 상호작용 타일 구하기
+      base.interactiveNumber = this.map.InteractiveObject(right, bottom - this.height / 2);
     }
   } else {
     map.logic = false;
-    // document.removeEventListener
+    //이벤트 한번만 걸기 위한 if와 변수값
+    if (base.hasKeydown === 1) {
+      base.hasKeydown = 0;
+      document.removeEventListener("keydown", base.event1, true);
+      //document.onkeydown = null;
+    }
   }
 };
 
@@ -518,23 +539,36 @@ Game.load = function () {
     Loader.loadImage("bodys", "../assets/bodys.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
     Loader.loadImage("accs", "../assets/accs.png"),
+    Loader.loadImage("fences", "../assets/tiles/fences.png"),
+    Loader.loadImage("grass", "../assets/tiles/Grass.png"),
+    Loader.loadImage("hills", "../assets/tiles/Hills.png"),
+    Loader.loadImage("tilledDirt", "../assets/tiles/TilledDirt.png"),
+    Loader.loadImage("water", "../assets/tiles/Water.png"),
+    Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
   ];
 };
 
 Game.init = function () {
   Keyboard.listenForEvents([Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
   this.tileAtlas = Loader.getImage("tiles");
+  this.fences = Loader.getImage("fences");
+  this.grass = Loader.getImage("grass");
+  this.hills = Loader.getImage("hills");
+  this.tilledDirt = Loader.getImage("tilledDirt");
+  this.water = Loader.getImage("water");
+  this.woodenHouse = Loader.getImage("woodenHouse");
 
   this.hero = new Hero(map, 160, 160);
   this.camera = new Camera(map, 512, 512);
   this.camera.follow(this.hero);
+
+  this.chatInit();
 
   socket.on("socketId", (id) => {
     this.hero.id = id;
   });
   socket.on("players", (data) => {
     Game.players = data;
-    // console.log(Game.players);
   });
 };
 
@@ -919,6 +953,7 @@ Game._text = function () {
 Game.render = function () {
   // draw map background layer
   this._drawLayer(0);
+  // this._drawTiles();
   this._drawRect();
 
   this._playersDraw();
@@ -933,6 +968,7 @@ Game.render = function () {
 
   // draw map top layer
   this._drawLayer(1);
+
   this._drawNameBox();
 
   this._drawGrid();
