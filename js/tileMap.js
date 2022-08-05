@@ -402,3 +402,28 @@ Game._drawTiles = function () {
   Game._drawTilesLayer(1);
   Game._drawTilesLayer(2);
 };
+
+// console.log(window.innerWidth);
+
+//--------------역행을 시도--------------
+
+// function test() {
+//   map.MaxRows = 0;
+//   map.MaxCols = 0;
+
+//   map.tileMap.maps.Map_1.layers.forEach((item) => {
+//     for (key in item.tiles) {
+//       let [rows, cols] = key.split("-");
+//       if (~~map.MaxRows < ~~rows) {
+//         map.MaxRows = rows;
+//       }
+//       if (~~map.MaxCols < ~~cols) {
+//         map.MaxCols = cols;
+//       }
+//     }
+//   });
+//   console.log(map.MaxCols);
+//   const test = [map.MaxRows, map.MaxCols];
+//   return test;
+// }
+// console.log(test());
