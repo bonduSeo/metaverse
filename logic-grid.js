@@ -247,7 +247,7 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - Game.remainX;
+  this.width = window.innerWidth - Game.remainX + Game.chatSize;
   this.height = window.innerHeight - Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
@@ -587,9 +587,11 @@ Game.init = function () {
 
 Game.remainX = 300;
 Game.remainY = 200;
+Game.mediaQ = 620;
 Game.resizeInit = function () {
-  Game.canvas.width = window.innerWidth - this.remainX;
-  Game.canvas.height = window.innerHeight - this.remainY;
+  this.chatSize = window.innerWidth < 620 ? 240 : 0;
+  this.canvas.width = window.innerWidth - this.remainX + this.chatSize;
+  this.canvas.height = window.innerHeight - this.remainY;
   this.chatBoxResize();
 };
 Game.update = function (delta) {
