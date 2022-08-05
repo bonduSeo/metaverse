@@ -1,6 +1,6 @@
 let map = {
-  cols: 36,
-  rows: 36,
+  cols: 50,
+  rows: 30,
   tsize: 64,
   logic: false,
   //상호작용시 반응할 타일 구하기 위한 변수
@@ -553,6 +553,9 @@ Game.load = function () {
     Loader.loadImage("tilledDirt", "../assets/tiles/TilledDirt.png"),
     Loader.loadImage("water", "../assets/tiles/Water.png"),
     Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
+    Loader.loadImage("redBlock", "../assets/tiles/redBlock.png"),
+    Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
+    Loader.loadImage("trees", "../assets/tiles/trees.png"),
   ];
 };
 
@@ -565,8 +568,11 @@ Game.init = function () {
   this.tilledDirt = Loader.getImage("tilledDirt");
   this.water = Loader.getImage("water");
   this.woodenHouse = Loader.getImage("woodenHouse");
+  this.redBlock = Loader.getImage("redBlock");
+  this.bridge = Loader.getImage("bridge");
+  this.trees = Loader.getImage("trees");
 
-  this.hero = new Hero(map, 160, 160);
+  this.hero = new Hero(map, 1312, 480);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -975,12 +981,13 @@ Game.render = function () {
   // console.log(width);
   // draw map background layer
   // this._drawLayer(0);
-  this._drawTiles();
+  this._drawTiles(1);
   this._drawRect();
 
   this._playersDraw();
   // draw main character
   this._heroDraw();
+  this._drawTiles(2);
 
   // this.ctx.drawImage(
   //   this.hero.image,
@@ -991,8 +998,7 @@ Game.render = function () {
   // draw map top layer
   // this._drawLayer(1);
 
-  this._drawNameBox();
-
   this._drawGrid();
+  this._drawNameBox();
   this._text();
 };
