@@ -364,9 +364,9 @@ map.getTile2 = function (layer, col, row) {
 
 Game._drawTilesLayer = function (layer) {
   var startCol = Math.floor(this.camera.x / map.tsize);
-  var endCol = startCol + this.camera.width / map.tsize;
+  var endCol = startCol + this.camera.width / map.tsize + 1;
   var startRow = Math.floor(this.camera.y / map.tsize);
-  var endRow = startRow + this.camera.height / map.tsize;
+  var endRow = startRow + this.camera.height / map.tsize + 1;
   var offsetX = -this.camera.x + startCol * map.tsize;
   var offsetY = -this.camera.y + startRow * map.tsize;
 

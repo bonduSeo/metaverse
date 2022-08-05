@@ -35,6 +35,10 @@ Game.chatInit = function () {
 Game.chatBoxResize = function () {
   const canvas = document.getElementById("demo");
   const chatBox = document.querySelector(".chat");
-
-  chatBox.style.height = canvas.height + 4 + "px";
+  if (window.innerWidth < this.mediaQ) {
+    chatBox.style.display = "none";
+  } else {
+    chatBox.style.display = "inline-block";
+    chatBox.style.height = canvas.height + 4 + "px";
+  }
 };
