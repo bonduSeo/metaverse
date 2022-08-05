@@ -247,8 +247,8 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - 300;
-  this.height = window.innerHeight - 300;
+  this.width = window.innerWidth - Game.remainX;
+  this.height = window.innerHeight - Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
   // make the camera follow the sprite
@@ -570,6 +570,10 @@ Game.init = function () {
   this.camera.follow(this.hero);
 
   this.chatInit();
+  this.resizeInit();
+  window.onresize = () => {
+    this.resizeInit();
+  };
 
   socket.on("socketId", (id) => {
     this.hero.id = id;
@@ -579,6 +583,13 @@ Game.init = function () {
   });
 };
 
+Game.remainX = 300;
+Game.remainY = 200;
+Game.resizeInit = function () {
+  Game.canvas.width = window.innerWidth - this.remainX;
+  Game.canvas.height = window.innerHeight - this.remainY;
+  this.chatBoxResize();
+};
 Game.update = function (delta) {
   // handle hero movement with arrow keys
   var dirX = 0;
@@ -958,8 +969,6 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  Game.canvas.width = window.innerWidth - 300;
-  Game.canvas.height = window.innerHeight - 300;
   // console.log(width);
   // draw map background layer
   // this._drawLayer(0);

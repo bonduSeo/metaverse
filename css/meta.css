@@ -19,11 +19,14 @@ a,
 a:hover,
 a:visited {
   color: #000;
+
   text-decoration: none;
 }
 
 /* 윗줄까지 원래있던내용 */
-
+.main-wrapper {
+  margin: auto;
+}
 .gameAndChat {
   position: relative;
 }

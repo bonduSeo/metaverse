@@ -53,6 +53,7 @@ Keyboard.isDown = function (keyCode) {
 
 var Game = {};
 
+
 Game.run = function (canvas, context) {
   this.canvas = canvas;
   this.ctx = context;
@@ -93,7 +94,7 @@ Game.render = function () {};
 //
 
 window.onload = function () {
-  let canvas = document.getElementById("demo");
+  const canvas = document.getElementById("demo");
   var context = canvas.getContext("2d");
   Game.run(canvas, context);
 };
