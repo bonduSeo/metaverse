@@ -380,6 +380,8 @@ Hero.prototype._interactive = function () {
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
     //이벤트 한번만 걸기 위한 if와 변수값
+    console.log(document.activeElement);
+
     if (base.hasKeydown === 0) {
       base.hasKeydown = 1;
       document.addEventListener("keydown", base.event1, true);
@@ -969,7 +971,6 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  // console.log(width);
   // draw map background layer
   // this._drawLayer(0);
   this._drawTiles();
