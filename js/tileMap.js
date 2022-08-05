@@ -358,7 +358,7 @@ map.getTile2 = function (layer, col, row) {
   });
   whatTile.tileSize = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].tileSize;
   whatTile.img = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].img;
-  //   console.log(whatTile);
+  // console.log(whatTile);
   return whatTile;
 };
 
@@ -373,6 +373,7 @@ Game._drawTilesLayer = function (layer) {
   for (var c = startCol; c <= endCol; c++) {
     for (var r = startRow; r <= endRow; r++) {
       var tile = map.getTile2(layer, c, r);
+
       var x = (c - startCol) * map.tsize + offsetX;
       var y = (r - startRow) * map.tsize + offsetY;
 
@@ -392,10 +393,12 @@ Game._drawTilesLayer = function (layer) {
       }
     }
   }
+  return layer;
 };
 
 Game._drawTiles = function () {
   Game._drawTilesLayer(0);
+  // console.log(Game._drawTilesLayer(0));
   Game._drawTilesLayer(1);
   Game._drawTilesLayer(2);
 };
