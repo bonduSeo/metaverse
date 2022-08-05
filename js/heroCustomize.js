@@ -82,6 +82,7 @@ Customize.run = function () {
       localStorage.setItem("customInfo", customInfoJson);
       if (this.nickName === "") {
         alert("이름 설정은 필수입니다");
+        nickNameLocal.focus();
       } else {
         location.href = "meta.html";
       }

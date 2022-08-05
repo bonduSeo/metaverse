@@ -7,20 +7,24 @@
     <title>Document</title>
     <style>
       div {
+        width: 10px;
+        height: 10px;
         border: 1px solid red;
-        height: 40px;
-      }
-      .test:first-child {
-        background-color: blue;
       }
     </style>
   </head>
+
   <body>
-    <div class="test">
-      <label for=""><div></div></label>
-      <div><div></div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <div></div>
+    <button onclick="test()">a</button>
+    <script>
+      function test() {
+        const div = document.querySelector("div");
+        div.style.backgroundColor = "blue";
+        div.style.width = "200px";
+        div.style.height = "200px";
+        console.log(div.style);
+      }
+    </script>
   </body>
 </html>

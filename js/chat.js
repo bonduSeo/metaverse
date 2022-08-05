@@ -29,4 +29,12 @@ Game.chatInit = function () {
       submit.click();
     }
   });
+  this.chatBoxResize();
+};
+
+Game.chatBoxResize = function () {
+  const canvas = document.getElementById("demo");
+  const chatBox = document.querySelector(".chat");
+
+  chatBox.style.height = canvas.height + 4 + "px";
 };
