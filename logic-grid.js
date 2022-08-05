@@ -24,8 +24,11 @@ let map = {
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
-  block: [3, 5],
-  blocksLayer: [0, 2],
+  // block: [3, 5],
+  blocksLayer: {
+    0: "water",
+    2: "fence",
+  },
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
   color: {
@@ -46,22 +49,31 @@ let map = {
 
     // tiles 3 and 5 are solid -- the rest are walkable
     // loop through all layers and return TRUE if any tile is solid
-    return this.layers.reduce(
-      function (res, layer, index) {
-        var tile = this.getTile(index, col, row);
-        var tile2;
-        map.blocksLayer.forEach((item) => {
-          tile2 = this.getTile2(item, col, row);
-          console.log(tile2);
-        });
 
-        //해당 타일에 해당하는 레이어값 구하기
-        // var isSolid = this.blocksLayer.includes(layer);
+    let currentTile;
+    let blockTile;
+    if (this.getTile2(2, col, row)) {
+      // console.log(this.getTile2(2, col, row).img);
+    }
 
-        return res || tile2;
-      }.bind(this),
-      false
-    );
+    // console.log(Boolean(this.getTile2(0, col, row)));
+    // console.log(Boolean(this.getTile2(2, col, row)));
+    // key 는 blocksLayer의 key값 -> 그린 레이어의 배열 키값이다.
+    for (key in this.blocksLayer) {
+      if (key) {
+        // console.log(key);
+        if (this.getTile2(key, col, row)) {
+          // console.log(this.getTile2(key, col, row).img);
+          currentTile = this.getTile2(key, col, row).img;
+        }
+        blockTile = this.blocksLayer[key];
+        if (currentTile === blockTile) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   },
   // isSolidTileAtXY: function (x, y) {
   //   var col = Math.floor(x / this.tsize);
