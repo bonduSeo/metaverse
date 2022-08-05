@@ -2,11 +2,6 @@ div {
   /* border: 1px solid var(--dark-gray); */
 }
 
-* {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
 html,
 body {
   height: 100%;
@@ -20,7 +15,7 @@ body {
   align-items: center;
 }
 .container {
-  min-width: 300px;
+  width: 350px;
   max-width: 350px;
   border: 2px solid var(--dark-gray);
 }
@@ -47,13 +42,6 @@ a {
   text-decoration: none;
   color: black;
 }
-.menuTab div {
-  border: 2px solid var(--dark-gray);
-  border-right-width: 0;
-}
-.menuTab__head {
-  border-left-width: 0;
-}
 
 .heroLookBox {
   display: flex;
@@ -70,8 +58,9 @@ a {
   display: flex;
   align-items: center;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   height: 1.6rem;
+  width: 150px;
 }
 .nameBox span {
   font-size: 0.8rem;
@@ -80,9 +69,8 @@ a {
   border-radius: 10px;
   width: 2.5rem;
   height: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 5px;
+  text-align: center;
 }
 .nameBox input {
   width: 100px;
@@ -93,51 +81,51 @@ a {
 .menuTab {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  background-color: var(--beige-bg);
 }
 .menuTab div {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid var(--dark-gray);
+  border-right-width: 0;
+}
+
+.menuTab__head {
+  border-left-width: 0 !important;
+}
+.menuTab input:checked + div {
+  background-color: var(--pink-bg);
+  font-weight: bold;
 }
 .menu__main {
-  height: 400px;
+  height: 430px;
   background-color: var(--lightBlue-bg);
 }
 
 .menu__main > div {
   padding: 10px;
 }
-.toneColor__table {
-  border: 2px solid var(--dark-gray);
-}
-.toneColor__table:nth-child(1) {
-  border: 2px solid var(--dark-gray);
-  /* border-left-width: 0; */
-}
 
-input:checked + div {
+.menu__main input:checked + div {
   outline: 3px solid var(--pink-bg);
   z-index: 10;
   position: relative;
 }
 
-input:checked + div::before {
+.menu__main input:checked + div::before {
   content: "";
   position: absolute;
   z-index: -1;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
+  top: -7px;
+  left: -7px;
+  right: -7px;
+  bottom: -7px;
   border: 2px solid var(--dark-gray);
-  /* background: #4aa929; */
 }
-/* input:checked + div::after {
-  content: "";
-  width: 110px;
-  height: 40px;
-  border: 3px double var(--pink-bg);
-} */
+.menu__main input:checked + div {
+  border: 2px solid var(--dark-gray);
+}
 
 .headShape__body,
 .hairShape__body,
@@ -152,10 +140,19 @@ input:checked + div::before {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.colorContainer {
+  border: 1px solid var(--dark-gray);
+}
+.colorContainer div {
+  border: 1px solid var(--dark-gray);
+  /* border-left-width: 0; */
+}
+
 .hairColor__table {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
 .bodyColor__table {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -178,4 +175,35 @@ input[type="radio"] {
 
 .canvasDiv {
   background-color: var(--beige-bg);
+  border: 2px solid var(--dark-gray);
+}
+
+.footer {
+  background-color: var(--lightBlue-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid var(--dark-gray);
+  height: 60px;
+}
+.submitBtn {
+  background-color: var(--pink-bg);
+  width: 95%;
+  height: 75%;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.eachTitle {
+  margin-bottom: 6px;
+}
+.headShape__title,
+.hairShape__title,
+.bodyShape__title {
+  margin-top: 20px;
+}
+
+input[type="text"]:focus {
+  outline: 2px solid var(--pink-bg);
 }

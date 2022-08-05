@@ -1,10 +1,14 @@
+@import url("common.css");
+html,
 body {
-  font-family: "Source Code Pro", "Courier", monospace;
-  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--yellow-bg) !important;
 }
 
 canvas {
   background: #000;
+  border: 2px solid var(--dark-gray);
 }
 
 a,
@@ -14,76 +18,72 @@ a:visited {
   text-decoration: none;
 }
 
-a {
-  border-bottom: 2px solid #31ffd5;
-}
-
-a:hover {
-  background: #31ffd5;
-}
-
-.main-wrapper {
-  /* width: 512px; */
-  width: 100%;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin: 0 auto;
-}
-
-.main-header,
-.main-footer {
-  text-align: center;
-}
-
-.subtitle {
-  font-size: 1.5em;
-}
-
-.main-header {
-  margin-top: 0;
-  margin-bottom: 2em;
-}
-
-.main-header h1 {
-  margin: 0;
-  background: #31ffd5;
-  padding: 0.5em 1em;
-}
-
-.main-header a {
-  color: #000;
-  text-decoration: none;
-}
-
-.main-footer {
-  margin-top: 2em;
-}
-
-li,
-p {
-  line-height: 1.25em;
-}
-
-li {
-  margin: 0.5em 0;
-}
-
 /* 윗줄까지 원래있던내용 */
 
 .gameAndChat {
-  display: flex;
-}
-.chat {
-  border: 1px solid black;
-  width: 200px;
   position: relative;
+}
+
+.chat {
+  display: inline-block;
+  margin-left: 6px;
+  border: 2px solid var(--dark-gray);
+  width: 240px;
+  height: 512px;
+  position: relative;
+  padding: 8px;
+  position: absolute;
+}
+.chat__title {
+  font-weight: bold;
 }
 .chatContext {
   border: 1px solid black;
-  height: 410px;
-  overflow: auto;
+  height: 85%;
+  overflow-y: scroll;
+  border: 2px solid var(--dark-gray);
 }
+.chatContext::-webkit-scrollbar {
+  display: none;
+}
+
 .textInput {
   position: absolute;
-  bottom: 0;
+  bottom: 6px;
+  background-color: var(--beige-bg);
+  border: 2px solid var(--dark-gray);
+  display: flex;
+  height: 2rem;
+  width: 220px;
+  align-items: center;
+}
+.textInput input {
+  background-color: var(--beige-bg);
+  border: none;
+  width: 90%;
+  padding-left: 4px;
+}
+.textInput input:focus {
+  outline: none;
+}
+
+.chat {
+  background-color: var(--lightBlue-bg);
+}
+
+.chatContext {
+  background-color: var(--beige-bg);
+}
+
+.textInput button {
+  width: 50px;
+  height: 80%;
+  font-size: 6px;
+  background-color: var(--beige-bg);
+  border: 2px solid var(--blue-bg);
+  color: var(--blue-bg);
+  font-weight: bold;
+  border-radius: 15px;
+  margin-right: 5px;
+  text-align: center;
 }

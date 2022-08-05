@@ -1,8 +1,11 @@
+@import url("http://fonts.cdnfonts.com/css/google-sans");
+
 :root {
   --blue-bg: #2da6c3;
   --lightBlue-bg: #b5ece7;
   --beige-bg: #f7f0c2;
   --pink-bg: #ff80ab;
+  --yellow-bg: #f2b400;
 
   /* ====== Text Colors ====== */
   --dark-gray: #1f2937;
@@ -12,4 +15,14 @@
 
   /* ====== Shadow ====== */
   --box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+* {
+  font-family: "Product Sans", sans-serif !important;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
