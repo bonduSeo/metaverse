@@ -1,27 +1,6 @@
-// 기초 베이스 객체
-let base = {
-  //상호작용을 위한 값들과 함수
-  hasKeydown: 0,
-  interactiveNumber: 0,
-  event1: function (e) {
-    if (e.code === "Space") {
-      document.querySelector(".modalClick").click();
-      if (base.interactiveNumber === 11) {
-        const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<iframe id="inlineFrameExample"
-        title="Inline Frame Example"
-        width="100%"
-        height="100%"
-        src="http://192.168.0.39:8080/">
-        </iframe>`;
-      }
-    }
-  },
-};
-
 let map = {
-  cols: 12,
-  rows: 12,
+  cols: 36,
+  rows: 36,
   tsize: 64,
   logic: false,
   //상호작용시 반응할 타일 구하기 위한 변수
@@ -45,7 +24,11 @@ let map = {
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
-  block: [3, 5],
+  // block: [3, 5],
+  blocksLayer: {
+    0: "water",
+    2: "fence",
+  },
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
   color: {
@@ -64,18 +47,40 @@ let map = {
     var col = Math.floor(x / this.tsize);
     var row = Math.floor(y / this.tsize);
 
-    // tiles 3 and 5 are solid -- the rest are walkable
-    // loop through all layers and return TRUE if any tile is solid
-    return this.layers.reduce(
-      function (res, layer, index) {
-        var tile = this.getTile(index, col, row);
-        var isSolid = this.block.includes(tile);
+    let currentTile;
+    let blockTile;
 
-        return res || isSolid;
-      }.bind(this),
-      false
-    );
+    // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
+    for (key in this.blocksLayer) {
+      if (key) {
+        if (this.getTile2(key, col, row)) {
+          currentTile = this.getTile2(key, col, row).img;
+        }
+        blockTile = this.blocksLayer[key];
+        if (currentTile === blockTile) {
+          // return true;
+        }
+      }
+    }
+
+    return false;
   },
+  // isSolidTileAtXY: function (x, y) {
+  //   var col = Math.floor(x / this.tsize);
+  //   var row = Math.floor(y / this.tsize);
+
+  //   // tiles 3 and 5 are solid -- the rest are walkable
+  //   // loop through all layers and return TRUE if any tile is solid
+  //   return this.layers.reduce(
+  //     function (res, layer, index) {
+  //       var tile = this.getTile(index, col, row);
+  //       var isSolid = this.block.includes(tile);
+
+  //       return res || isSolid;
+  //     }.bind(this),
+  //     false
+  //   );
+  // },
 
   isInteractiveAtXY: function (x, y) {
     var col = Math.floor(x / this.tsize);
@@ -226,6 +231,7 @@ let map = {
 function Camera(map, width, height) {
   this.x = 0;
   this.y = 0;
+  //카메라 범위
   this.width = width;
   this.height = height;
   this.maxX = map.cols * map.tsize - width;
@@ -240,13 +246,16 @@ Camera.prototype.follow = function (sprite) {
 
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
-  // whenever possible
+  // whenever possible 캐릭터 위치값
+  this.width = window.innerWidth;
+  this.height = window.innerHeight;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
-
+  console.log(this.following.x);
   // make the camera follow the sprite
   this.x = this.following.x - this.width / 2;
   this.y = this.following.y - this.height / 2;
+
   // clamp values
 
   this.x = Math.max(0, Math.min(this.x, this.maxX));
@@ -263,7 +272,6 @@ Camera.prototype.update = function () {
   if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
     this.following.screenY = this.following.y - this.y;
   }
-
   map.fontX = this.following.screenX;
   map.fontY = this.following.screenY;
   // map.fontY = this.following.screenY - map.tsize / 2;
@@ -499,7 +507,7 @@ Hero.prototype._collide = function () {
       this.x = blockX;
     }
   }
-  // 우위 대각에 블럭이 있을때, 그 타일로 이동시
+  // 우위 대각에 블럭이 있을때, 그 타일로 이동시.
   else if (blockRightUp && !(blockRightDown && blockLeftDown && blockLeftUp)) {
     let blockX = this.map.getX(this.map.getCol(right)) - this.width / 2;
     let blockY = this.map.getY(this.map.getRow(top) + 1) + this.height / 2;
@@ -559,7 +567,7 @@ Game.init = function () {
   this.woodenHouse = Loader.getImage("woodenHouse");
 
   this.hero = new Hero(map, 160, 160);
-  this.camera = new Camera(map, 512, 512);
+  this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
   this.chatInit();
@@ -951,9 +959,12 @@ Game._text = function () {
 };
 
 Game.render = function () {
+  Game.canvas.width = window.innerWidth - 240;
+  Game.canvas.height = window.innerHeight - 240;
+  // console.log(width);
   // draw map background layer
-  this._drawLayer(0);
-  // this._drawTiles();
+  // this._drawLayer(0);
+  this._drawTiles();
   this._drawRect();
 
   this._playersDraw();
@@ -967,7 +978,7 @@ Game.render = function () {
   // );
 
   // draw map top layer
-  this._drawLayer(1);
+  // this._drawLayer(1);
 
   this._drawNameBox();
 
