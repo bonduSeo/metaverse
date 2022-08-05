@@ -247,11 +247,10 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth;
-  this.height = window.innerHeight;
+  this.width = window.innerWidth - 300;
+  this.height = window.innerHeight - 300;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
-  console.log(this.following.x);
   // make the camera follow the sprite
   this.x = this.following.x - this.width / 2;
   this.y = this.following.y - this.height / 2;
