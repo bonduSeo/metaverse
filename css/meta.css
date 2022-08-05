@@ -6,6 +6,10 @@ body {
   background-color: var(--yellow-bg) !important;
 }
 
+h1 {
+  text-align: center;
+}
+
 canvas {
   background: #000;
   border: 2px solid var(--dark-gray);
