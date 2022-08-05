@@ -959,8 +959,8 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  Game.canvas.width = window.innerWidth - 240;
-  Game.canvas.height = window.innerHeight - 240;
+  Game.canvas.width = window.innerWidth - 300;
+  Game.canvas.height = window.innerHeight - 300;
   // console.log(width);
   // draw map background layer
   // this._drawLayer(0);
