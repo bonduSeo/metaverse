@@ -6,7 +6,7 @@ let map = {
   //상호작용시 반응할 타일 구하기 위한 변수
   interRow: 0,
   interCol: 0,
-
+  hills: false,
   layers: [
     [
       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
@@ -48,7 +48,6 @@ let map = {
     var row = Math.floor(y / this.tsize);
 
     let currentTile;
-    let gate;
 
     // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
 
