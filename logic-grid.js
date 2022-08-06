@@ -284,6 +284,7 @@ function Hero(map, x, y) {
   this.width = map.tsize;
   this.height = map.tsize;
   this.dirR = false;
+  this.isWalking = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -668,6 +669,13 @@ Game.update = function (delta) {
   }
   this.hero.move(delta, dirX, dirY);
 
+  //걷는모션
+  if (dirX !== 0 || dirY !== 0) {
+    this.hero.isWalking = true;
+  } else {
+    this.hero.isWalking = false;
+  }
+
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
@@ -751,6 +759,12 @@ Game._playersDraw = function () {
 
   playersKeys.forEach((key) => {
     if (this.players[key].id !== this.hero.id) {
+      //좌우반전
+      let flipCheck = 1;
+      if (this.players[key].dirR) {
+        this.ctx.scale(-1, 1);
+        flipCheck = -1;
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
@@ -758,7 +772,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.bodyColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -770,7 +784,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.hero.width,
         this.hero.height
@@ -782,7 +796,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.hairColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -795,7 +809,7 @@ Game._playersDraw = function () {
         0,
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -807,11 +821,14 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source x
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
       );
+      if (flipCheck === -1) {
+        this.ctx.scale(-1, 1);
+      }
     }
   });
 };
@@ -823,7 +840,11 @@ Game._heroDraw = function () {
     this.ctx.scale(-1, 1);
     flipCheck = -1;
   }
-
+  let walkMotion = 1;
+  if (this.hero.isWalking) {
+    walkMotion += Math.sin(new Date() / 100);
+    walkMotion *= 16;
+  }
   this.ctx.drawImage(
     this.hero.bodysImage, // image
     this.hero.customInfo.bodyShape * this.hero.width, // source x
@@ -833,7 +854,7 @@ Game._heroDraw = function () {
     this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   //머리드로잉
 
@@ -846,7 +867,7 @@ Game._heroDraw = function () {
     this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   //헤어드로잉
 
@@ -859,7 +880,7 @@ Game._heroDraw = function () {
     this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
 
   // acc 드로잉
@@ -872,7 +893,7 @@ Game._heroDraw = function () {
     this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   // hands 드로잉
   this.ctx.drawImage(
@@ -884,7 +905,7 @@ Game._heroDraw = function () {
     this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   if (flipCheck === -1) {
     this.ctx.scale(-1, 1);
