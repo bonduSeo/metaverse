@@ -402,6 +402,21 @@ map.tileMap = {
       width: 64,
       height: 64,
     },
+    9: {
+      img: "greenBlock",
+      name: "tileset 9",
+      gridWidth: 1,
+      gridHeight: 1,
+      tileCount: 1,
+      tileData: { "0-0": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ" } },
+      symbolStartIdx: 262,
+      tileSize: 64,
+      tags: {},
+      frames: {},
+      description: "n/a",
+      width: 64,
+      height: 64,
+    },
   },
   maps: {
     Map_1: {
@@ -2778,6 +2793,10 @@ map.tileMap = {
             "12-10": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "8-24": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "5-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "6-24": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "6-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "41-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "13-2": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: true,
           name: "Layer7_block1",
@@ -2821,6 +2840,16 @@ map.tileMap = {
           },
           visible: true,
           name: "Layer8_block2",
+          animatedTiles: {},
+          opacity: 1,
+        },
+        {
+          tiles: {
+            "18-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "19-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+          },
+          visible: true,
+          name: "Layer9_block3",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2874,7 +2903,6 @@ Game._drawTilesLayer = function (layer, isWater = 0) {
       let waterFlow = 0;
       if (isWater) {
         waterFlow = Math.floor((new Date().getTime() / 500) % 4);
-        console.log(waterFlow);
       }
       if (tile !== undefined) {
         // 0 => empty tile
@@ -2907,6 +2935,7 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(6);
     Game._drawTilesLayer(7);
     Game._drawTilesLayer(8);
+    Game._drawTilesLayer(9);
   }
 };
 
