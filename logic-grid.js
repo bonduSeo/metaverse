@@ -797,6 +797,13 @@ Game._playersDraw = function () {
         this.ctx.scale(-1, 1);
         flipCheck = -1;
       }
+      //걷기모션
+      let walkMotion = 1;
+      if (this.players[key].isWalking) {
+        walkMotion += Math.sin(new Date() / 40);
+        walkMotion *= 3;
+        console.log(walkMotion);
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
@@ -805,9 +812,9 @@ Game._playersDraw = function () {
         this.players[key].width, // source width
         this.players[key].height, // source height
         (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
       //머리드로잉
       this.ctx.drawImage(
@@ -817,9 +824,9 @@ Game._playersDraw = function () {
         this.players[key].width, // source width
         this.players[key].height, // source height
         (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.hero.width,
-        this.hero.height
+        this.hero.height - walkMotion
       );
       //헤어드로잉
       this.ctx.drawImage(
@@ -829,9 +836,9 @@ Game._playersDraw = function () {
         this.players[key].width, // source width
         this.players[key].height, // source height
         (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
 
       // acc 드로잉
@@ -842,9 +849,9 @@ Game._playersDraw = function () {
         this.players[key].width, // source width
         this.players[key].height, // source height
         (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
       // hands 드로잉
       this.ctx.drawImage(
@@ -854,9 +861,9 @@ Game._playersDraw = function () {
         this.players[key].width, // source width
         this.players[key].height, // source height
         (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
       if (flipCheck === -1) {
         this.ctx.scale(-1, 1);
@@ -872,10 +879,12 @@ Game._heroDraw = function () {
     this.ctx.scale(-1, 1);
     flipCheck = -1;
   }
+  //걷기모션
   let walkMotion = 1;
   if (this.hero.isWalking) {
-    walkMotion += Math.sin(new Date() / 100);
-    walkMotion *= 16;
+    walkMotion += Math.sin(new Date() / 40);
+    walkMotion *= 3;
+    console.log(walkMotion);
   }
   this.ctx.drawImage(
     this.hero.bodysImage, // image
@@ -884,9 +893,9 @@ Game._heroDraw = function () {
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX * flipCheck - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height + walkMotion
+    this.hero.height - walkMotion
   );
   //머리드로잉
 
@@ -897,9 +906,9 @@ Game._heroDraw = function () {
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX * flipCheck - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height + walkMotion
+    this.hero.height - walkMotion
   );
   //헤어드로잉
 
@@ -910,9 +919,9 @@ Game._heroDraw = function () {
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX * flipCheck - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height + walkMotion
+    this.hero.height - walkMotion
   );
 
   // acc 드로잉
@@ -923,9 +932,9 @@ Game._heroDraw = function () {
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX * flipCheck - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height + walkMotion
+    this.hero.height - walkMotion
   );
   // hands 드로잉
   this.ctx.drawImage(
@@ -935,9 +944,9 @@ Game._heroDraw = function () {
     this.hero.width, // source width
     this.hero.height, // source height
     this.hero.screenX * flipCheck - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height + walkMotion
+    this.hero.height - walkMotion
   );
   if (flipCheck === -1) {
     this.ctx.scale(-1, 1);
@@ -963,7 +972,7 @@ Game._drawNameBox = function () {
   drawEachNameBox(
     this.hero.nickName,
     this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2
+    this.hero.screenY - this.hero.height / 2 - 10
   );
   if (!this.players) {
     return;
@@ -975,7 +984,7 @@ Game._drawNameBox = function () {
       drawEachNameBox(
         this.players[key].nickName,
         this.players[key].x - this.camera.x - this.hero.width / 2,
-        this.players[key].y - this.camera.y - this.hero.height / 2
+        this.players[key].y - this.camera.y - this.hero.height / 2 - 10
       );
     }
   });
