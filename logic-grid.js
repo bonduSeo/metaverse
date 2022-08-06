@@ -27,6 +27,7 @@ let map = {
   // block: [3, 5],
   blocksLayer: {
     7: "redBlock",
+    8: "blueBlock",
   },
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
@@ -47,16 +48,25 @@ let map = {
     var row = Math.floor(y / this.tsize);
 
     let currentTile;
-    let blockTile;
+    let gate;
 
     // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
 
-    // console.log(this.getTile2(key, col, row));
-    if (this.getTile2(7, col, row)) {
+    if (this.getTile2(9, col, row)) {
+      gate = this.getTile2(9, col, row).img;
+    }
+
+    if (this.getTile2(7, col, row) && !this.getTile2(3, col, row)) {
       currentTile = this.getTile2(7, col, row).img;
     }
-    blockTile = this.blocksLayer[7];
-    if (currentTile === blockTile) {
+    if (this.getTile2(3, col, row)) {
+    }
+    if (this.getTile2(8, col, row)) {
+      currentTile = this.getTile2(8, col, row).img;
+      console.log(1);
+    }
+
+    if (currentTile === this.blocksLayer[7] || currentTile === this.blocksLayer[8]) {
       return true;
     }
 
