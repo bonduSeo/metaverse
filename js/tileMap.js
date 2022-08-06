@@ -402,6 +402,21 @@ map.tileMap = {
       width: 64,
       height: 64,
     },
+    9: {
+      img: "greenBlock",
+      name: "tileset 9",
+      gridWidth: 1,
+      gridHeight: 1,
+      tileCount: 1,
+      tileData: { "0-0": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ" } },
+      symbolStartIdx: 262,
+      tileSize: 64,
+      tags: {},
+      frames: {},
+      description: "n/a",
+      width: 64,
+      height: 64,
+    },
   },
   maps: {
     Map_1: {
@@ -2828,6 +2843,16 @@ map.tileMap = {
           animatedTiles: {},
           opacity: 1,
         },
+        {
+          tiles: {
+            "18-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "19-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+          },
+          visible: true,
+          name: "Layer9_block3",
+          animatedTiles: {},
+          opacity: 1,
+        },
       ],
       name: "Map 1",
       mapWidth: 50,
@@ -2909,7 +2934,8 @@ Game._drawTiles = function (z) {
   } else if (z === 2) {
     Game._drawTilesLayer(6);
     Game._drawTilesLayer(7);
-    // Game._drawTilesLayer(8);
+    Game._drawTilesLayer(8);
+    Game._drawTilesLayer(9);
   }
 };
 
