@@ -3509,12 +3509,15 @@ map.tileMap = {
 };
 
 map.getTile2 = function (layer, col, row) {
+  //해당 레이어의 map정보
   const mapInfo = this.tileMap.maps.Map_1.layers[layer].tiles;
+  //열과 행?
   const colRow = col + "-" + row;
   if (mapInfo[colRow] === undefined) {
     return;
   }
   const tileData = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].tileData;
+
   const whatTile = {};
   Object.keys(tileData).forEach((key) => {
     if (tileData[key].tileSymbol === mapInfo[colRow].tileSymbol) {
@@ -3522,9 +3525,10 @@ map.getTile2 = function (layer, col, row) {
       whatTile.y = tileData[key].y;
     }
   });
+  whatTile.idx = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx];
   whatTile.tileSize = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].tileSize;
   whatTile.img = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].img;
-  // console.log(whatTile);
+  // console.log(whatTile.img);
   return whatTile;
 };
 
@@ -3535,7 +3539,6 @@ Game._drawTilesLayer = function (layer) {
   var endRow = startRow + this.camera.height / map.tsize + 1;
   var offsetX = -this.camera.x + startCol * map.tsize;
   var offsetY = -this.camera.y + startRow * map.tsize;
-
   for (var c = startCol; c <= endCol; c++) {
     for (var r = startRow; r <= endRow; r++) {
       var tile = map.getTile2(layer, c, r);
@@ -3564,14 +3567,14 @@ Game._drawTilesLayer = function (layer) {
 
 Game._drawTiles = function (z) {
   if (z === 1) {
-    Game._drawTilesLayer(0);
-    Game._drawTilesLayer(1);
-    Game._drawTilesLayer(2);
+    // Game._drawTilesLayer(0);
+    // Game._drawTilesLayer(1);
+    // Game._drawTilesLayer(2);
     Game._drawTilesLayer(3);
-    Game._drawTilesLayer(4);
-    Game._drawTilesLayer(5);
+    // Game._drawTilesLayer(4);
+    // Game._drawTilesLayer(5);
   } else if (z === 2) {
-    Game._drawTilesLayer(6);
+    // Game._drawTilesLayer(6);
     Game._drawTilesLayer(7);
     Game._drawTilesLayer(8);
   }

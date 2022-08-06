@@ -26,8 +26,7 @@ let map = {
   // 블록타일 -- 충돌 발생하는 타일
   // block: [3, 5],
   blocksLayer: {
-    0: "water",
-    2: "fence",
+    7: "redBlock",
   },
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
@@ -51,20 +50,41 @@ let map = {
     let blockTile;
 
     // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
-    for (key in this.blocksLayer) {
-      if (key) {
-        if (this.getTile2(key, col, row)) {
-          currentTile = this.getTile2(key, col, row).img;
-        }
-        blockTile = this.blocksLayer[key];
-        if (currentTile === blockTile) {
-          // return true;
-        }
-      }
+
+    // console.log(this.getTile2(key, col, row));
+    if (this.getTile2(7, col, row)) {
+      currentTile = this.getTile2(7, col, row).img;
+    }
+    blockTile = this.blocksLayer[7];
+    if (currentTile === blockTile) {
+      return true;
     }
 
     return false;
   },
+  // isSolidTileAtXY: function (x, y) {
+  //   var col = Math.floor(x / this.tsize);
+  //   var row = Math.floor(y / this.tsize);
+
+  //   let currentTile;
+  //   let blockTile;
+
+  //   // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
+  //   for (key in this.blocksLayer) {
+  //     if (key) {
+  //       // console.log(this.getTile2(key, col, row));
+  //       if (this.getTile2(key, col, row)) {
+  //         currentTile = this.getTile2(key, col, row).img;
+  //       }
+  //       blockTile = this.blocksLayer[key];
+  //       if (currentTile === blockTile) {
+  //         // return true;
+  //       }
+  //     }
+  //   }
+
+  //   return false;
+  // },
   // isSolidTileAtXY: function (x, y) {
   //   var col = Math.floor(x / this.tsize);
   //   var row = Math.floor(y / this.tsize);
