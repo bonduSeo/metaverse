@@ -2781,6 +2781,7 @@ map.tileMap = {
             "6-24": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "6-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "41-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "13-2": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: true,
           name: "Layer7_block1",
