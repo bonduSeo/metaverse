@@ -312,6 +312,8 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+  this.dirR = false;
+  this.isWalking = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -586,6 +588,7 @@ Game.load = function () {
     Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
     Loader.loadImage("redBlock", "../assets/tiles/redBlock.png"),
     Loader.loadImage("blueBlock", "../assets/tiles/blueBlock.png"),
+    Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
   ];
@@ -602,6 +605,7 @@ Game.init = function () {
   this.woodenHouse = Loader.getImage("woodenHouse");
   this.redBlock = Loader.getImage("redBlock");
   this.blueBlock = Loader.getImage("blueBlock");
+  this.greenBlock = Loader.getImage("greenBlock");
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
 
@@ -639,6 +643,7 @@ Game.update = function (delta) {
   // -----------------------------temp 변수 넣어 블락이동 구현-------------------------------
   if (Keyboard.isDown(Keyboard.LEFT)) {
     this.hero.tempX = -1;
+    this.hero.dirR = false;
     dirX = -1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -651,6 +656,7 @@ Game.update = function (delta) {
     }
   } else if (Keyboard.isDown(Keyboard.RIGHT)) {
     dirX = 1;
+    this.hero.dirR = true;
     this.hero.tempX = 1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -695,6 +701,13 @@ Game.update = function (delta) {
     dirY = this.hero.tempY;
   }
   this.hero.move(delta, dirX, dirY);
+
+  //걷는모션
+  if (dirX !== 0 || dirY !== 0) {
+    this.hero.isWalking = true;
+  } else {
+    this.hero.isWalking = false;
+  }
 
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
@@ -779,6 +792,12 @@ Game._playersDraw = function () {
 
   playersKeys.forEach((key) => {
     if (this.players[key].id !== this.hero.id) {
+      //좌우반전
+      let flipCheck = 1;
+      if (this.players[key].dirR) {
+        this.ctx.scale(-1, 1);
+        flipCheck = -1;
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
@@ -786,7 +805,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.bodyColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -798,7 +817,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.hero.width,
         this.hero.height
@@ -810,7 +829,7 @@ Game._playersDraw = function () {
         this.players[key].customInfo.hairColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -823,7 +842,7 @@ Game._playersDraw = function () {
         0,
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
@@ -835,51 +854,66 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source x
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
         this.players[key].y - this.camera.y - this.players[key].height / 2,
         this.players[key].width,
         this.players[key].height
       );
+      if (flipCheck === -1) {
+        this.ctx.scale(-1, 1);
+      }
     }
   });
 };
 
 Game._heroDraw = function () {
   //바디드로잉
+  let flipCheck = 1;
+  if (this.hero.dirR) {
+    this.ctx.scale(-1, 1);
+    flipCheck = -1;
+  }
+  let walkMotion = 1;
+  if (this.hero.isWalking) {
+    walkMotion += Math.sin(new Date() / 100);
+    walkMotion *= 16;
+  }
   this.ctx.drawImage(
     this.hero.bodysImage, // image
     this.hero.customInfo.bodyShape * this.hero.width, // source x
     this.hero.customInfo.bodyColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   //머리드로잉
+
   this.ctx.drawImage(
     this.hero.headsImage, // image
     this.hero.customInfo.headShape * this.hero.width, // source x
     this.hero.customInfo.toneColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   //헤어드로잉
+
   this.ctx.drawImage(
     this.hero.hairsImage, // image
     this.hero.customInfo.hairShape * this.hero.width, // source x
     this.hero.customInfo.hairColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
 
   // acc 드로잉
@@ -889,10 +923,10 @@ Game._heroDraw = function () {
     0,
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
   // hands 드로잉
   this.ctx.drawImage(
@@ -901,11 +935,14 @@ Game._heroDraw = function () {
     this.hero.customInfo.toneColor * this.hero.height, // source x
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
-    this.hero.height
+    this.hero.height + walkMotion
   );
+  if (flipCheck === -1) {
+    this.ctx.scale(-1, 1);
+  }
   //네임바 드로잉
   this.ctx.beginPath();
   // 왼쪽 상단 모서리
