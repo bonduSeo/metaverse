@@ -1,4 +1,4 @@
-map.tileMap = {
+const aa = {
   tileSets: {
     0: {
       img: "grass",
@@ -373,7 +373,7 @@ map.tileMap = {
       height: 256,
     },
     7: {
-      img: "redBlock",
+      img: "block",
       name: "tileset 7",
       gridWidth: 1,
       gridHeight: 1,
@@ -1907,7 +1907,7 @@ map.tileMap = {
             "47-21": { x: 0, y: 0, tilesetIdx: "1", tileSymbol: "õ", isFlippedX: false },
           },
           visible: true,
-          name: "layer0",
+          name: "bottom",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2332,7 +2332,7 @@ map.tileMap = {
             "22-6": { x: 2, y: 3, tilesetIdx: "2", tileSymbol: "ē", isFlippedX: false },
           },
           visible: true,
-          name: "layer1",
+          name: "middle",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2849,7 +2849,7 @@ map.tileMap = {
             "8-23": { x: 1, y: 4, tilesetIdx: "0", tileSymbol: "Î", isFlippedX: false },
           },
           visible: true,
-          name: "layer2",
+          name: "top",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2911,7 +2911,7 @@ map.tileMap = {
             "22-6": { x: 2, y: 3, tilesetIdx: "2", tileSymbol: "ē", isFlippedX: false },
           },
           visible: true,
-          name: "Layer3",
+          name: "Layer4",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2946,7 +2946,7 @@ map.tileMap = {
             "33-5": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
           },
           visible: true,
-          name: "Layer4",
+          name: "Layer5",
           animatedTiles: {},
           opacity: 1,
         },
@@ -3087,7 +3087,7 @@ map.tileMap = {
             "22-3": { x: 0, y: 2, tilesetIdx: "6", tileSymbol: "ơ", isFlippedX: false },
           },
           visible: true,
-          name: "Layer5_trees",
+          name: "Layer6_trees",
           animatedTiles: {},
           opacity: 1,
         },
@@ -3151,7 +3151,7 @@ map.tileMap = {
             "1-24": { x: 0, y: 0, tilesetIdx: "5", tileSymbol: "Ŭ", isFlippedX: false },
           },
           visible: true,
-          name: "Layer6_trees2",
+          name: "Layer7_trees2",
           animatedTiles: {},
           opacity: 1,
         },
@@ -3452,7 +3452,7 @@ map.tileMap = {
             "5-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: false,
-          name: "Layer7_block1",
+          name: "Layer8_block1",
           animatedTiles: {},
           opacity: 1,
         },
@@ -3492,7 +3492,7 @@ map.tileMap = {
             "21-4": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: true,
-          name: "Layer8_block2",
+          name: "Layer9_block2",
           animatedTiles: {},
           opacity: 1,
         },
@@ -3507,97 +3507,3 @@ map.tileMap = {
     },
   },
 };
-
-map.getTile2 = function (layer, col, row) {
-  const mapInfo = this.tileMap.maps.Map_1.layers[layer].tiles;
-  const colRow = col + "-" + row;
-  if (mapInfo[colRow] === undefined) {
-    return;
-  }
-  const tileData = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].tileData;
-  const whatTile = {};
-  Object.keys(tileData).forEach((key) => {
-    if (tileData[key].tileSymbol === mapInfo[colRow].tileSymbol) {
-      whatTile.x = tileData[key].x;
-      whatTile.y = tileData[key].y;
-    }
-  });
-  whatTile.tileSize = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].tileSize;
-  whatTile.img = this.tileMap.tileSets[mapInfo[colRow].tilesetIdx].img;
-  // console.log(whatTile);
-  return whatTile;
-};
-
-Game._drawTilesLayer = function (layer) {
-  var startCol = Math.floor(this.camera.x / map.tsize);
-  var endCol = startCol + this.camera.width / map.tsize + 1;
-  var startRow = Math.floor(this.camera.y / map.tsize);
-  var endRow = startRow + this.camera.height / map.tsize + 1;
-  var offsetX = -this.camera.x + startCol * map.tsize;
-  var offsetY = -this.camera.y + startRow * map.tsize;
-
-  for (var c = startCol; c <= endCol; c++) {
-    for (var r = startRow; r <= endRow; r++) {
-      var tile = map.getTile2(layer, c, r);
-
-      var x = (c - startCol) * map.tsize + offsetX;
-      var y = (r - startRow) * map.tsize + offsetY;
-
-      if (tile !== undefined) {
-        // 0 => empty tile
-        this.ctx.drawImage(
-          this[tile.img], // image
-          tile.x * tile.tileSize, // source x
-          tile.y * tile.tileSize, // source y
-          tile.tileSize, // source width
-          tile.tileSize, // source height
-          Math.round(x), // target x
-          Math.round(y), // target y
-          map.tsize, // target width
-          map.tsize // target height
-        );
-      }
-    }
-  }
-  return layer;
-};
-
-Game._drawTiles = function (z) {
-  if (z === 1) {
-    Game._drawTilesLayer(0);
-    Game._drawTilesLayer(1);
-    Game._drawTilesLayer(2);
-    Game._drawTilesLayer(3);
-    Game._drawTilesLayer(4);
-    Game._drawTilesLayer(5);
-  } else if (z === 2) {
-    Game._drawTilesLayer(6);
-    Game._drawTilesLayer(7);
-    Game._drawTilesLayer(8);
-  }
-};
-
-// console.log(window.innerWidth);
-
-//--------------역행을 시도--------------
-
-// function test() {
-//   map.MaxRows = 0;
-//   map.MaxCols = 0;
-
-//   map.tileMap.maps.Map_1.layers.forEach((item) => {
-//     for (key in item.tiles) {
-//       let [rows, cols] = key.split("-");
-//       if (~~map.MaxRows < ~~rows) {
-//         map.MaxRows = rows;
-//       }
-//       if (~~map.MaxCols < ~~cols) {
-//         map.MaxCols = cols;
-//       }
-//     }
-//   });
-//   console.log(map.MaxCols);
-//   const test = [map.MaxRows, map.MaxCols];
-//   return test;
-// }
-// console.log(test());
