@@ -2845,8 +2845,14 @@ map.tileMap = {
         },
         {
           tiles: {
-            "18-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
-            "19-4": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "17-5": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "19-5": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "17-6": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "19-6": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "18-5": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "18-6": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "20-5": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
+            "20-6": { x: 0, y: 0, tilesetIdx: "9", tileSymbol: "ƫ", isFlippedX: false },
           },
           visible: true,
           name: "Layer9_block3",

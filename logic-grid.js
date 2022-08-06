@@ -6,7 +6,7 @@ let map = {
   //상호작용시 반응할 타일 구하기 위한 변수
   interRow: 0,
   interCol: 0,
-  hills: false,
+  test: false,
   layers: [
     [
       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
@@ -51,23 +51,37 @@ let map = {
 
     // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
 
+    // if (this.getTile2(7, col, row) && !this.getTile2(3, col, row)) {
+    //   currentTile = this.getTile2(7, col, row).img;
+    // }
+
+    // console.log(this.getTile2(3, col, row));
+    if (this.getTile2(3, col, row) && this.getTile2(9, col, row)) {
+      if (this.getTile2(3, col, row).img === "hills") {
+        this.test = 2;
+      }
+    }
     if (this.getTile2(9, col, row)) {
-      gate = this.getTile2(9, col, row).img;
+      this.test = 1;
     }
-
-    if (this.getTile2(7, col, row) && !this.getTile2(3, col, row)) {
-      currentTile = this.getTile2(7, col, row).img;
+    console.log(this.test);
+    if (this.test === 1) {
+      // console.log(1);
+      if (this.getTile2(8, col, row)) {
+        currentTile = this.getTile2(8, col, row).img;
+        if (currentTile === this.blocksLayer[8]) {
+          return true;
+        }
+      }
+    } else if (this.test !== 1) {
+      if (this.getTile2(7, col, row)) {
+        currentTile = this.getTile2(7, col, row).img;
+      }
+      if (currentTile === this.blocksLayer[7]) {
+        return true;
+      }
     }
-    if (this.getTile2(3, col, row)) {
-    }
-    if (this.getTile2(8, col, row)) {
-      currentTile = this.getTile2(8, col, row).img;
-      console.log(1);
-    }
-
-    if (currentTile === this.blocksLayer[7] || currentTile === this.blocksLayer[8]) {
-      return true;
-    }
+    // console.log(currentTile);
 
     return false;
   },
@@ -884,7 +898,6 @@ Game._heroDraw = function () {
   if (this.hero.isWalking) {
     walkMotion += Math.sin(new Date() / 40);
     walkMotion *= 3;
-    console.log(walkMotion);
   }
   this.ctx.drawImage(
     this.hero.bodysImage, // image
