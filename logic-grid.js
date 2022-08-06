@@ -982,7 +982,7 @@ Game.render = function () {
   // draw map background layer
   // this._drawLayer(0);
   this._drawTiles(1);
-  this._drawRect();
+  // this._drawRect();
 
   this._playersDraw();
   // draw main character
@@ -998,7 +998,7 @@ Game.render = function () {
   // draw map top layer
   // this._drawLayer(1);
 
-  this._drawGrid();
+  // this._drawGrid();
   this._drawNameBox();
   this._text();
 };

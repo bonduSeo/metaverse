@@ -3528,7 +3528,7 @@ map.getTile2 = function (layer, col, row) {
   return whatTile;
 };
 
-Game._drawTilesLayer = function (layer) {
+Game._drawTilesLayer = function (layer, isWater = 0) {
   var startCol = Math.floor(this.camera.x / map.tsize);
   var endCol = startCol + this.camera.width / map.tsize + 1;
   var startRow = Math.floor(this.camera.y / map.tsize);
@@ -3543,11 +3543,16 @@ Game._drawTilesLayer = function (layer) {
       var x = (c - startCol) * map.tsize + offsetX;
       var y = (r - startRow) * map.tsize + offsetY;
 
+      let waterFlow = 0;
+      if (isWater) {
+        waterFlow = Math.floor((new Date().getTime() / 500) % 4);
+        console.log(waterFlow);
+      }
       if (tile !== undefined) {
         // 0 => empty tile
         this.ctx.drawImage(
           this[tile.img], // image
-          tile.x * tile.tileSize, // source x
+          (tile.x + waterFlow) * tile.tileSize, // source x
           tile.y * tile.tileSize, // source y
           tile.tileSize, // source width
           tile.tileSize, // source height
@@ -3564,7 +3569,7 @@ Game._drawTilesLayer = function (layer) {
 
 Game._drawTiles = function (z) {
   if (z === 1) {
-    Game._drawTilesLayer(0);
+    Game._drawTilesLayer(0, 1);
     Game._drawTilesLayer(1);
     Game._drawTilesLayer(2);
     Game._drawTilesLayer(3);
@@ -3572,8 +3577,8 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(5);
   } else if (z === 2) {
     Game._drawTilesLayer(6);
-    Game._drawTilesLayer(7);
-    Game._drawTilesLayer(8);
+    // Game._drawTilesLayer(7);
+    // Game._drawTilesLayer(8);
   }
 };
 
@@ -3600,4 +3605,4 @@ Game._drawTiles = function (z) {
 //   const test = [map.MaxRows, map.MaxCols];
 //   return test;
 // }
-// console.log(test());
+// console.log(test());;
