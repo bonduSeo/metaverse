@@ -554,6 +554,7 @@ Game.load = function () {
     Loader.loadImage("water", "../assets/tiles/Water.png"),
     Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
     Loader.loadImage("redBlock", "../assets/tiles/redBlock.png"),
+    Loader.loadImage("blueBlock", "../assets/tiles/blueBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
   ];
@@ -569,6 +570,7 @@ Game.init = function () {
   this.water = Loader.getImage("water");
   this.woodenHouse = Loader.getImage("woodenHouse");
   this.redBlock = Loader.getImage("redBlock");
+  this.blueBlock = Loader.getImage("blueBlock");
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
 
