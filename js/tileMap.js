@@ -2778,6 +2778,9 @@ map.tileMap = {
             "12-10": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "8-24": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "5-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "6-24": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "6-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "41-25": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: true,
           name: "Layer7_block1",
@@ -2906,7 +2909,7 @@ Game._drawTiles = function (z) {
   } else if (z === 2) {
     Game._drawTilesLayer(6);
     Game._drawTilesLayer(7);
-    Game._drawTilesLayer(8);
+    // Game._drawTilesLayer(8);
   }
 };
 
