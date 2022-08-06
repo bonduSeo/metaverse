@@ -2,8 +2,15 @@ Game.chatInit = function () {
   const chatDiv = document.querySelector(".chat");
   const chatContext = chatDiv.querySelector(".chatContext");
   socket.on("chat", (chat) => {
+    console.log(chat);
     const div = document.createElement("div");
-    div.innerHTML = `<span>${chat[0]} : </span><span>${chat[1]}</span>`;
+    div.innerHTML = `<div>${chat[0]}</div><div>${chat[1]}</div>`;
+    const canvas = document.createElement("canvas");
+    canvas.width = 32;
+    canvas.height = 32;
+
+    this.chatIconDraw(chat[2]);
+    div.prepend(canvas);
     chatContext.append(div);
     chatContext.scrollTop = chatContext.scrollHeight;
   });
@@ -13,7 +20,7 @@ Game.chatInit = function () {
 
   submit.addEventListener("click", () => {
     if (input.value !== "") {
-      const nameChat = [this.hero.nickName, input.value];
+      const nameChat = [this.hero.nickName, input.value, this.hero.id];
       socket.emit("chat", nameChat);
       input.value = "";
     }
@@ -30,6 +37,17 @@ Game.chatInit = function () {
     }
   });
   this.chatBoxResize();
+};
+Game.chatIconDraw = function (playerId) {
+  let playerKey;
+  Object.keys(this.players).forEach((key) => {
+    if ((this.players[key].id = playerId)) {
+      playerKey = key;
+      return;
+    }
+  });
+  console.log(this.players[playerKey]);
+  ///// 여기 이어서 해야함
 };
 
 Game.chatBoxResize = function () {

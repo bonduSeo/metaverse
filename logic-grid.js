@@ -856,6 +856,7 @@ Game._heroDraw = function () {
     walkMotion *= 3;
     console.log(walkMotion);
   }
+  //바디드로잉
   this.ctx.drawImage(
     this.hero.bodysImage, // image
     this.hero.customInfo.bodyShape * this.hero.width, // source x
@@ -867,8 +868,8 @@ Game._heroDraw = function () {
     this.hero.width,
     this.hero.height - walkMotion
   );
-  //머리드로잉
 
+  //머리드로잉
   this.ctx.drawImage(
     this.hero.headsImage, // image
     this.hero.customInfo.headShape * this.hero.width, // source x
