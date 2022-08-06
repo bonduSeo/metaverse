@@ -2906,10 +2906,6 @@ Game._drawTilesLayer = function (layer, isWater = 0) {
       let waterFlow = 0;
       if (isWater) {
         waterFlow = Math.floor((new Date().getTime() / 500) % 4);
-<<<<<<< HEAD
-        // console.log(waterFlow);
-=======
->>>>>>> b3ac4f899730ce7dc2ebb012097859bb0ae72ea4
       }
       if (tile !== undefined) {
         // 0 => empty tile
