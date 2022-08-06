@@ -283,6 +283,7 @@ function Hero(map, x, y) {
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+  this.dirR = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -608,6 +609,7 @@ Game.update = function (delta) {
   // -----------------------------temp 변수 넣어 블락이동 구현-------------------------------
   if (Keyboard.isDown(Keyboard.LEFT)) {
     this.hero.tempX = -1;
+    this.hero.dirR = false;
     dirX = -1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -620,6 +622,7 @@ Game.update = function (delta) {
     }
   } else if (Keyboard.isDown(Keyboard.RIGHT)) {
     dirX = 1;
+    this.hero.dirR = true;
     this.hero.tempX = 1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -815,37 +818,45 @@ Game._playersDraw = function () {
 
 Game._heroDraw = function () {
   //바디드로잉
+  let flipCheck = 1;
+  if (this.hero.dirR) {
+    this.ctx.scale(-1, 1);
+    flipCheck = -1;
+  }
+
   this.ctx.drawImage(
     this.hero.bodysImage, // image
     this.hero.customInfo.bodyShape * this.hero.width, // source x
     this.hero.customInfo.bodyColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
     this.hero.height
   );
   //머리드로잉
+
   this.ctx.drawImage(
     this.hero.headsImage, // image
     this.hero.customInfo.headShape * this.hero.width, // source x
     this.hero.customInfo.toneColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
     this.hero.height
   );
   //헤어드로잉
+
   this.ctx.drawImage(
     this.hero.hairsImage, // image
     this.hero.customInfo.hairShape * this.hero.width, // source x
     this.hero.customInfo.hairColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
     this.hero.height
@@ -858,7 +869,7 @@ Game._heroDraw = function () {
     0,
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
     this.hero.height
@@ -870,11 +881,14 @@ Game._heroDraw = function () {
     this.hero.customInfo.toneColor * this.hero.height, // source x
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
     this.hero.screenY - this.hero.height / 2,
     this.hero.width,
     this.hero.height
   );
+  if (flipCheck === -1) {
+    this.ctx.scale(-1, 1);
+  }
   //네임바 드로잉
   this.ctx.beginPath();
   // 왼쪽 상단 모서리
