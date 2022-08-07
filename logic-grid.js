@@ -277,8 +277,8 @@ function Camera(map, width, height) {
   //카메라 범위
   this.width = width;
   this.height = height;
-  this.maxX = map.cols * map.tsize - width;
-  this.maxY = map.rows * map.tsize - height;
+  this.maxX = map.cols * map.tsize - width + Game.remainX;
+  this.maxY = map.rows * map.tsize - height + Game.remainY;
 }
 
 Camera.prototype.follow = function (sprite) {
@@ -309,7 +309,6 @@ Camera.prototype.update = function () {
   // left and right sides
   if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
     this.following.screenX = this.following.x - this.x;
-    console.log(this.following.screenX);
   }
   // top and bottom sides
   if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
