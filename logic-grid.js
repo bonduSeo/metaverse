@@ -293,6 +293,8 @@ Camera.prototype.update = function () {
   // whenever possible 캐릭터 위치값
   this.width = window.innerWidth - Game.remainX + Game.chatSize;
   this.height = window.innerHeight - Game.remainY;
+  this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+  this.maxY = map.rows * map.tsize - this.height + Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
   // make the camera follow the sprite
@@ -309,8 +311,8 @@ Camera.prototype.update = function () {
 
   // left and right sides
   if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
-    console.log(1);
     this.test = window.innerWidth;
+    console.log(this.test);
     this.width = this.test - Game.remainX + Game.chatSize;
     this.following.screenX = this.following.x - this.x;
   }
@@ -320,7 +322,6 @@ Camera.prototype.update = function () {
   }
   map.fontX = this.following.screenX;
   map.fontY = this.following.screenY;
-  // map.fontY = this.following.screenY - map.tsize / 2;
 };
 function Hero(map, x, y) {
   this.map = map;
