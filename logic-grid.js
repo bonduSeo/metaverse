@@ -310,17 +310,51 @@ Camera.prototype.update = function () {
   // and we have to change its screen coordinates
 
   // left and right sides
-  if (
-    this.following.x < this.width / 2 ||
-    this.following.x + Game.remainX > this.maxX + this.width / 2
-  ) {
-    this.following.screenX = this.following.x - this.x;
-    this.lastWidth = window.innerWidth;
-    this.width = this.lastWidth - Game.remainX + Game.chatSize;
-    this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+  if (window.innerWidth > Game.mediaQ) {
+    if (
+      this.following.x < this.width / 2 ||
+      this.following.x + Game.remainX > this.maxX + this.width / 2
+    ) {
+      this.following.screenX = this.following.x - this.x;
+      this.lastWidth = window.innerWidth;
+      this.width = this.lastWidth - Game.remainX;
+      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+    } else {
+      this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+    }
   } else {
-    this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+    if (
+      this.following.x < this.width / 2 ||
+      this.following.x + Game.remainX > this.maxX + this.width / 2
+    ) {
+      this.following.screenX = this.following.x - this.x;
+      this.lastWidth = window.innerWidth;
+      this.width = this.lastWidth - Game.remainX + Game.chatSize;
+      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX - Game.chatSize;
+    } else {
+      this.maxX = map.cols * map.tsize - this.width + Game.remainX - Game.chatSize;
+    }
   }
+
+  // if (
+  //   this.following.x < this.width / 2 ||
+  //   this.following.x + Game.remainX > this.maxX + this.width / 2
+  // ) {
+  //   this.following.screenX = this.following.x - this.x;
+  //   this.lastWidth = window.innerWidth;
+  //   this.width = this.lastWidth - Game.remainX + Game.chatSize;
+  //   if (window.innerWidth < Game.mediaQ) {
+  //     this.maxX = map.cols * map.tsize - this.lastWidth;
+  //   } else {
+  //     this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+  //   }
+  // } else {
+  //   if (window.innerWidth < Game.mediaQ) {
+  //     this.maxX = map.cols * map.tsize - this.width;
+  //   } else {
+  //     this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+  //   }
+  // }
   // top and bottom sides
   if (
     this.following.y < this.height / 2 ||
@@ -328,7 +362,7 @@ Camera.prototype.update = function () {
   ) {
     this.following.screenY = this.following.y - this.y;
     this.lastHeight = window.innerHeight;
-    this.height = this.lastHeight - Game.remainY + Game.chatSize;
+    // this.height = this.lastHeight - Game.remainY;
     this.maxY = map.rows * map.tsize - this.lastHeight + Game.remainY;
   } else {
     this.maxY = map.rows * map.tsize - this.height + Game.remainY;
