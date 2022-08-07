@@ -55,25 +55,26 @@ let map = {
     //   currentTile = this.getTile2(7, col, row).img;
     // }
 
-    // console.log(this.getTile2(3, col, row));
-    if (this.getTile2(3, col, row) && this.getTile2(9, col, row)) {
-      if (this.getTile2(3, col, row).img === "hills") {
-        this.test = 2;
+    if (this.getTile2(9, col, row)) {
+      if (this.getTile2(3, col, row)) {
+        if (this.getTile2(3, col, row).img === "hills") {
+          this.test = 2;
+        } else {
+          this.test = 1;
+        }
+      } else if (this.getTile2(2, col, row) || this.getTile2(1, col, row)) {
+        this.test = 1;
       }
     }
-    if (this.getTile2(9, col, row)) {
-      this.test = 1;
-    }
-    console.log(this.test);
-    if (this.test === 1) {
-      // console.log(1);
+
+    if (this.test === 2) {
       if (this.getTile2(8, col, row)) {
         currentTile = this.getTile2(8, col, row).img;
         if (currentTile === this.blocksLayer[8]) {
           return true;
         }
       }
-    } else if (this.test !== 1) {
+    } else if (this.test === 1) {
       if (this.getTile2(7, col, row)) {
         currentTile = this.getTile2(7, col, row).img;
       }
