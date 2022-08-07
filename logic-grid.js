@@ -279,6 +279,7 @@ function Camera(map, width, height) {
   this.height = height;
   this.maxX = map.cols * map.tsize - width + Game.remainX;
   this.maxY = map.rows * map.tsize - height + Game.remainY;
+  this.test;
 }
 
 Camera.prototype.follow = function (sprite) {
@@ -308,6 +309,9 @@ Camera.prototype.update = function () {
 
   // left and right sides
   if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
+    console.log(1);
+    this.test = window.innerWidth;
+    this.width = this.test - Game.remainX + Game.chatSize;
     this.following.screenX = this.following.x - this.x;
   }
   // top and bottom sides
