@@ -279,9 +279,11 @@ function Camera(map, width, height) {
   this.height = height;
   this.maxX = map.cols * map.tsize - width + Game.remainX;
   this.maxY = map.rows * map.tsize - height + Game.remainY;
-  this.test;
+  // 카메라 테두리가 맵 끝에 닿았을때 창크기값
+  this.lastWidth;
+  this.lastHeight;
 }
-
+// sprite 는 hero 객체
 Camera.prototype.follow = function (sprite) {
   this.following = sprite;
   sprite.screenX = 0;
@@ -293,8 +295,6 @@ Camera.prototype.update = function () {
   // whenever possible 캐릭터 위치값
   this.width = window.innerWidth - Game.remainX + Game.chatSize;
   this.height = window.innerHeight - Game.remainY;
-  this.maxX = map.cols * map.tsize - this.width + Game.remainX;
-  this.maxY = map.rows * map.tsize - this.height + Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
   // make the camera follow the sprite
@@ -310,15 +310,28 @@ Camera.prototype.update = function () {
   // and we have to change its screen coordinates
 
   // left and right sides
-  if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
-    this.test = window.innerWidth;
-    console.log(this.test);
-    this.width = this.test - Game.remainX + Game.chatSize;
+  if (
+    this.following.x < this.width / 2 ||
+    this.following.x + Game.remainX > this.maxX + this.width / 2
+  ) {
     this.following.screenX = this.following.x - this.x;
+    this.lastWidth = window.innerWidth;
+    this.width = this.lastWidth - Game.remainX + Game.chatSize;
+    this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+  } else {
+    this.maxX = map.cols * map.tsize - this.width + Game.remainX;
   }
   // top and bottom sides
-  if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
+  if (
+    this.following.y < this.height / 2 ||
+    this.following.y + Game.remainY > this.maxY + this.height / 2
+  ) {
     this.following.screenY = this.following.y - this.y;
+    this.lastHeight = window.innerHeight;
+    this.height = this.lastHeight - Game.remainY + Game.chatSize;
+    this.maxY = map.rows * map.tsize - this.lastHeight + Game.remainY;
+  } else {
+    this.maxY = map.rows * map.tsize - this.height + Game.remainY;
   }
   map.fontX = this.following.screenX;
   map.fontY = this.following.screenY;
