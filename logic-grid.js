@@ -6,7 +6,7 @@ let map = {
   //상호작용시 반응할 타일 구하기 위한 변수
   interRow: 0,
   interCol: 0,
-  test: false,
+  floor: 1,
   layers: [
     [
       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
@@ -54,27 +54,26 @@ let map = {
     // if (this.getTile2(7, col, row) && !this.getTile2(3, col, row)) {
     //   currentTile = this.getTile2(7, col, row).img;
     // }
-
     if (this.getTile2(9, col, row)) {
       if (this.getTile2(3, col, row)) {
         if (this.getTile2(3, col, row).img === "hills") {
-          this.test = 2;
+          this.floor = 2;
         } else {
-          this.test = 1;
+          this.floor = 1;
         }
       } else if (this.getTile2(2, col, row) || this.getTile2(1, col, row)) {
-        this.test = 1;
+        this.floor = 1;
       }
     }
 
-    if (this.test === 2) {
+    if (this.floor === 2) {
       if (this.getTile2(8, col, row)) {
         currentTile = this.getTile2(8, col, row).img;
         if (currentTile === this.blocksLayer[8]) {
           return true;
         }
       }
-    } else if (this.test === 1) {
+    } else if (this.floor === 1) {
       if (this.getTile2(7, col, row)) {
         currentTile = this.getTile2(7, col, row).img;
       }
@@ -310,6 +309,7 @@ Camera.prototype.update = function () {
   // left and right sides
   if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
     this.following.screenX = this.following.x - this.x;
+    console.log(this.following.screenX);
   }
   // top and bottom sides
   if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
@@ -319,7 +319,6 @@ Camera.prototype.update = function () {
   map.fontY = this.following.screenY;
   // map.fontY = this.following.screenY - map.tsize / 2;
 };
-//test
 function Hero(map, x, y) {
   this.map = map;
   this.x = x;
@@ -426,7 +425,6 @@ Hero.prototype._interactive = function () {
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
     //이벤트 한번만 걸기 위한 if와 변수값
-    console.log(document.activeElement);
 
     if (base.hasKeydown === 0) {
       base.hasKeydown = 1;
