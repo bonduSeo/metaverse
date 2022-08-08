@@ -1109,44 +1109,47 @@ Game._text = function () {
   if (map.logic) {
     //반응 타일 상단 위치 구하는 공식
     const reactTileX = map.interCol * map.tsize - Game.camera.x;
-    const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2;
+    const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2 - 5;
     const radius = 4;
+    const boxWidth = 20;
     const boxHeight = 10;
 
     this.ctx.font = "14px serif";
     this.ctx.fillStyle = "#00000070";
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 1;
     this.ctx.beginPath();
     // 왼쪽 상단 모서리
-    this.ctx.moveTo(reactTileX + radius, reactTileY - boxHeight);
+    this.ctx.moveTo(reactTileX + radius - boxWidth, reactTileY - boxHeight);
     // 오른쪽 상단 모서리
     this.ctx.arcTo(
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY - boxHeight,
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY,
       radius
     );
     // 오른쪽 하단 모서리
     this.ctx.arcTo(
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY + boxHeight,
-      reactTileX + map.tsize - radius,
+      reactTileX + map.tsize - radius + boxWidth,
       reactTileY + boxHeight + radius,
       radius
     );
     // 왼쪽 하단 모서리
     this.ctx.arcTo(
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY + boxHeight + radius - 2,
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY + boxHeight,
       radius
     );
     // 왼쪽 상단 모서리
     this.ctx.arcTo(
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY - boxHeight,
-      reactTileX + radius,
+      reactTileX + radius - boxWidth,
       reactTileY - boxHeight,
       radius
     );
@@ -1156,7 +1159,11 @@ Game._text = function () {
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.fillText("[Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
+    this.ctx.fillText(
+      "Press [Space]",
+      reactTileX + map.tsize / 2,
+      reactTileY - map.tsize * 0.2 + 20
+    );
   }
 };
 
@@ -1164,7 +1171,6 @@ Game.render = function () {
   // draw map background layer
   // this._drawLayer(0);
   this._drawTiles(1);
-  this._drawRect();
 
   this._playersDraw();
   // draw main character
@@ -1182,5 +1188,6 @@ Game.render = function () {
 
   // this._drawGrid();
   this._drawNameBox();
+  this._drawRect();
   this._text();
 };
