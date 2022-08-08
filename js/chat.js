@@ -6,10 +6,11 @@ Game.chatInit = function () {
     const div = document.createElement("div");
     div.innerHTML = `<div>${chat[0]}</div><div>${chat[1]}</div>`;
     const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
     canvas.width = 32;
     canvas.height = 32;
 
-    this.chatIconDraw(chat[2]);
+    this.chatIconDraw(chat[2], ctx);
     div.prepend(canvas);
     chatContext.append(div);
     chatContext.scrollTop = chatContext.scrollHeight;
@@ -38,7 +39,7 @@ Game.chatInit = function () {
   });
   this.chatBoxResize();
 };
-Game.chatIconDraw = function (playerId) {
+Game.chatIconDraw = function (playerId, ctx) {
   let playerKey;
   Object.keys(this.players).forEach((key) => {
     if ((this.players[key].id = playerId)) {
@@ -46,8 +47,11 @@ Game.chatIconDraw = function (playerId) {
       return;
     }
   });
-  console.log(this.players[playerKey]);
-  ///// 여기 이어서 해야함
+  console.log(this.players[playerKey].customInfo);
+  const playerInfo = this.players[playerKey].customInfo;
+  console.log(ctx);
+  ctx.fillColor = "#fff";
+  ctx.fillRect(0, 0, 32, 32);
 };
 
 Game.chatBoxResize = function () {

@@ -742,7 +742,6 @@ Game._drawGrid = function () {
 };
 
 Game._playersDraw = function () {
-  // console.log(this.players);
   if (!this.players) {
     return;
   }
@@ -772,7 +771,6 @@ Game._playersDraw = function () {
       if (this.players[key].isWalking) {
         walkMotion += Math.sin(new Date() / 40);
         walkMotion *= 3;
-        console.log(walkMotion);
       }
       //바디드로잉
       this.ctx.drawImage(
@@ -854,7 +852,6 @@ Game._heroDraw = function () {
   if (this.hero.isWalking) {
     walkMotion += Math.sin(new Date() / 40);
     walkMotion *= 3;
-    console.log(walkMotion);
   }
   //바디드로잉
   this.ctx.drawImage(
