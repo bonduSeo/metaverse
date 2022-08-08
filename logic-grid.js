@@ -736,7 +736,7 @@ Game.init = function () {
   });
 };
 
-Game.remainX = 340;
+Game.remainX = 330;
 Game.remainY = 100;
 Game.mediaQ = 620;
 Game.resizeInit = function () {

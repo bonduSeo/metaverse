@@ -137,10 +137,13 @@ a:visited {
   display: flex;
   flex-direction: column;
   width: 44px;
+
+  margin-left: 10px;
 }
 .menu-buttons div {
   border: 2px solid var(--dark-gray);
   width: 40px;
   height: 40px;
   border-radius: 50px;
+  margin-bottom: 20px;
 }
