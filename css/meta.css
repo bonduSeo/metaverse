@@ -10,7 +10,7 @@ h1 {
   text-align: center;
 }
 
-canvas {
+.demo {
   background: #000;
   border: 2px solid var(--dark-gray);
 }
