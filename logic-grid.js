@@ -775,6 +775,7 @@ Game.update = function (delta) {
     this.hero.isWalking = false;
   }
 
+  this.hero.whichFloor = map.floor;
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
@@ -838,7 +839,7 @@ Game._drawGrid = function () {
   }
 };
 
-Game._playersDraw = function () {
+Game._playersDraw = function (floor) {
   if (!this.players) {
     return;
   }
@@ -847,15 +848,18 @@ Game._playersDraw = function () {
   const status = document.querySelector("#status");
   status.innerHTML = "";
   playersKeys.forEach((key) => {
+    //임시하단정보
     const div = document.createElement("div");
     status.append(div);
     div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
       this.players[key].x
     )} | y: ${Math.floor(this.players[key].y)}`;
   });
-  //
 
   playersKeys.forEach((key) => {
+    if (this.players[key].whichFloor !== floor) {
+      return;
+    }
     if (this.players[key].id !== this.hero.id) {
       //좌우반전
       let flipCheck = 1;
@@ -937,7 +941,10 @@ Game._playersDraw = function () {
   });
 };
 
-Game._heroDraw = function () {
+Game._heroDraw = function (floor) {
+  if (floor !== this.hero.whichFloor) {
+    return;
+  }
   //바디드로잉
   let flipCheck = 1;
   if (this.hero.dirR) {
@@ -1034,11 +1041,13 @@ Game._drawNameBox = function () {
     this.ctx.textAlign = "center";
     this.ctx.fillText(name, sX + this.hero.width / 2, sY);
   };
-  drawEachNameBox(
-    this.hero.nickName,
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2 - 10
-  );
+  if (!this.hero.displayChatIcon) {
+    drawEachNameBox(
+      this.hero.nickName,
+      this.hero.screenX - this.hero.width / 2,
+      this.hero.screenY - this.hero.height / 2 - 10
+    );
+  }
   if (!this.players) {
     return;
   }
@@ -1135,26 +1144,17 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  // draw map background layer
-  // this._drawLayer(0);
+  console.log(this.hero.whichFloor);
   this._drawTiles(1);
-  // this._drawRect();
+  this._playersDraw(1);
+  this._heroDraw(1);
 
-  this._playersDraw();
-  // draw main character
-  this._heroDraw();
+  Game._drawTilesLayer(4); //bridge
+
+  this._playersDraw(2);
+  this._heroDraw(2);
   this._drawTiles(2);
 
-  // this.ctx.drawImage(
-  //   this.hero.image,
-  //   this.hero.screenX - this.hero.width / 2,
-  //   this.hero.screenY - this.hero.height / 2
-  // );
-
-  // draw map top layer
-  // this._drawLayer(1);
-
-  // this._drawGrid();
   this._drawNameBox();
   this._text();
 };
