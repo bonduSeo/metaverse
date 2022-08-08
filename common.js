@@ -4,6 +4,8 @@ const socket = io();
 // Keyboard handler
 //
 
+
+
 var Keyboard = {};
 
 Keyboard.LEFT = 37;
@@ -52,7 +54,6 @@ Keyboard.isDown = function (keyCode) {
 //
 
 var Game = {};
-
 
 Game.run = function (canvas, context) {
   this.canvas = canvas;
