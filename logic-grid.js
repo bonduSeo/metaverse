@@ -895,8 +895,8 @@ Game._playersDraw = function (floor) {
     const div = document.createElement("div");
     status.append(div);
     div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
-      this.players[key].x
-    )} | y: ${Math.floor(this.players[key].y)}`;
+      this.players[key].x / 64
+    )} | y: ${Math.floor(this.players[key].y) / 64 - 0.5}`;
   });
 
   playersKeys.forEach((key) => {
@@ -1194,14 +1194,12 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  console.log(this.hero.whichFloor);
   this._drawTiles(1);
 
   this._playersDraw(1);
   this._heroDraw(1);
 
-
-  Game._drawTilesLayer(4); //bridge
+  Game._drawTilesLayer(10); //bridge_floor
 
   this._playersDraw(2);
   this._heroDraw(2);

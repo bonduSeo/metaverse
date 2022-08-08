@@ -2275,11 +2275,6 @@ map.tileMap = {
             "8-14": { x: 0, y: 2, tilesetIdx: "4", tileSymbol: "ŧ", isFlippedX: false },
             "8-12": { x: 0, y: 1, tilesetIdx: "4", tileSymbol: "Ţ", isFlippedX: false },
             "8-13": { x: 0, y: 1, tilesetIdx: "4", tileSymbol: "Ţ", isFlippedX: false },
-            "13-2": { x: 2, y: 1, tilesetIdx: "4", tileSymbol: "Ť", isFlippedX: false },
-            "17-2": { x: 4, y: 1, tilesetIdx: "4", tileSymbol: "Ŧ", isFlippedX: false },
-            "14-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
-            "15-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
-            "16-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
             "34-5": { x: 4, y: 0, tilesetIdx: "4", tileSymbol: "š", isFlippedX: false },
             "28-5": { x: 2, y: 0, tilesetIdx: "4", tileSymbol: "ş", isFlippedX: false },
             "29-5": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
@@ -2859,6 +2854,19 @@ map.tileMap = {
           animatedTiles: {},
           opacity: 1,
         },
+        {
+          tiles: {
+            "13-2": { x: 2, y: 1, tilesetIdx: "4", tileSymbol: "Ť", isFlippedX: false },
+            "17-2": { x: 4, y: 1, tilesetIdx: "4", tileSymbol: "Ŧ", isFlippedX: false },
+            "14-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
+            "15-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
+            "16-2": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
+          },
+          visible: true,
+          name: "Layer10_bridge_floor",
+          animatedTiles: {},
+          opacity: 1,
+        },
       ],
       name: "Map 1",
       mapWidth: 50,
@@ -2938,7 +2946,7 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(1);
     Game._drawTilesLayer(2);
     Game._drawTilesLayer(3);
-    
+    Game._drawTilesLayer(4);
     Game._drawTilesLayer(5); //trees1
   } else if (z === 2) {
     Game._drawTilesLayer(6); //trees2
