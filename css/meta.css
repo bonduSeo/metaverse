@@ -10,7 +10,7 @@ h1 {
   text-align: center;
 }
 
-canvas {
+.demo {
   background: #000;
   border: 2px solid var(--dark-gray);
 }
@@ -24,11 +24,11 @@ a:visited {
 }
 
 /* 윗줄까지 원래있던내용 */
-.main-wrapper {
-  margin: auto;
-}
+
 .gameAndChat {
   position: relative;
+  width: 100%;
+  display: flex;
 }
 
 .chat {
@@ -39,7 +39,6 @@ a:visited {
   height: 512px;
   position: relative;
   padding: 8px;
-  position: absolute;
 }
 .chat__title {
   font-weight: bold;
@@ -93,4 +92,55 @@ a:visited {
   border-radius: 15px;
   margin-right: 5px;
   text-align: center;
+}
+
+/* chatting */
+.canvasBox {
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--dark-gray);
+  /* overflow: hidden; */
+  border-radius: 50%;
+  position: relative;
+  grid-area: A;
+}
+.canvasBox canvas {
+  position: relative;
+  top: -2px;
+  left: -10px;
+}
+
+.eachChatDiv {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  grid-template-rows: 23px 1fr;
+  grid-template-areas:
+    "A B"
+    "A C";
+}
+
+.eachChatDiv .nickName {
+  grid-area: B;
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: flex-end;
+}
+.eachChatDiv .ctnt {
+  grid-area: C;
+  font-size: 0.8rem;
+}
+
+.menu-buttons {
+  border: 1px dotted red;
+  display: flex;
+  flex-direction: column;
+  width: 44px;
+}
+.menu-buttons div {
+  border: 2px solid var(--dark-gray);
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
 }

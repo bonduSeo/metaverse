@@ -37,6 +37,5 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (reason) => {
     // console.log("끊김 : " + socket.id);
     delete players[socket.id];
-    console.log(players);
   });
 });

@@ -26,21 +26,25 @@
 
   <body>
     <header class="main-header">
-      <h1><a href="../index.html">✨metaverse</a></h1>
-      <p>Use arrow keys to move</p>
+      <h1>✨metaverse</h1>
       <button onclick="location.href='heroCustomize.html'">캐릭터 커스터마이즈</button>
     </header>
     <main>
       <div class="main-wrapper">
-        <div class="gameAndChat container-fluid">
+        <div class="gameAndChat">
           <canvas id="demo" width="1280" height="768"></canvas>
           <div class="chat">
             <div class="chat__title">채팅</div>
             <div class="chatContext"></div>
             <div class="textInput">
-              <input type="text" name="chat" id="" />
+              <input type="text" name="chat" id="chat" />
               <button>보내기</button>
             </div>
+          </div>
+          <div class="menu-buttons">
+            <div><img src="" alt="커스텀" /></div>
+            <div><img src="" alt="맵" /></div>
+            <div><img src="" alt="미션" /></div>
           </div>
         </div>
         <footer class="main-footer">

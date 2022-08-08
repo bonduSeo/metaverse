@@ -1,12 +1,12 @@
 let map = {
-  cols: 36,
-  rows: 36,
+  cols: 50,
+  rows: 30,
   tsize: 64,
   logic: false,
   //상호작용시 반응할 타일 구하기 위한 변수
   interRow: 0,
   interCol: 0,
-
+  floor: 1,
   layers: [
     [
       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
@@ -16,18 +16,62 @@ let map = {
       1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
     ],
     [
-      4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 4, 4, 0, 0, 5, 11, 0, 11, 0, 0, 5, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0,
-      5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 3, 3, 3, 3, 3, 3, 3,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
   // block: [3, 5],
   blocksLayer: {
-    0: "water",
-    2: "fence",
+    7: "redBlock",
+    8: "blueBlock",
   },
   // 상호타일 -- 상호작용 타일
   Interactive: [11],
@@ -48,23 +92,66 @@ let map = {
     var row = Math.floor(y / this.tsize);
 
     let currentTile;
-    let blockTile;
 
     // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
-    for (key in this.blocksLayer) {
-      if (key) {
-        if (this.getTile2(key, col, row)) {
-          currentTile = this.getTile2(key, col, row).img;
+
+    // if (this.getTile2(7, col, row) && !this.getTile2(3, col, row)) {
+    //   currentTile = this.getTile2(7, col, row).img;
+    // }
+    if (this.getTile2(9, col, row)) {
+      if (this.getTile2(3, col, row)) {
+        if (this.getTile2(3, col, row).img === "hills") {
+          this.floor = 2;
+        } else {
+          this.floor = 1;
         }
-        blockTile = this.blocksLayer[key];
-        if (currentTile === blockTile) {
-          // return true;
-        }
+      } else if (this.getTile2(2, col, row) || this.getTile2(1, col, row)) {
+        this.floor = 1;
       }
     }
 
+    if (this.floor === 2) {
+      if (this.getTile2(8, col, row)) {
+        currentTile = this.getTile2(8, col, row).img;
+        if (currentTile === this.blocksLayer[8]) {
+          return true;
+        }
+      }
+    } else if (this.floor === 1) {
+      if (this.getTile2(7, col, row)) {
+        currentTile = this.getTile2(7, col, row).img;
+      }
+      if (currentTile === this.blocksLayer[7]) {
+        return true;
+      }
+    }
+    // console.log(currentTile);
+
     return false;
   },
+  // isSolidTileAtXY: function (x, y) {
+  //   var col = Math.floor(x / this.tsize);
+  //   var row = Math.floor(y / this.tsize);
+
+  //   let currentTile;
+  //   let blockTile;
+
+  //   // key 는 blocksLayer의 key값 -> 그려진 레이어의 배열 키값이다.
+  //   for (key in this.blocksLayer) {
+  //     if (key) {
+  //       // console.log(this.getTile2(key, col, row));
+  //       if (this.getTile2(key, col, row)) {
+  //         currentTile = this.getTile2(key, col, row).img;
+  //       }
+  //       blockTile = this.blocksLayer[key];
+  //       if (currentTile === blockTile) {
+  //         // return true;
+  //       }
+  //     }
+  //   }
+
+  //   return false;
+  // },
   // isSolidTileAtXY: function (x, y) {
   //   var col = Math.floor(x / this.tsize);
   //   var row = Math.floor(y / this.tsize);
@@ -191,9 +278,9 @@ let map = {
       context.fill();
     }
   },
+  //상호작용 테두리용으로 만듦
   rectBorder: function (context, col, row, w, h, color) {
     const radius = 16;
-    const innerRadius = radius - 4;
     const x = col * this.tsize;
     const y = row * this.tsize;
     // Game.camera.x,y - 카메라 영역 좌측 위의 x값과 y값
@@ -201,7 +288,6 @@ let map = {
     const ry = y - Game.camera.y;
     const width = w * this.tsize;
     const height = h * this.tsize;
-    const gap = 5;
     context.strokeStyle = color;
     context.lineWidth = 5;
 
@@ -234,10 +320,13 @@ function Camera(map, width, height) {
   //카메라 범위
   this.width = width;
   this.height = height;
-  this.maxX = map.cols * map.tsize - width;
-  this.maxY = map.rows * map.tsize - height;
+  this.maxX = map.cols * map.tsize - width + Game.remainX;
+  this.maxY = map.rows * map.tsize - height + Game.remainY;
+  // 카메라 테두리가 맵 끝에 닿았을때 창크기값
+  this.lastWidth;
+  this.lastHeight;
 }
-
+// sprite 는 hero 객체
 Camera.prototype.follow = function (sprite) {
   this.following = sprite;
   sprite.screenX = 0;
@@ -247,11 +336,10 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - Game.remainX + Game.chatSize;
+  this.width = window.innerWidth - Game.remainX + Game.chat.width;
   this.height = window.innerHeight - Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
-
   // make the camera follow the sprite
   this.x = this.following.x - this.width / 2;
   this.y = this.following.y - this.height / 2;
@@ -265,24 +353,75 @@ Camera.prototype.update = function () {
   // and we have to change its screen coordinates
 
   // left and right sides
-  if (this.following.x < this.width / 2 || this.following.x > this.maxX + this.width / 2) {
-    this.following.screenX = this.following.x - this.x;
+  if (window.innerWidth > Game.mediaQ) {
+    if (
+      this.following.x < this.width / 2 ||
+      this.following.x + Game.remainX > this.maxX + this.width / 2
+    ) {
+      this.following.screenX = this.following.x - this.x;
+      this.lastWidth = window.innerWidth;
+      this.width = this.lastWidth - Game.remainX;
+      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+    } else {
+      this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+    }
+  } else {
+    if (
+      this.following.x < this.width / 2 ||
+      this.following.x + Game.remainX > this.maxX + this.width / 2
+    ) {
+      this.following.screenX = this.following.x - this.x;
+      this.lastWidth = window.innerWidth;
+      this.width = this.lastWidth - Game.remainX + Game.chat.width;
+      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX - Game.chat.width;
+    } else {
+      this.maxX = map.cols * map.tsize - this.width + Game.remainX - Game.chat.width;
+    }
   }
+
+  // if (
+  //   this.following.x < this.width / 2 ||
+  //   this.following.x + Game.remainX > this.maxX + this.width / 2
+  // ) {
+  //   this.following.screenX = this.following.x - this.x;
+  //   this.lastWidth = window.innerWidth;
+  //   this.width = this.lastWidth - Game.remainX + Game.chat.width;
+  //   if (window.innerWidth < Game.mediaQ) {
+  //     this.maxX = map.cols * map.tsize - this.lastWidth;
+  //   } else {
+  //     this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX;
+  //   }
+  // } else {
+  //   if (window.innerWidth < Game.mediaQ) {
+  //     this.maxX = map.cols * map.tsize - this.width;
+  //   } else {
+  //     this.maxX = map.cols * map.tsize - this.width + Game.remainX;
+  //   }
+  // }
   // top and bottom sides
-  if (this.following.y < this.height / 2 || this.following.y > this.maxY + this.height / 2) {
+  if (
+    this.following.y < this.height / 2 ||
+    this.following.y + Game.remainY > this.maxY + this.height / 2
+  ) {
     this.following.screenY = this.following.y - this.y;
+    this.lastHeight = window.innerHeight;
+    // this.height = this.lastHeight - Game.remainY;
+    this.maxY = map.rows * map.tsize - this.lastHeight + Game.remainY;
+  } else {
+    this.maxY = map.rows * map.tsize - this.height + Game.remainY;
   }
   map.fontX = this.following.screenX;
   map.fontY = this.following.screenY;
-  // map.fontY = this.following.screenY - map.tsize / 2;
 };
-//test
 function Hero(map, x, y) {
   this.map = map;
   this.x = x;
   this.y = y;
   this.width = map.tsize;
   this.height = map.tsize;
+  this.dirR = false;
+  this.isWalking = false;
+  this.displayChatIcon = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -317,6 +456,7 @@ function Hero(map, x, y) {
   this.bodysImage = Loader.getImage("bodys");
   this.handsImage = Loader.getImage("hands");
   this.AccsImage = Loader.getImage("accs");
+  this.chatImage = Loader.getImage("chat");
 }
 
 Hero.SPEED = 256; // pixels per second
@@ -381,6 +521,7 @@ Hero.prototype._interactive = function () {
   if (interLeft || interDown || interRight || interUp) {
     map.logic = true;
     //이벤트 한번만 걸기 위한 if와 변수값
+
     if (base.hasKeydown === 0) {
       base.hasKeydown = 1;
       document.addEventListener("keydown", base.event1, true);
@@ -553,6 +694,12 @@ Game.load = function () {
     Loader.loadImage("tilledDirt", "../assets/tiles/TilledDirt.png"),
     Loader.loadImage("water", "../assets/tiles/Water.png"),
     Loader.loadImage("woodenHouse", "../assets/tiles/WoodenHouse.png"),
+    Loader.loadImage("redBlock", "../assets/tiles/redBlock.png"),
+    Loader.loadImage("blueBlock", "../assets/tiles/blueBlock.png"),
+    Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
+    Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
+    Loader.loadImage("trees", "../assets/tiles/trees.png"),
+    Loader.loadImage("chat", "../assets/chat.png"),
   ];
 };
 
@@ -565,12 +712,17 @@ Game.init = function () {
   this.tilledDirt = Loader.getImage("tilledDirt");
   this.water = Loader.getImage("water");
   this.woodenHouse = Loader.getImage("woodenHouse");
+  this.redBlock = Loader.getImage("redBlock");
+  this.blueBlock = Loader.getImage("blueBlock");
+  this.greenBlock = Loader.getImage("greenBlock");
+  this.bridge = Loader.getImage("bridge");
+  this.trees = Loader.getImage("trees");
 
-  this.hero = new Hero(map, 160, 160);
+  this.hero = new Hero(map, 1312, 480);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
-  this.chatInit();
+  this.chat.init();
   this.resizeInit();
   window.onresize = () => {
     this.resizeInit();
@@ -584,14 +736,14 @@ Game.init = function () {
   });
 };
 
-Game.remainX = 300;
-Game.remainY = 200;
+Game.remainX = 340;
+Game.remainY = 100;
 Game.mediaQ = 620;
 Game.resizeInit = function () {
-  this.chatSize = window.innerWidth < 620 ? 240 : 0;
-  this.canvas.width = window.innerWidth - this.remainX + this.chatSize;
+  this.chat.width = window.innerWidth < 620 ? 240 : 0;
+  this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
   this.canvas.height = window.innerHeight - this.remainY;
-  this.chatBoxResize();
+  this.chat.boxResize();
 };
 Game.update = function (delta) {
   // handle hero movement with arrow keys
@@ -600,6 +752,7 @@ Game.update = function (delta) {
   // -----------------------------temp 변수 넣어 블락이동 구현-------------------------------
   if (Keyboard.isDown(Keyboard.LEFT)) {
     this.hero.tempX = -1;
+    this.hero.dirR = false;
     dirX = -1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -612,6 +765,7 @@ Game.update = function (delta) {
     }
   } else if (Keyboard.isDown(Keyboard.RIGHT)) {
     dirX = 1;
+    this.hero.dirR = true;
     this.hero.tempX = 1;
 
     if (Keyboard.isDown(Keyboard.UP)) {
@@ -657,6 +811,14 @@ Game.update = function (delta) {
   }
   this.hero.move(delta, dirX, dirY);
 
+  //걷는모션
+  if (dirX !== 0 || dirY !== 0) {
+    this.hero.isWalking = true;
+  } else {
+    this.hero.isWalking = false;
+  }
+
+  this.hero.whichFloor = map.floor;
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
@@ -720,8 +882,7 @@ Game._drawGrid = function () {
   }
 };
 
-Game._playersDraw = function () {
-  // console.log(this.players);
+Game._playersDraw = function (floor) {
   if (!this.players) {
     return;
   }
@@ -730,16 +891,31 @@ Game._playersDraw = function () {
   const status = document.querySelector("#status");
   status.innerHTML = "";
   playersKeys.forEach((key) => {
+    //임시하단정보
     const div = document.createElement("div");
     status.append(div);
     div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
-      this.players[key].x
-    )} | y: ${Math.floor(this.players[key].y)}`;
+      this.players[key].x / 64
+    )} | y: ${Math.floor(this.players[key].y) / 64 - 0.5}`;
   });
-  //
 
   playersKeys.forEach((key) => {
+    if (this.players[key].whichFloor !== floor) {
+      return;
+    }
     if (this.players[key].id !== this.hero.id) {
+      //좌우반전
+      let flipCheck = 1;
+      if (this.players[key].dirR) {
+        this.ctx.scale(-1, 1);
+        flipCheck = -1;
+      }
+      //걷기모션
+      let walkMotion = 1;
+      if (this.players[key].isWalking) {
+        walkMotion += Math.sin(new Date() / 40);
+        walkMotion *= 3;
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
@@ -747,10 +923,10 @@ Game._playersDraw = function () {
         this.players[key].customInfo.bodyColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
       //머리드로잉
       this.ctx.drawImage(
@@ -759,10 +935,10 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.hero.width,
-        this.hero.height
+        this.hero.height - walkMotion
       );
       //헤어드로잉
       this.ctx.drawImage(
@@ -771,10 +947,10 @@ Game._playersDraw = function () {
         this.players[key].customInfo.hairColor * this.players[key].height, // source y
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
 
       // acc 드로잉
@@ -784,10 +960,10 @@ Game._playersDraw = function () {
         0,
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
       // hands 드로잉
       this.ctx.drawImage(
@@ -796,16 +972,34 @@ Game._playersDraw = function () {
         this.players[key].customInfo.toneColor * this.players[key].height, // source x
         this.players[key].width, // source width
         this.players[key].height, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2,
+        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
         this.players[key].width,
-        this.players[key].height
+        this.players[key].height - walkMotion
       );
+      if (flipCheck === -1) {
+        this.ctx.scale(-1, 1);
+      }
     }
   });
 };
 
-Game._heroDraw = function () {
+Game._heroDraw = function (floor) {
+  if (floor !== this.hero.whichFloor) {
+    return;
+  }
+  //바디드로잉
+  let flipCheck = 1;
+  if (this.hero.dirR) {
+    this.ctx.scale(-1, 1);
+    flipCheck = -1;
+  }
+  //걷기모션
+  let walkMotion = 1;
+  if (this.hero.isWalking) {
+    walkMotion += Math.sin(new Date() / 40);
+    walkMotion *= 3;
+  }
   //바디드로잉
   this.ctx.drawImage(
     this.hero.bodysImage, // image
@@ -813,11 +1007,12 @@ Game._heroDraw = function () {
     this.hero.customInfo.bodyColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height
+    this.hero.height - walkMotion
   );
+
   //머리드로잉
   this.ctx.drawImage(
     this.hero.headsImage, // image
@@ -825,22 +1020,23 @@ Game._heroDraw = function () {
     this.hero.customInfo.toneColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height
+    this.hero.height - walkMotion
   );
   //헤어드로잉
+
   this.ctx.drawImage(
     this.hero.hairsImage, // image
     this.hero.customInfo.hairShape * this.hero.width, // source x
     this.hero.customInfo.hairColor * this.hero.height, // source y
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height
+    this.hero.height - walkMotion
   );
 
   // acc 드로잉
@@ -850,10 +1046,10 @@ Game._heroDraw = function () {
     0,
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height
+    this.hero.height - walkMotion
   );
   // hands 드로잉
   this.ctx.drawImage(
@@ -862,11 +1058,14 @@ Game._heroDraw = function () {
     this.hero.customInfo.toneColor * this.hero.height, // source x
     this.hero.width, // source width
     this.hero.height, // source height
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2,
+    this.hero.screenX * flipCheck - this.hero.width / 2,
+    this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
     this.hero.width,
-    this.hero.height
+    this.hero.height - walkMotion
   );
+  if (flipCheck === -1) {
+    this.ctx.scale(-1, 1);
+  }
   //네임바 드로잉
   this.ctx.beginPath();
   // 왼쪽 상단 모서리
@@ -885,22 +1084,38 @@ Game._drawNameBox = function () {
     this.ctx.textAlign = "center";
     this.ctx.fillText(name, sX + this.hero.width / 2, sY);
   };
-  drawEachNameBox(
-    this.hero.nickName,
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2
-  );
+  if (!this.hero.displayChatIcon) {
+    drawEachNameBox(
+      this.hero.nickName,
+      this.hero.screenX - this.hero.width / 2,
+      this.hero.screenY - this.hero.height / 2 - 10
+    );
+  }
   if (!this.players) {
     return;
   }
   const playerKeys = Object.keys(this.players);
 
   playerKeys.forEach((key) => {
-    if (this.players[key].id !== this.hero.id) {
-      drawEachNameBox(
-        this.players[key].nickName,
-        this.players[key].x - this.camera.x - this.hero.width / 2,
-        this.players[key].y - this.camera.y - this.hero.height / 2
+    if (!this.players[key].displayChatIcon) {
+      if (this.players[key].id !== this.hero.id) {
+        drawEachNameBox(
+          this.players[key].nickName,
+          this.players[key].x - this.camera.x - this.hero.width / 2,
+          this.players[key].y - this.camera.y - this.hero.height / 2 - 10
+        );
+      }
+    } else {
+      this.ctx.drawImage(
+        this.hero.chatImage, // image
+        0,
+        0,
+        64, // source width
+        64, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 4,
+        this.players[key].y - this.camera.y - this.players[key].height,
+        32,
+        32
       );
     }
   });
@@ -910,8 +1125,8 @@ Game._drawNameBox = function () {
   // });
 };
 Game._drawRect = function () {
-  map.rect(this.ctx, 5, 4, 3, 3, "green");
-  map.rect(this.ctx, 4, 3, 2, 2, "pink");
+  // map.rect(this.ctx, 5, 4, 3, 3, "green");
+  // map.rect(this.ctx, 4, 3, 2, 2, "pink");
   if (map.logic) {
     map.rectBorder(this.ctx, map.interCol, map.interRow, 1, 1, "Red");
   }
@@ -920,44 +1135,47 @@ Game._text = function () {
   if (map.logic) {
     //반응 타일 상단 위치 구하는 공식
     const reactTileX = map.interCol * map.tsize - Game.camera.x;
-    const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2;
+    const reactTileY = map.interRow * map.tsize - Game.camera.y - map.tsize * 0.2 - 5;
     const radius = 4;
+    const boxWidth = 20;
     const boxHeight = 10;
 
     this.ctx.font = "14px serif";
     this.ctx.fillStyle = "#00000070";
+    this.ctx.strokeStyle = "black";
+    this.ctx.lineWidth = 1;
     this.ctx.beginPath();
     // 왼쪽 상단 모서리
-    this.ctx.moveTo(reactTileX + radius, reactTileY - boxHeight);
+    this.ctx.moveTo(reactTileX + radius - boxWidth, reactTileY - boxHeight);
     // 오른쪽 상단 모서리
     this.ctx.arcTo(
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY - boxHeight,
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY,
       radius
     );
     // 오른쪽 하단 모서리
     this.ctx.arcTo(
-      reactTileX + map.tsize,
+      reactTileX + map.tsize + boxWidth,
       reactTileY + boxHeight,
-      reactTileX + map.tsize - radius,
+      reactTileX + map.tsize - radius + boxWidth,
       reactTileY + boxHeight + radius,
       radius
     );
     // 왼쪽 하단 모서리
     this.ctx.arcTo(
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY + boxHeight + radius - 2,
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY + boxHeight,
       radius
     );
     // 왼쪽 상단 모서리
     this.ctx.arcTo(
-      reactTileX,
+      reactTileX - boxWidth,
       reactTileY - boxHeight,
-      reactTileX + radius,
+      reactTileX + radius - boxWidth,
       reactTileY - boxHeight,
       radius
     );
@@ -967,32 +1185,27 @@ Game._text = function () {
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.fillText("[Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
+    this.ctx.fillText(
+      "Press [Space]",
+      reactTileX + map.tsize / 2,
+      reactTileY - map.tsize * 0.2 + 20
+    );
   }
 };
 
 Game.render = function () {
-  // console.log(width);
-  // draw map background layer
-  // this._drawLayer(0);
-  this._drawTiles();
-  this._drawRect();
+  this._drawTiles(1);
 
-  this._playersDraw();
-  // draw main character
-  this._heroDraw();
+  this._playersDraw(1);
+  this._heroDraw(1);
 
-  // this.ctx.drawImage(
-  //   this.hero.image,
-  //   this.hero.screenX - this.hero.width / 2,
-  //   this.hero.screenY - this.hero.height / 2
-  // );
+  Game._drawTilesLayer(10); //bridge_floor
 
-  // draw map top layer
-  // this._drawLayer(1);
+  this._playersDraw(2);
+  this._heroDraw(2);
+  this._drawTiles(2);
 
   this._drawNameBox();
-
-  this._drawGrid();
+  this._drawRect();
   this._text();
 };

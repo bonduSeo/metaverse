@@ -52,7 +52,7 @@ Keyboard.isDown = function (keyCode) {
 //
 
 var Game = {};
-
+Game.chat = {};
 
 Game.run = function (canvas, context) {
   this.canvas = canvas;
