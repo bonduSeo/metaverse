@@ -1,4 +1,4 @@
-Game.chatInit = function () {
+Game.chat.init = function () {
   const chatDiv = document.querySelector(".chat");
   const chatContext = chatDiv.querySelector(".chatContext");
   socket.on("chat", (chat) => {
@@ -10,7 +10,7 @@ Game.chatInit = function () {
     canvas.width = 32;
     canvas.height = 32;
 
-    this.chatIconDraw(chat[2], ctx);
+    this.iconDraw(chat[2], ctx);
     div.prepend(canvas);
     chatContext.append(div);
     chatContext.scrollTop = chatContext.scrollHeight;
@@ -21,7 +21,7 @@ Game.chatInit = function () {
 
   submit.addEventListener("click", () => {
     if (input.value !== "") {
-      const nameChat = [this.hero.nickName, input.value, this.hero.id];
+      const nameChat = [Game.hero.nickName, input.value, Game.hero.id];
       socket.emit("chat", nameChat);
       input.value = "";
     }
@@ -37,27 +37,27 @@ Game.chatInit = function () {
       submit.click();
     }
   });
-  this.chatBoxResize();
+  this.boxResize();
 };
-Game.chatIconDraw = function (playerId, ctx) {
+Game.chat.iconDraw = function (playerId, ctx) {
   let playerKey;
-  Object.keys(this.players).forEach((key) => {
-    if ((this.players[key].id = playerId)) {
+  Object.keys(Game.players).forEach((key) => {
+    if ((Game.players[key].id = playerId)) {
       playerKey = key;
       return;
     }
   });
-  console.log(this.players[playerKey].customInfo);
-  const playerInfo = this.players[playerKey].customInfo;
+  console.log(Game.players[playerKey].customInfo);
+  const playerInfo = Game.players[playerKey].customInfo;
   console.log(ctx);
   ctx.fillColor = "#fff";
   ctx.fillRect(0, 0, 32, 32);
 };
 
-Game.chatBoxResize = function () {
+Game.chat.boxResize = function () {
   const canvas = document.getElementById("demo");
   const chatBox = document.querySelector(".chat");
-  if (window.innerWidth < this.mediaQ) {
+  if (window.innerWidth < Game.mediaQ) {
     chatBox.style.display = "none";
   } else {
     chatBox.style.display = "inline-block";
