@@ -2950,9 +2950,9 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(5); //trees1
   } else if (z === 2) {
     Game._drawTilesLayer(6); //trees2
-    Game._drawTilesLayer(7);
-    Game._drawTilesLayer(8);
-    Game._drawTilesLayer(9);
+    // Game._drawTilesLayer(7); //redblock
+    // Game._drawTilesLayer(8); //blueblock
+    // Game._drawTilesLayer(9); //greenblock
   }
 };
 
