@@ -336,7 +336,7 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - Game.remainX + Game.chatSize;
+  this.width = window.innerWidth - Game.remainX + Game.chat.width;
   this.height = window.innerHeight - Game.remainY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
@@ -372,10 +372,10 @@ Camera.prototype.update = function () {
     ) {
       this.following.screenX = this.following.x - this.x;
       this.lastWidth = window.innerWidth;
-      this.width = this.lastWidth - Game.remainX + Game.chatSize;
-      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX - Game.chatSize;
+      this.width = this.lastWidth - Game.remainX + Game.chat.width;
+      this.maxX = map.cols * map.tsize - this.lastWidth + Game.remainX - Game.chat.width;
     } else {
-      this.maxX = map.cols * map.tsize - this.width + Game.remainX - Game.chatSize;
+      this.maxX = map.cols * map.tsize - this.width + Game.remainX - Game.chat.width;
     }
   }
 
@@ -385,7 +385,7 @@ Camera.prototype.update = function () {
   // ) {
   //   this.following.screenX = this.following.x - this.x;
   //   this.lastWidth = window.innerWidth;
-  //   this.width = this.lastWidth - Game.remainX + Game.chatSize;
+  //   this.width = this.lastWidth - Game.remainX + Game.chat.width;
   //   if (window.innerWidth < Game.mediaQ) {
   //     this.maxX = map.cols * map.tsize - this.lastWidth;
   //   } else {
@@ -719,7 +719,7 @@ Game.init = function () {
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
-  this.chatInit();
+  this.chat.init();
   this.resizeInit();
   window.onresize = () => {
     this.resizeInit();
@@ -737,10 +737,10 @@ Game.remainX = 300;
 Game.remainY = 200;
 Game.mediaQ = 620;
 Game.resizeInit = function () {
-  this.chatSize = window.innerWidth < 620 ? 240 : 0;
-  this.canvas.width = window.innerWidth - this.remainX + this.chatSize;
+  this.chat.width = window.innerWidth < 620 ? 240 : 0;
+  this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
   this.canvas.height = window.innerHeight - this.remainY;
-  this.chatBoxResize();
+  this.chat.boxResize();
 };
 Game.update = function (delta) {
   // handle hero movement with arrow keys
@@ -879,7 +879,6 @@ Game._drawGrid = function () {
 };
 
 Game._playersDraw = function () {
-  // console.log(this.players);
   if (!this.players) {
     return;
   }
@@ -909,7 +908,6 @@ Game._playersDraw = function () {
       if (this.players[key].isWalking) {
         walkMotion += Math.sin(new Date() / 40);
         walkMotion *= 3;
-        console.log(walkMotion);
       }
       //바디드로잉
       this.ctx.drawImage(
@@ -992,6 +990,7 @@ Game._heroDraw = function () {
     walkMotion += Math.sin(new Date() / 40);
     walkMotion *= 3;
   }
+  //바디드로잉
   this.ctx.drawImage(
     this.hero.bodysImage, // image
     this.hero.customInfo.bodyShape * this.hero.width, // source x
@@ -1003,8 +1002,8 @@ Game._heroDraw = function () {
     this.hero.width,
     this.hero.height - walkMotion
   );
-  //머리드로잉
 
+  //머리드로잉
   this.ctx.drawImage(
     this.hero.headsImage, // image
     this.hero.customInfo.headShape * this.hero.width, // source x

@@ -1,7 +1,3 @@
-div {
-  /* border: 1px solid var(--dark-gray); */
-}
-
 html,
 body {
   height: 100%;
@@ -31,11 +27,13 @@ body {
   height: 100%;
   border: 2px solid var(--dark-gray);
   border-radius: 50%;
-  font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--beige-bg);
+}
+.backIcon div img {
+  width: 60%;
 }
 
 a {
