@@ -2289,7 +2289,7 @@ map.tileMap = {
             "33-5": { x: 3, y: 0, tilesetIdx: "4", tileSymbol: "Š", isFlippedX: false },
           },
           visible: true,
-          name: "Layer4",
+          name: "Layer4_bridge",
           animatedTiles: {},
           opacity: 1,
         },
@@ -2938,7 +2938,7 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(1);
     Game._drawTilesLayer(2);
     Game._drawTilesLayer(3);
-    Game._drawTilesLayer(4);
+    Game._drawTilesLayer(4); //bridge
     Game._drawTilesLayer(5);
   } else if (z === 2) {
     Game._drawTilesLayer(6);
