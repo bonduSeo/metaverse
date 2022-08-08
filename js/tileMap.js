@@ -2938,10 +2938,10 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(1);
     Game._drawTilesLayer(2);
     Game._drawTilesLayer(3);
-    // Game._drawTilesLayer(4);
-    // Game._drawTilesLayer(5);
+    Game._drawTilesLayer(4);
+    Game._drawTilesLayer(5);
   } else if (z === 2) {
-    // Game._drawTilesLayer(6);
+    Game._drawTilesLayer(6);
     Game._drawTilesLayer(7);
     Game._drawTilesLayer(8);
     Game._drawTilesLayer(9);
