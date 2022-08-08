@@ -1168,25 +1168,17 @@ Game._text = function () {
 };
 
 Game.render = function () {
-  // draw map background layer
-  // this._drawLayer(0);
   this._drawTiles(1);
 
-  this._playersDraw();
-  // draw main character
-  this._heroDraw();
+  this._playersDraw(1);
+  this._heroDraw(1);
+
+  Game._drawTilesLayer(10); //bridge_floor
+
+  this._playersDraw(2);
+  this._heroDraw(2);
   this._drawTiles(2);
 
-  // this.ctx.drawImage(
-  //   this.hero.image,
-  //   this.hero.screenX - this.hero.width / 2,
-  //   this.hero.screenY - this.hero.height / 2
-  // );
-
-  // draw map top layer
-  // this._drawLayer(1);
-
-  // this._drawGrid();
   this._drawNameBox();
   this._drawRect();
   this._text();
