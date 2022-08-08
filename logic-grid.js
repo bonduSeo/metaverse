@@ -736,8 +736,8 @@ Game.init = function () {
   });
 };
 
-Game.remainX = 300;
-Game.remainY = 200;
+Game.remainX = 340;
+Game.remainY = 100;
 Game.mediaQ = 620;
 Game.resizeInit = function () {
   this.chat.width = window.innerWidth < 620 ? 240 : 0;
