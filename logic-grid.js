@@ -1152,21 +1152,23 @@ Game._miniMapIcon = function () {
 Game._miniMap = function () {
   const w = map.cols * map.tsize * 0.08;
   const h = map.rows * map.tsize * 0.08;
+  const screenX = 8;
+  const screenY = 8;
   let x;
   let y;
   const speedX = 4.95;
   const speedY = 4.9;
   let playerCount;
   if (Game.switchMap === 1) {
-    this.ctx.drawImage(this.miniMap, 20, 35, w, h);
+    this.ctx.drawImage(this.miniMap, screenX, 30 + screenY, w, h);
     this.ctx.lineWidth = 2;
-    this.ctx.strokeRect(20, 35, w, h);
-    this.ctx.strokeRect(20, 5, w, 30);
+    this.ctx.strokeRect(screenX, 30 + screenY, w, h);
+    this.ctx.strokeRect(screenX, screenY, w, 30);
     this.ctx.fillStyle = "#f2b400";
-    this.ctx.fillRect(21, 6, w - 2, 28);
+    this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
     this.ctx.fillStyle = "#000000";
     this.ctx.font = "15pt'Product Sans'";
-    this.ctx.fillText("✨Metaverse", 20 + w * 0.5, 30);
+    this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
 
     if (!this.players) {
       return;
@@ -1177,13 +1179,13 @@ Game._miniMap = function () {
     playerKeys.forEach((key) => {
       x = Math.floor(this.players[key].x / 64) + 4.3;
       y = Math.floor(this.players[key].y / 64) + 7.2;
-      this.ctx.fillRect(x * speedX, y * speedY, 6, 6);
+      this.ctx.fillRect(x * speedX - screenX - 3, y * speedY + 3, 6, 6);
     });
 
     this.ctx.fillStyle = "red";
     x = Math.floor(this.hero.x / 64) + 4.3;
     y = Math.floor(this.hero.y / 64) + 7.2;
-    this.ctx.fillRect(x * speedX, y * speedY, 6, 6);
+    this.ctx.fillRect(x * speedX - screenX - 4, y * speedY + 3, 6, 6);
   }
 };
 
