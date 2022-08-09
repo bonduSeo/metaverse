@@ -9,62 +9,44 @@ let map = {
   floor: 1,
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
-      1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
-      1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1,
-      1, 1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
-      1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
+      2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
     ],
+
     [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      // 2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0,
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
@@ -74,7 +56,7 @@ let map = {
     8: "blueBlock",
   },
   // 상호타일 -- 상호작용 타일
-  Interactive: [11],
+  Interactive: [11, 12, 13, 14],
   color: {
     lightGreen: "#84dbb8",
     green: "#22ebbf",
@@ -237,12 +219,7 @@ let map = {
       context.fillStyle = color;
     }
 
-    if (
-      rx + width > 0 &&
-      rx < Game.camera.x + this.rows * this.tsize &&
-      ry + height > 0 &&
-      ry < Game.camera.y + this.cols * this.tsize
-    ) {
+    if (rx + width > 0 && rx < Game.camera.x + this.rows * this.tsize && ry + height > 0 && ry < Game.camera.y + this.cols * this.tsize) {
       context.strokeRect(rx + 10, ry + height, 10, 10);
       context.fillRect(rx + 10, ry + height, 10, 10);
       context.strokeRect(rx + width - 20, ry + height, 10, 10);
@@ -314,12 +291,7 @@ let map = {
     context.strokeStyle = color;
     context.lineWidth = 5;
 
-    if (
-      rx + width > 0 &&
-      rx < Game.camera.x + this.rows * this.tsize &&
-      ry + height > 0 &&
-      ry < Game.camera.y + this.cols * this.tsize
-    ) {
+    if (rx + width > 0 && rx < Game.camera.x + this.rows * this.tsize && ry + height > 0 && ry < Game.camera.y + this.cols * this.tsize) {
       context.beginPath();
       // 왼쪽 상단 모서리
       context.moveTo(rx + radius, ry);
@@ -377,10 +349,7 @@ Camera.prototype.update = function () {
 
   // left and right sides
   if (window.innerWidth > Game.mediaQ) {
-    if (
-      this.following.x < this.width / 2 ||
-      this.following.x + Game.remainX > this.maxX + this.width / 2
-    ) {
+    if (this.following.x < this.width / 2 || this.following.x + Game.remainX > this.maxX + this.width / 2) {
       this.following.screenX = this.following.x - this.x;
       this.lastWidth = window.innerWidth;
       this.width = this.lastWidth - Game.remainX;
@@ -389,10 +358,7 @@ Camera.prototype.update = function () {
       this.maxX = map.cols * map.tsize - this.width + Game.remainX;
     }
   } else {
-    if (
-      this.following.x < this.width / 2 ||
-      this.following.x + Game.remainX > this.maxX + this.width / 2
-    ) {
+    if (this.following.x < this.width / 2 || this.following.x + Game.remainX > this.maxX + this.width / 2) {
       this.following.screenX = this.following.x - this.x;
       this.lastWidth = window.innerWidth;
       this.width = this.lastWidth - Game.remainX + Game.chat.width;
@@ -422,10 +388,7 @@ Camera.prototype.update = function () {
   //   }
   // }
   // top and bottom sides
-  if (
-    this.following.y < this.height / 2 ||
-    this.following.y + Game.remainY > this.maxY + this.height / 2
-  ) {
+  if (this.following.y < this.height / 2 || this.following.y + Game.remainY > this.maxY + this.height / 2) {
     this.following.screenY = this.following.y - this.y;
     this.lastHeight = window.innerHeight;
     // this.height = this.lastHeight - Game.remainY;
@@ -444,7 +407,6 @@ function Hero(map, x, y) {
   this.height = map.tsize;
   this.dirR = false;
   this.isWalking = false;
-  this.displayChatIcon = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -479,7 +441,6 @@ function Hero(map, x, y) {
   this.bodysImage = Loader.getImage("bodys");
   this.handsImage = Loader.getImage("hands");
   this.AccsImage = Loader.getImage("accs");
-  this.chatImage = Loader.getImage("chat");
 }
 
 Hero.SPEED = 256; // pixels per second
@@ -502,10 +463,7 @@ Hero.prototype.move = function (delta, dirX, dirY) {
   // 픽셀 속도 배열값에서 캐릭터 움직값에 가장 가까운 숫자를 찾아 속도지정
   delta = delta > 0.1 ? 0.1 : delta;
   for (let i = 0; i < this.divisorArr.length; i++) {
-    c =
-      this.divisorArr[i] - Hero.SPEED * delta < 0
-        ? -(this.divisorArr[i] - Hero.SPEED * delta)
-        : this.divisorArr[i] - Hero.SPEED * delta;
+    c = this.divisorArr[i] - Hero.SPEED * delta < 0 ? -(this.divisorArr[i] - Hero.SPEED * delta) : this.divisorArr[i] - Hero.SPEED * delta;
 
     if (c < this.min) {
       this.min = c;
@@ -595,12 +553,9 @@ Hero.prototype._collide = function () {
 
   // check for collisions on sprite sides
   const blockLeftUp = this.map.isSolidTileAtXY(left, top) || this.map.isInteractiveAtXY(left, top);
-  const blockLeftDown =
-    this.map.isSolidTileAtXY(left, bottom) || this.map.isInteractiveAtXY(left, bottom);
-  const blockRightUp =
-    this.map.isSolidTileAtXY(right, top) || this.map.isInteractiveAtXY(right, top);
-  const blockRightDown =
-    this.map.isSolidTileAtXY(right, bottom) || this.map.isInteractiveAtXY(right, bottom);
+  const blockLeftDown = this.map.isSolidTileAtXY(left, bottom) || this.map.isInteractiveAtXY(left, bottom);
+  const blockRightUp = this.map.isSolidTileAtXY(right, top) || this.map.isInteractiveAtXY(right, top);
+  const blockRightDown = this.map.isSolidTileAtXY(right, bottom) || this.map.isInteractiveAtXY(right, bottom);
 
   // 위로만 부딪혔을 때
   if (blockLeftUp && blockRightUp && !(blockRightDown || blockLeftDown)) {
@@ -722,7 +677,9 @@ Game.load = function () {
     Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
+
     Loader.loadImage("chat", "../assets/chat.png"),
+    Loader.loadImage("miniMap", "../assets/minimap.png"),
     Loader.loadImage("computer", "../assets/computer64.png"),
   ];
 };
@@ -742,6 +699,7 @@ Game.init = function () {
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
   this.computer = Loader.getImage("computer");
+  this.miniMap = Loader.getImage("miniMap");
 
   // this.hero = new Hero(map, 1312, 480);
   this.hero = new Hero(map, 22 * 64, 19 * 64);
@@ -844,7 +802,6 @@ Game.update = function (delta) {
     this.hero.isWalking = false;
   }
 
-  this.hero.whichFloor = map.floor;
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
@@ -908,7 +865,7 @@ Game._drawGrid = function () {
   }
 };
 
-Game._playersDraw = function (floor) {
+Game._playersDraw = function () {
   if (!this.players) {
     return;
   }
@@ -917,18 +874,13 @@ Game._playersDraw = function (floor) {
   const status = document.querySelector("#status");
   status.innerHTML = "";
   playersKeys.forEach((key) => {
-    //임시하단정보
     const div = document.createElement("div");
     status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
-      this.players[key].x / 64
-    )} | y: ${Math.floor(this.players[key].y) / 64 - 0.5}`;
+    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x)} | y: ${Math.floor(this.players[key].y)}`;
   });
+  //
 
   playersKeys.forEach((key) => {
-    if (this.players[key].whichFloor !== floor) {
-      return;
-    }
     if (this.players[key].id !== this.hero.id) {
       //좌우반전
       let flipCheck = 1;
@@ -1010,10 +962,7 @@ Game._playersDraw = function (floor) {
   });
 };
 
-Game._heroDraw = function (floor) {
-  if (floor !== this.hero.whichFloor) {
-    return;
-  }
+Game._heroDraw = function () {
   //바디드로잉
   let flipCheck = 1;
   if (this.hero.dirR) {
@@ -1095,10 +1044,7 @@ Game._heroDraw = function (floor) {
   //네임바 드로잉
   this.ctx.beginPath();
   // 왼쪽 상단 모서리
-  this.ctx.moveTo(
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2
-  );
+  this.ctx.moveTo(this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2);
 };
 Game._drawNameBox = function () {
   //nameBox 그리기
@@ -1115,39 +1061,23 @@ Game._drawNameBox = function () {
 
     this.ctx.fillText(name, sX + this.hero.width / 2, sY);
   };
+
   this.ctx.font = "8pt'Product Sans'";
   if (!this.hero.displayChatIcon) {
-    drawEachNameBox(
-      this.hero.nickName,
-      this.hero.screenX - this.hero.width / 2,
-      this.hero.screenY - this.hero.height / 2 - 10
-    );
+    drawEachNameBox(this.hero.nickName, this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2 - 10);
   }
+
   if (!this.players) {
     return;
   }
   const playerKeys = Object.keys(this.players);
 
   playerKeys.forEach((key) => {
-    if (!this.players[key].displayChatIcon) {
-      if (this.players[key].id !== this.hero.id) {
-        drawEachNameBox(
-          this.players[key].nickName,
-          this.players[key].x - this.camera.x - this.hero.width / 2,
-          this.players[key].y - this.camera.y - this.hero.height / 2 - 10
-        );
-      }
-    } else {
-      this.ctx.drawImage(
-        this.hero.chatImage, // image
-        0,
-        0,
-        64, // source width
-        64, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 4,
-        this.players[key].y - this.camera.y - this.players[key].height,
-        32,
-        32
+    if (this.players[key].id !== this.hero.id) {
+      drawEachNameBox(
+        this.players[key].nickName,
+        this.players[key].x - this.camera.x - this.hero.width / 2,
+        this.players[key].y - this.camera.y - this.hero.height / 2 - 10
       );
     }
   });
@@ -1163,10 +1093,7 @@ Game._drawRectInterect = function () {
   this._text();
 };
 Game._drawRect = function () {
-  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [
-    ["구독관리플랫폼", "오늘의 구독"],
-    "그린버거팀",
-  ]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["구독관리플랫폼", "오늘의 구독"], "그린버거팀"]);
   map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
   map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
   map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
@@ -1189,13 +1116,7 @@ Game._text = function () {
     // 왼쪽 상단 모서리
     this.ctx.moveTo(reactTileX + radius - boxWidth, reactTileY - boxHeight);
     // 오른쪽 상단 모서리
-    this.ctx.arcTo(
-      reactTileX + map.tsize + boxWidth,
-      reactTileY - boxHeight,
-      reactTileX + map.tsize + boxWidth,
-      reactTileY,
-      radius
-    );
+    this.ctx.arcTo(reactTileX + map.tsize + boxWidth, reactTileY - boxHeight, reactTileX + map.tsize + boxWidth, reactTileY, radius);
     // 오른쪽 하단 모서리
     this.ctx.arcTo(
       reactTileX + map.tsize + boxWidth,
@@ -1205,38 +1126,25 @@ Game._text = function () {
       radius
     );
     // 왼쪽 하단 모서리
-    this.ctx.arcTo(
-      reactTileX - boxWidth,
-      reactTileY + boxHeight + radius - 2,
-      reactTileX - boxWidth,
-      reactTileY + boxHeight,
-      radius
-    );
+    this.ctx.arcTo(reactTileX - boxWidth, reactTileY + boxHeight + radius - 2, reactTileX - boxWidth, reactTileY + boxHeight, radius);
     // 왼쪽 상단 모서리
-    this.ctx.arcTo(
-      reactTileX - boxWidth,
-      reactTileY - boxHeight,
-      reactTileX + radius - boxWidth,
-      reactTileY - boxHeight,
-      radius
-    );
+    this.ctx.arcTo(reactTileX - boxWidth, reactTileY - boxHeight, reactTileX + radius - boxWidth, reactTileY - boxHeight, radius);
     // 선 그리기
     this.ctx.stroke();
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      "Press [Space]",
-      reactTileX + map.tsize / 2,
-      reactTileY - map.tsize * 0.2 + 20
-    );
+    this.ctx.fillText("Press [Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
   }
+};
+
+Game._miniMap = function () {
+  this.ctx.drawImage(this.miniMap, 0, 0, 100, 100);
 };
 
 Game.render = function () {
   this._drawTiles(1);
-
   this._playersDraw(1);
   this._heroDraw(1);
 
@@ -1249,4 +1157,6 @@ Game.render = function () {
 
   this._drawNameBox();
   this._drawRectInterect();
+  this._text();
+  this._miniMap();
 };
