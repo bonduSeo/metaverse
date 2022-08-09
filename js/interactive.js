@@ -90,7 +90,6 @@ const base = {
     });
     const missionStatus = localStorage.getItem("mission1");
     if (missionStatus) {
-      console.log(missionStatus);
       if (JSON.parse(missionStatus).length >= 10) {
         base.missionRewards1();
         //
