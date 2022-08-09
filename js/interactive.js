@@ -56,6 +56,9 @@ const base = {
     const temp = localStorage.getItem("mission1");
     if (temp) {
       missionStatus = JSON.parse(temp);
+      if (missionStatus.length >= 10) {
+        return;
+      }
     }
 
     if (num) {
