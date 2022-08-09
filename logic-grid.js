@@ -697,11 +697,9 @@ Game.load = function () {
     Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
-<<<<<<< HEAD
-=======
+
     Loader.loadImage("chat", "../assets/chat.png"),
     Loader.loadImage("computer", "../assets/computer64.png"),
->>>>>>> 3d15d56c343a6f7088b7b38da2a1561760acff64
   ];
 };
 
