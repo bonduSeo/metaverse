@@ -2311,8 +2311,7 @@ map.tileMap = {
             "7-8": { x: 4, y: 1, tilesetIdx: "5", tileSymbol: "Ź", isFlippedX: false },
             "6-3": { x: 5, y: 1, tilesetIdx: "5", tileSymbol: "ź", isFlippedX: false },
             "7-3": { x: 6, y: 1, tilesetIdx: "5", tileSymbol: "Ż", isFlippedX: false },
-            "0-12": { x: 1, y: 0, tilesetIdx: "5", tileSymbol: "ŭ", isFlippedX: false },
-            "1-12": { x: 2, y: 0, tilesetIdx: "5", tileSymbol: "Ů", isFlippedX: false },
+
             "0-13": { x: 1, y: 1, tilesetIdx: "5", tileSymbol: "Ŷ", isFlippedX: false },
             "1-13": { x: 2, y: 1, tilesetIdx: "5", tileSymbol: "ŷ", isFlippedX: false },
             "0-15": { x: 1, y: 3, tilesetIdx: "5", tileSymbol: "ƈ", isFlippedX: false },
@@ -2502,6 +2501,8 @@ map.tileMap = {
             "44-14": { x: 5, y: 4, tilesetIdx: "5", tileSymbol: "ƕ", isFlippedX: false },
             "43-16": { x: 6, y: 4, tilesetIdx: "5", tileSymbol: "Ɩ", isFlippedX: false },
             "1-24": { x: 0, y: 0, tilesetIdx: "5", tileSymbol: "Ŭ", isFlippedX: false },
+            "0-12": { x: 1, y: 0, tilesetIdx: "5", tileSymbol: "ŭ", isFlippedX: false },
+            "1-12": { x: 2, y: 0, tilesetIdx: "5", tileSymbol: "Ů", isFlippedX: false },
           },
           visible: true,
           name: "Layer6_trees2",
