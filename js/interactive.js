@@ -49,6 +49,15 @@ const base = {
           src="http://192.168.0.63:8080/">
           </iframe>`;
       }
+      if (base.interactiveNumber === 15) {
+        const modalBody = document.querySelector(".modal-body");
+        modalBody.innerHTML = `<iframe id="inlineFrameExample"
+          title="Inline Frame Example"
+          width="100%"
+          height="100%"
+          src="http://192.168.0.63:8080/">
+          </iframe>`;
+      }
     }
   },
   missionCheck: function (num = false) {
@@ -90,7 +99,6 @@ const base = {
     });
     const missionStatus = localStorage.getItem("mission1");
     if (missionStatus) {
-      console.log(missionStatus);
       if (JSON.parse(missionStatus).length >= 10) {
         base.missionRewards1();
         //
