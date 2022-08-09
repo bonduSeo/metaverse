@@ -51,16 +51,14 @@ const base = {
       }
       if (base.interactiveNumber === 15) {
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<iframe id="inlineFrameExample"
-          title="Inline Frame Example"
-          width="100%"
-          height="100%"
-          src="http://192.168.0.63:8080/">
-          </iframe>`;
+        modalBody.innerHTML = `<img src='../img/judy.jpg' width=100% style="object-fit:cover;" >`;
       }
     }
   },
   missionCheck: function (num = false) {
+    if (num === 15) {
+      this.esterEggJudy();
+    }
     let missionStatus = { length: 0 };
     const temp = localStorage.getItem("mission1");
     if (temp) {
@@ -118,8 +116,28 @@ const base = {
       Game.hero.nickName = "✨" + Game.hero.nickName;
       localStorage.setItem("nickName", Game.hero.nickName);
     }
+    const EasterEgg = localStorage.getItem("easterEgg");
+
     document.querySelector(".missionBigTitle").innerHTML = "👾미션 달성 진행도";
     document.querySelector(".missionSmallTitle").innerHTML = "이스터에그를 찾아라!";
-    document.querySelector(".missionCount").innerHTML = "0 / ???";
+    document.querySelector(".missionCount").innerHTML = `${EasterEgg ? JSON.parse(EasterEgg).length : 0} / ???`;
+  },
+  esterEggJudy: () => {
+    Game.hero.judy = true;
+    setTimeout(() => {
+      Game.hero.judy = false;
+    }, 5000 * 60);
+    const EasterEggJson = localStorage.getItem("esterEgg");
+    let EasterEggObj = { length: 0 };
+    if (EasterEggJson) {
+      EasterEggObj = JSON.parse(EasterEggJson);
+    }
+    if (!EasterEggObj.judy) {
+      EasterEggObj.judy = true;
+      EasterEggObj.length += 1;
+    }
+    console.log(document.querySelector(".missionCount"));
+    document.querySelector(".missionCount").innerHTML = `${EasterEggObj.length} / ???`;
+    localStorage.setItem("easterEgg", JSON.stringify(EasterEggObj));
   },
 };
