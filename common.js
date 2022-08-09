@@ -57,6 +57,7 @@ Game.chat = {};
 Game.run = function (canvas, context) {
   this.canvas = canvas;
   this.ctx = context;
+  
   this._previousElapsed = 0;
 
   var p = this.load();
