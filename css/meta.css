@@ -12,7 +12,6 @@ h1 {
 
 .demo {
   background: #000;
-  border: 2px solid var(--dark-gray);
 }
 
 a,
@@ -29,6 +28,37 @@ a:visited {
   position: relative;
   width: 100%;
   display: flex;
+}
+.gameAndMission {
+  border: 2px solid var(--dark-gray);
+  overflow: hidden;
+  position: relative;
+}
+
+.mission {
+  border: 2px solid black;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 200px;
+  height: 100px;
+  background-color: var(--beige-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+  text-align: center;
+}
+.missionBigTitle {
+  font-weight: bold;
+  color: var(--text-blue);
+}
+.missionSmallTitle {
+  font-size: 0.8rem;
+}
+.missionCount {
+  font-weight: bold;
+  color: var(--text-blue);
 }
 
 .chat {
@@ -154,4 +184,45 @@ a:visited {
 
 .miniMap {
   cursor: pointer;
+}
+
+.mission-content {
+  background-color: var(--beige-bg) !important;
+  border-radius: 0 !important;
+  border: 2px solid var(--dark-gray) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+}
+
+.mission-content div {
+  margin-top: 10px;
+}
+
+.mission-btn {
+  background-color: var(--yellow-bg) !important;
+  border: 2px solid var(--dark-gray) !important;
+  border-radius: 0 !important;
+  width: 300px;
+  position: absolute;
+  bottom: 10px;
+  color: var(--dark-gray) !important;
+  font-weight: bold !important;
+}
+.mission-body {
+  padding-bottom: 8px;
+}
+
+.missionClear {
+  background-color: var(--yellow-bg);
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.mission1Btn {
+  display: none;
 }
