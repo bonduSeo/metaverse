@@ -182,6 +182,10 @@ a:visited {
   width: 100%;
 }
 
+.miniMap {
+  cursor: pointer;
+}
+
 .mission-content {
   background-color: var(--beige-bg) !important;
   border-radius: 0 !important;
