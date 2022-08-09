@@ -151,3 +151,7 @@ a:visited {
 .menu-buttons div img {
   width: 100%;
 }
+
+.miniMap {
+  cursor: pointer;
+}

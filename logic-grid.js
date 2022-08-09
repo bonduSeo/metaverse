@@ -443,7 +443,7 @@ function Hero(map, x, y) {
   this.AccsImage = Loader.getImage("accs");
 }
 
-Hero.SPEED = 256; // pixels per second
+Hero.SPEED = 512; // pixels per second
 
 // tsize에 따른 가능한 픽셀 속도 산출(배열값)
 // 객체지향으로 수정
@@ -876,7 +876,7 @@ Game._playersDraw = function () {
   playersKeys.forEach((key) => {
     const div = document.createElement("div");
     status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x)} | y: ${Math.floor(this.players[key].y)}`;
+    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64)}`;
   });
   //
 
@@ -1138,9 +1138,61 @@ Game._text = function () {
     this.ctx.fillText("Press [Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
   }
 };
+Game.switchMap = 1;
+Game._miniMapIcon = function () {
+  const miniMapBtn = document.querySelector(".miniMap");
+  miniMapBtn.addEventListener("click", () => {
+    if (Game.switchMap === 1) {
+      Game.switchMap = 2;
+    } else if (Game.switchMap === 2) {
+      Game.switchMap = 1;
+    }
+  });
+};
 
 Game._miniMap = function () {
-  this.ctx.drawImage(this.miniMap, 0, 0, 100, 100);
+  const w = map.cols * map.tsize * 0.08;
+  const h = map.rows * map.tsize * 0.08;
+  let x;
+  let y;
+  const speedX = 4.95;
+  const speedY = 4.9;
+  let playerCount;
+
+  if (Game.switchMap === 1) {
+    this.ctx.drawImage(this.miniMap, 20, 35, w, h);
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeRect(20, 35, w, h);
+    this.ctx.strokeRect(20, 5, w, 30);
+    this.ctx.fillStyle = "#f2b400";
+    this.ctx.fillRect(21, 6, w - 2, 28);
+    this.ctx.fillStyle = "#000000";
+    this.ctx.font = "15pt'Product Sans'";
+    this.ctx.fillText("✨Metaverse", 20 + w * 0.5, 30);
+
+    if (!this.players) {
+      return;
+    }
+    const playerKeys = Object.keys(this.players);
+    playerCount = playerKeys.length - 1;
+    window.onbeforeunload = function () {
+      this.tempKey = 2;
+      // this.tempKey = playerKeys[playerCount];
+    };
+
+    // console.log(document.onkeydown);
+    // console.log(playerKeys[playerKeys.length - 1]);
+    playerKeys.forEach((key) => {
+      if (playerKeys[playerCount] === key) {
+        this.ctx.fillStyle = "red";
+      } else {
+        this.ctx.fillStyle = "white";
+      }
+      x = Math.floor(this.players[key].x / 64) + 4.3;
+      y = Math.floor(this.players[key].y / 64) + 7.2;
+      this.ctx.fillRect(x * speedX, y * speedY, 6, 6);
+    });
+  }
 };
 
 Game.render = function () {
