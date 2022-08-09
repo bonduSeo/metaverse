@@ -443,7 +443,7 @@ function Hero(map, x, y) {
   this.AccsImage = Loader.getImage("accs");
 }
 
-Hero.SPEED = 256; // pixels per second
+Hero.SPEED = 512; // pixels per second
 
 // tsize에 따른 가능한 픽셀 속도 산출(배열값)
 // 객체지향으로 수정
@@ -876,7 +876,7 @@ Game._playersDraw = function () {
   playersKeys.forEach((key) => {
     const div = document.createElement("div");
     status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x)} | y: ${Math.floor(this.players[key].y)}`;
+    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64)}`;
   });
   //
 
@@ -1138,9 +1138,55 @@ Game._text = function () {
     this.ctx.fillText("Press [Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
   }
 };
-
+Game.switchMap = 1;
+Game._miniMapIcon = function () {
+  const miniMapBtn = document.querySelector(".miniMap");
+  miniMapBtn.addEventListener("click", () => {
+    if (Game.switchMap === 1) {
+      Game.switchMap = 2;
+    } else if (Game.switchMap === 2) {
+      Game.switchMap = 1;
+    }
+  });
+};
 Game._miniMap = function () {
-  this.ctx.drawImage(this.miniMap, 0, 0, 100, 100);
+  const w = map.cols * map.tsize * 0.08;
+  const h = map.rows * map.tsize * 0.08;
+  const screenX = 8;
+  const screenY = 8;
+  let x;
+  let y;
+  const speedX = 4.95;
+  const speedY = 4.9;
+  let playerCount;
+  if (Game.switchMap === 1) {
+    this.ctx.drawImage(this.miniMap, screenX, 30 + screenY, w, h);
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeRect(screenX, 30 + screenY, w, h);
+    this.ctx.strokeRect(screenX, screenY, w, 30);
+    this.ctx.fillStyle = "#f2b400";
+    this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
+    this.ctx.fillStyle = "#000000";
+    this.ctx.font = "15pt'Product Sans'";
+    this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
+
+    if (!this.players) {
+      return;
+    }
+    const playerKeys = Object.keys(this.players);
+    playerCount = playerKeys.length - 1;
+    this.ctx.fillStyle = "white";
+    playerKeys.forEach((key) => {
+      x = Math.floor(this.players[key].x / 64) + 4.3;
+      y = Math.floor(this.players[key].y / 64) + 7.2;
+      this.ctx.fillRect(x * speedX - screenX - 3, y * speedY + 3, 6, 6);
+    });
+
+    this.ctx.fillStyle = "red";
+    x = Math.floor(this.hero.x / 64) + 4.3;
+    y = Math.floor(this.hero.y / 64) + 7.2;
+    this.ctx.fillRect(x * speedX - screenX - 4, y * speedY + 3, 6, 6);
+  }
 };
 
 Game.render = function () {

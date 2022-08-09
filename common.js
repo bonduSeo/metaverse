@@ -57,7 +57,7 @@ Game.chat = {};
 Game.run = function (canvas, context) {
   this.canvas = canvas;
   this.ctx = context;
-  
+
   this._previousElapsed = 0;
 
   var p = this.load();
@@ -67,6 +67,7 @@ Game.run = function (canvas, context) {
       window.requestAnimationFrame(this.tick);
     }.bind(this)
   );
+  this._miniMapIcon();
 };
 
 Game.tick = function (elapsed) {

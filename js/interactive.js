@@ -4,8 +4,10 @@ let base = {
   //상호작용을 위한 값들과 함수
   hasKeydown: 0,
   interactiveNumber: 0,
-  check: document.activeElement,
   event1: function (e) {
+    if (document.activeElement.id) {
+      return;
+    }
     if (e.code === "Space") {
       document.querySelector(".modalClick").click();
       // 재훈팀
