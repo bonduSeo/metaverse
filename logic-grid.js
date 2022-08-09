@@ -1105,10 +1105,10 @@ Game._drawNameBox = function () {
   const drawEachNameBox = (name, sX, sY) => {
     this.ctx.fillStyle = "white";
     const textWidth = this.ctx.measureText(name).width + 5;
-    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 12, textWidth, 14);
+    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 14, textWidth, 14);
     this.ctx.beginPath();
-    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
-    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
     this.ctx.fill();
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
