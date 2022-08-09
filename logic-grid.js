@@ -702,7 +702,7 @@ Game.init = function () {
   this.miniMap = Loader.getImage("miniMap");
 
   // this.hero = new Hero(map, 1312, 480);
-  this.hero = new Hero(map, 22 * 64, 19 * 64);
+  this.hero = new Hero(map, 24 * 64, 23 * 64);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -711,6 +711,9 @@ Game.init = function () {
   window.onresize = () => {
     this.resizeInit();
   };
+
+  base.missionCheck();
+  base.missionInit();
 
   socket.on("socketId", (id) => {
     this.hero.id = id;
@@ -727,6 +730,7 @@ Game.resizeInit = function () {
   this.chat.width = window.innerWidth < 620 ? 240 : 0;
   this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
   this.canvas.height = window.innerHeight - this.remainY;
+  document.querySelector(".gameAndMission").style.height = this.canvas.height + "px";
   this.chat.boxResize();
 };
 Game.update = function (delta) {
@@ -1051,10 +1055,10 @@ Game._drawNameBox = function () {
   const drawEachNameBox = (name, sX, sY) => {
     this.ctx.fillStyle = "white";
     const textWidth = this.ctx.measureText(name).width + 5;
-    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 12, textWidth, 14);
+    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 14, textWidth, 14);
     this.ctx.beginPath();
-    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
-    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
     this.ctx.fill();
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";

@@ -5,7 +5,7 @@ Game.chat.init = function () {
   socket.on("chat", (chat) => {
     const eachChatDiv = document.createElement("div");
     eachChatDiv.className = "eachChatDiv";
-    eachChatDiv.innerHTML = `<div class="nickName">✨${chat[0]}</div><div class="ctnt">${chat[1]}</div>`;
+    eachChatDiv.innerHTML = `<div class="nickName">${chat[0]}</div><div class="ctnt">${chat[1]}</div>`;
     const canvasBox = document.createElement("div");
     canvasBox.className = "canvasBox";
 
@@ -103,6 +103,6 @@ Game.chat.boxResize = function () {
     chatBox.style.display = "none";
   } else {
     chatBox.style.display = "inline-block";
-    chatBox.style.height = canvas.height + 4 + "px";
+    chatBox.style.height = canvas.height + "px";
   }
 };
