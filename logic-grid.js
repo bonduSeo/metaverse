@@ -702,7 +702,7 @@ Game.init = function () {
   this.miniMap = Loader.getImage("miniMap");
 
   // this.hero = new Hero(map, 1312, 480);
-  this.hero = new Hero(map, 22 * 64, 19 * 64);
+  this.hero = new Hero(map, 24 * 64, 23 * 64);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -711,6 +711,9 @@ Game.init = function () {
   window.onresize = () => {
     this.resizeInit();
   };
+
+  base.missionCheck();
+  base.missionInit();
 
   socket.on("socketId", (id) => {
     this.hero.id = id;
@@ -727,6 +730,7 @@ Game.resizeInit = function () {
   this.chat.width = window.innerWidth < 620 ? 240 : 0;
   this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
   this.canvas.height = window.innerHeight - this.remainY;
+  document.querySelector(".gameAndMission").style.height = this.canvas.height + "px";
   this.chat.boxResize();
 };
 Game.update = function (delta) {
@@ -876,7 +880,7 @@ Game._playersDraw = function () {
   playersKeys.forEach((key) => {
     const div = document.createElement("div");
     status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x)} | y: ${Math.floor(this.players[key].y)}`;
+    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64)}`;
   });
   //
 
