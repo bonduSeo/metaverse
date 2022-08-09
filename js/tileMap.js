@@ -2876,6 +2876,14 @@ map.tileMap = {
             "26-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "27-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
             "27-28": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "20-23": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "21-23": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "20-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "21-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "37-23": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "38-23": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "37-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
+            "38-29": { x: 0, y: 0, tilesetIdx: "7", tileSymbol: "Ʃ", isFlippedX: false },
           },
           visible: true,
           name: "Layer7_block1",
@@ -3108,9 +3116,10 @@ Game._drawTiles = function (z) {
     Game._drawTilesLayer(3);
     Game._drawTilesLayer(4);
     Game._drawTilesLayer(5); //trees1
+    Game._drawTilesLayer(11);
   } else if (z === 2) {
     Game._drawTilesLayer(6); //trees2
-    Game._drawTilesLayer(11); //computer
+    //computer
     // Game._drawTilesLayer(7); //redblock
     // Game._drawTilesLayer(8); //blueblock
     // Game._drawTilesLayer(9); //greenblock

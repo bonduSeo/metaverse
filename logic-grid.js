@@ -198,11 +198,11 @@ let map = {
   getY: function (row) {
     return row * this.tsize;
   },
-  rect: function (context, col, row, w, h, color) {
-    const radius = 16;
-    const innerRadius = radius - 4;
-    const x = col * this.tsize;
-    const y = row * this.tsize;
+  rect: function (context, color, w, h, col, row, offsetX = 0, offsetY = 0, textArr = [[], ""]) {
+    const radius = 6;
+    const innerRadius = radius - 2;
+    const x = col * this.tsize + offsetX;
+    const y = row * this.tsize + offsetY;
     // Game.camera.x,y - 카메라 영역 좌측 위의 x값과 y값
     const rx = x - Game.camera.x;
     const ry = y - Game.camera.y;
@@ -211,13 +211,20 @@ let map = {
     const gap = 5;
     if (color === "pink") {
       context.fillStyle = this.color.pink;
-    } else if ("green") {
+    } else if (color === "green") {
       context.fillStyle = this.color.green;
+    } else if (color === "blue") {
+      context.fillStyle = "#2fa2d1";
     } else {
       context.fillStyle = color;
     }
 
     if (rx + width > 0 && rx < Game.camera.x + this.rows * this.tsize && ry + height > 0 && ry < Game.camera.y + this.cols * this.tsize) {
+      context.strokeRect(rx + 10, ry + height, 10, 10);
+      context.fillRect(rx + 10, ry + height, 10, 10);
+      context.strokeRect(rx + width - 20, ry + height, 10, 10);
+      context.fillRect(rx + width - 20, ry + height, 10, 10);
+
       context.beginPath();
       // 왼쪽 상단 모서리
       context.moveTo(rx + radius, ry);
@@ -235,8 +242,10 @@ let map = {
 
       if (color === "pink") {
         context.fillStyle = this.color.lightPink;
-      } else if ("green") {
+      } else if (color === "green") {
         context.fillStyle = this.color.lightGreen;
+      } else if (color === "blue") {
+        context.fillStyle = "#acdfe3";
       }
       //안쪽선
       context.beginPath();
@@ -253,6 +262,20 @@ let map = {
       // // 선 그리기
       context.stroke();
       context.fill();
+
+      // 게시판안의 텍스트
+      context.fillStyle = "black";
+      context.font = "bold 10pt'Product Sans'";
+      context.textBaseline = "top";
+      context.textAlign = "start";
+      textArr[0].forEach((textLine, idx) => {
+        context.fillText(textLine, rx + 8, ry + 8 + idx * 14);
+      });
+      context.font = "10pt'Product Sans'";
+      context.textBaseline = "bottom";
+      context.textAlign = "end";
+
+      context.fillText("✨" + textArr[1], rx + width - 8, ry + height - 8);
     }
   },
   //상호작용 테두리용으로 만듦
@@ -1028,12 +1051,22 @@ Game._drawNameBox = function () {
   const drawEachNameBox = (name, sX, sY) => {
     this.ctx.fillStyle = "white";
     const textWidth = this.ctx.measureText(name).width + 5;
-    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 10, textWidth, 10);
+    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 12, textWidth, 14);
+    this.ctx.beginPath();
+    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 5, 7, 0, 2 * Math.PI, true);
+    this.ctx.fill();
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
+
     this.ctx.fillText(name, sX + this.hero.width / 2, sY);
   };
-  drawEachNameBox(this.hero.nickName, this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2 - 10);
+
+  this.ctx.font = "8pt'Product Sans'";
+  if (!this.hero.displayChatIcon) {
+    drawEachNameBox(this.hero.nickName, this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2 - 10);
+  }
+
   if (!this.players) {
     return;
   }
@@ -1057,10 +1090,14 @@ Game._drawRectInterect = function () {
   if (map.logic) {
     map.rectBorder(this.ctx, map.interCol, map.interRow, 1, 1, "Red");
   }
+  this._text();
 };
 Game._drawRect = function () {
-  // map.rect(this.ctx, 23, 20, 4, 3, "green");
-  // map.rect(this.ctx, 23, 20, 4, 3, "pink");
+  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["구독관리플랫폼", "오늘의 구독"], "그린버거팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
+  // map.rect(this.ctx, "blue", 2, 1, 34, 23, 20, -25, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
 };
 Game._text = function () {
   if (map.logic) {
@@ -1071,7 +1108,7 @@ Game._text = function () {
     const boxWidth = 20;
     const boxHeight = 10;
 
-    this.ctx.font = "14px serif";
+    this.ctx.font = "12pt'Product Sans'";
     this.ctx.fillStyle = "#00000070";
     this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 1;
@@ -1108,8 +1145,6 @@ Game._miniMap = function () {
 
 Game.render = function () {
   this._drawTiles(1);
-  this._drawRect();
-
   this._playersDraw(1);
   this._heroDraw(1);
 
@@ -1118,6 +1153,7 @@ Game.render = function () {
   this._playersDraw(2);
   this._heroDraw(2);
   this._drawTiles(2);
+  this._drawRect();
 
   this._drawNameBox();
   this._drawRectInterect();
