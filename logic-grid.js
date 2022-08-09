@@ -1149,7 +1149,6 @@ Game._miniMapIcon = function () {
     }
   });
 };
-
 Game._miniMap = function () {
   const w = map.cols * map.tsize * 0.08;
   const h = map.rows * map.tsize * 0.08;
@@ -1158,7 +1157,6 @@ Game._miniMap = function () {
   const speedX = 4.95;
   const speedY = 4.9;
   let playerCount;
-
   if (Game.switchMap === 1) {
     this.ctx.drawImage(this.miniMap, 20, 35, w, h);
     this.ctx.lineWidth = 2;
@@ -1175,23 +1173,17 @@ Game._miniMap = function () {
     }
     const playerKeys = Object.keys(this.players);
     playerCount = playerKeys.length - 1;
-    window.onbeforeunload = function () {
-      this.tempKey = 2;
-      // this.tempKey = playerKeys[playerCount];
-    };
-
-    // console.log(document.onkeydown);
-    // console.log(playerKeys[playerKeys.length - 1]);
+    this.ctx.fillStyle = "white";
     playerKeys.forEach((key) => {
-      if (playerKeys[playerCount] === key) {
-        this.ctx.fillStyle = "red";
-      } else {
-        this.ctx.fillStyle = "white";
-      }
       x = Math.floor(this.players[key].x / 64) + 4.3;
       y = Math.floor(this.players[key].y / 64) + 7.2;
       this.ctx.fillRect(x * speedX, y * speedY, 6, 6);
     });
+
+    this.ctx.fillStyle = "red";
+    x = Math.floor(this.hero.x / 64) + 4.3;
+    y = Math.floor(this.hero.y / 64) + 7.2;
+    this.ctx.fillRect(x * speedX, y * speedY, 6, 6);
   }
 };
 
