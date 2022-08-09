@@ -577,6 +577,9 @@ Hero.prototype._collide = function () {
     this.x = -this.width / 2 + this.map.getX(col);
   } // 왼쪽과 위쪽 함께 막혔을때
   else if (blockLeftUp && blockRightUp && blockLeftDown) {
+    if (Keyboard.isDown(Keyboard.LEFT)) {
+      // this.hero.tempY = 0;
+    }
     col = this.map.getCol(left);
     this.x = this.width / 2 + this.map.getX(col + 1);
     row = this.map.getRow(top);
@@ -653,6 +656,18 @@ Hero.prototype._collide = function () {
       this.y = blockY;
       this.x = blockX;
     }
+  }
+  if (blockLeftUp) {
+    console.log("왼위 : 1");
+  }
+  if (blockRightUp) {
+    console.log("우아래 : 2");
+  }
+  if (blockLeftDown) {
+    console.log("왼아래 : 3");
+  }
+  if (blockRightDown) {
+    console.log("우아래 : 4");
   }
 };
 
