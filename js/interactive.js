@@ -15,7 +15,7 @@ let base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://192.168.0.63:8080/">
+          src="http://13.209.108.252:5001/">
           </iframe>`;
       }
       // 오구 프로젝트

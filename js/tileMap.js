@@ -431,7 +431,7 @@ map.tileMap = {
       description: "n/a",
       width: 64,
       height: 64,
-    },
+    },    
   },
   maps: {
     Map_1: {
@@ -2952,7 +2952,7 @@ map.tileMap = {
           opacity: 1,
         },
         {
-          tiles: {
+          tiles: {            
             "34-27": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },
             "24-27": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },
             "24-21": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },

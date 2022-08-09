@@ -656,6 +656,7 @@ Game.load = function () {
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
 
     Loader.loadImage("chat", "../assets/chat.png"),
+    Loader.loadImage("miniMap", "../assets/minimap.png"),
     Loader.loadImage("computer", "../assets/computer64.png"),
   ];
 };
@@ -675,6 +676,7 @@ Game.init = function () {
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
   this.computer = Loader.getImage("computer");
+  this.miniMap = Loader.getImage("miniMap");
 
   // this.hero = new Hero(map, 1312, 480);
   this.hero = new Hero(map, 22 * 64, 19 * 64);
@@ -1100,6 +1102,10 @@ Game._text = function () {
   }
 };
 
+Game._miniMap = function () {
+  this.ctx.drawImage(this.miniMap, 0, 0, 100, 100);
+};
+
 Game.render = function () {
   this._drawTiles(1);
   this._drawRect();
@@ -1116,4 +1122,5 @@ Game.render = function () {
   this._drawNameBox();
   this._drawRectInterect();
   this._text();
+  this._miniMap();
 };
