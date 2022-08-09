@@ -431,7 +431,7 @@ map.tileMap = {
       description: "n/a",
       width: 64,
       height: 64,
-    },
+    },    
   },
   maps: {
     Map_1: {
@@ -2960,7 +2960,7 @@ map.tileMap = {
           opacity: 1,
         },
         {
-          tiles: {
+          tiles: {            
             "34-27": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },
             "24-27": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },
             "24-21": { x: 0, y: 0, tilesetIdx: "10", tileSymbol: "Ƭ", isFlippedX: false },
@@ -3125,28 +3125,3 @@ Game._drawTiles = function (z) {
     // Game._drawTilesLayer(9); //greenblock
   }
 };
-
-// console.log(window.innerWidth);
-
-//--------------역행을 시도--------------
-
-// function test() {
-//   map.MaxRows = 0;
-//   map.MaxCols = 0;
-
-//   map.tileMap.maps.Map_1.layers.forEach((item) => {
-//     for (key in item.tiles) {
-//       let [rows, cols] = key.split("-");
-//       if (~~map.MaxRows < ~~rows) {
-//         map.MaxRows = rows;
-//       }
-//       if (~~map.MaxCols < ~~cols) {
-//         map.MaxCols = cols;
-//       }
-//     }
-//   });
-//   console.log(map.MaxCols);
-//   const test = [map.MaxRows, map.MaxCols];
-//   return test;
-// }
-// console.log(test());;
