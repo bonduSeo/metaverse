@@ -697,6 +697,11 @@ Game.load = function () {
     Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
+<<<<<<< HEAD
+=======
+    Loader.loadImage("chat", "../assets/chat.png"),
+    Loader.loadImage("computer", "../assets/computer64.png"),
+>>>>>>> 3d15d56c343a6f7088b7b38da2a1561760acff64
   ];
 };
 
@@ -714,8 +719,10 @@ Game.init = function () {
   this.greenBlock = Loader.getImage("greenBlock");
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
+  this.computer = Loader.getImage("computer");
 
-  this.hero = new Hero(map, 1312, 480);
+  // this.hero = new Hero(map, 1312, 480);
+  this.hero = new Hero(map, 22 * 64, 19 * 64);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -733,7 +740,7 @@ Game.init = function () {
   });
 };
 
-Game.remainX = 340;
+Game.remainX = 330;
 Game.remainY = 100;
 Game.mediaQ = 620;
 Game.resizeInit = function () {
@@ -1098,12 +1105,14 @@ Game._drawNameBox = function () {
   //   drawEachNameBox(player.nickName, player.screenX, player.screenY);
   // });
 };
-Game._drawRect = function () {
-  // map.rect(this.ctx, 5, 4, 3, 3, "green");
-  // map.rect(this.ctx, 4, 3, 2, 2, "pink");
+Game._drawRectInterect = function () {
   if (map.logic) {
     map.rectBorder(this.ctx, map.interCol, map.interRow, 1, 1, "Red");
   }
+};
+Game._drawRect = function () {
+  // map.rect(this.ctx, 23, 20, 4, 3, "green");
+  // map.rect(this.ctx, 23, 20, 4, 3, "pink");
 };
 Game._text = function () {
   if (map.logic) {
@@ -1169,6 +1178,7 @@ Game._text = function () {
 
 Game.render = function () {
   this._drawTiles(1);
+  this._drawRect();
 
   this._playersDraw(1);
   this._heroDraw(1);
@@ -1180,6 +1190,6 @@ Game.render = function () {
   this._drawTiles(2);
 
   this._drawNameBox();
-  this._drawRect();
+  this._drawRectInterect();
   this._text();
 };
