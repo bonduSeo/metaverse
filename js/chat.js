@@ -27,6 +27,10 @@ Game.chat.init = function () {
   submit.addEventListener("click", () => {
     if (input.value !== "") {
       const nameChat = [Game.hero.nickName, input.value, Game.hero.id];
+      //easterEgg2
+      if (input.value === "I love Judy") {
+        base.easterEggJudy("judy2");
+      }
       socket.emit("chat", nameChat);
       input.value = "";
     }

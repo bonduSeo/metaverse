@@ -334,8 +334,8 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - Game.remainX + Game.chat.width;
-  this.height = window.innerHeight - Game.remainY;
+  this.width = window.innerWidth - Game.remainX + Game.chat.width > Game.minCanvasX ? window.innerWidth - Game.remainX + Game.chat.width : Game.minCanvasX;
+  this.height = window.innerHeight - Game.remainY > Game.minCanvasY ? window.innerHeight - Game.remainY : Game.minCanvasY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
   // make the camera follow the sprite
@@ -724,8 +724,19 @@ Game.init = function () {
   this.computer = Loader.getImage("computer");
   this.miniMap = Loader.getImage("miniMap");
 
-  // this.hero = new Hero(map, 1312, 480);
-  this.hero = new Hero(map, 24 * 64, 23 * 64);
+  const heroXY = localStorage.getItem("heroXY");
+  let respawnX = 1312;
+  let respawnY = 480;
+  if (heroXY) {
+    respawnX = JSON.parse(heroXY)[0];
+    respawnY = JSON.parse(heroXY)[1];
+    localStorage.removeItem("heroXY");
+  }
+
+  this.hero = new Hero(map, respawnX, respawnY);
+
+  //남쪽섬리스폰
+  // this.hero = new Hero(map, 24 * 64, 23 * 64);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -735,6 +746,7 @@ Game.init = function () {
     this.resizeInit();
   };
 
+  this.customBtninit();
   base.missionCheck();
   base.missionInit();
 
@@ -747,14 +759,23 @@ Game.init = function () {
 };
 
 Game.remainX = 330;
-Game.remainY = 100;
+Game.remainY = 50;
 Game.mediaQ = 620;
-
+Game.minCanvasX = 300;
+Game.minCanvasY = 420;
 Game.resizeInit = function () {
   this.chat.width = window.innerWidth < 620 ? 240 : 0;
-  this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
-  this.canvas.height = window.innerHeight - this.remainY;
+  this.canvas.width =
+    window.innerWidth - this.remainX + this.chat.width > Game.minCanvasX ? window.innerWidth - this.remainX + this.chat.width : Game.minCanvasX;
+
+  this.canvas.height = window.innerHeight - this.remainY > Game.minCanvasY ? window.innerHeight - this.remainY : Game.minCanvasY;
   document.querySelector(".gameAndMission").style.height = this.canvas.height + "px";
+  if (window.innerWidth < 840) {
+    const missionClassList = document.querySelector(".mission").classList;
+    if (!missionClassList.contains("d-none")) {
+      missionClassList.add("d-none");
+    }
+  }
   this.chat.boxResize();
 };
 Game.update = function (delta) {
@@ -814,27 +835,12 @@ Game.update = function (delta) {
   let locatX = (this.hero.x - 160) % map.tsize !== 0;
   let locatY = (this.hero.y - 160) % map.tsize !== 0;
 
-  // if (dirX !== 0 || locatX) {
-  //   dirX = Game.hero.tempX;
-  // }
-  // if (dirY !== 0 || locatY) {
-  //   dirY = Game.hero.tempY;
-  // }
-
-  document.onmousedown = function leftClick() {
-    let target = window.event.target;
-    if (target.id === "demo") {
-      Game.hero.tempX = Math.floor((Game.camera.x + window.event.x) / 64) - Math.floor(Game.hero.x / 64);
-      dirX = Game.hero.tempX;
-      console.log(Game.hero.tempX);
-    }
-    // else if (dirX <= 1 && dirX >= -1) {    }
-  };
-
-  // document.addEventListener("click", (e) => {
-  //   this.hero.tempX = Math.floor((this.camera.x + e.x) / 64) - Math.floor(this.hero.x / 64);
-  // });
-
+  if (dirX !== 0 || locatX) {
+    dirX = this.hero.tempX;
+  }
+  if (dirY !== 0 || locatY) {
+    dirY = this.hero.tempY;
+  }
   this.hero.move(delta, dirX, dirY);
 
   if (dirX !== 0 || dirY !== 0) {
@@ -913,13 +919,13 @@ Game._playersDraw = function (floor) {
   }
   const playersKeys = Object.keys(this.players);
   //하단 status표기 (임시)
-  const status = document.querySelector("#status");
-  status.innerHTML = "";
-  playersKeys.forEach((key) => {
-    const div = document.createElement("div");
-    status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64) - 1}`;
-  });
+  // const status = document.querySelector("#status");
+  // status.innerHTML = "";
+  // playersKeys.forEach((key) => {
+  //   const div = document.createElement("div");
+  //   status.append(div);
+  //   div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64) - 1}`;
+  // });
   //
 
   playersKeys.forEach((key) => {
@@ -1249,6 +1255,13 @@ Game._miniMap = function () {
     y = Math.floor(this.hero.y / 64) + 7.2;
     this.ctx.fillRect(x * speedX - screenX - 3.5, y * speedY + 3, 6, 6);
   }
+};
+
+Game.customBtninit = function () {
+  document.querySelector(".customBtn").addEventListener("click", () => {
+    localStorage.setItem("heroXY", JSON.stringify([this.hero.x, this.hero.y]));
+    location.href = "heroCustomize.html";
+  });
 };
 
 Game.render = function () {

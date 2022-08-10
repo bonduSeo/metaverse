@@ -57,7 +57,7 @@ const base = {
   },
   missionCheck: function (num = false) {
     if (num === 15) {
-      this.esterEggJudy();
+      this.easterEggJudy();
     }
     let missionStatus = { length: 0 };
     const temp = localStorage.getItem("mission1");
@@ -122,18 +122,18 @@ const base = {
     document.querySelector(".missionSmallTitle").innerHTML = "이스터에그를 찾아라!";
     document.querySelector(".missionCount").innerHTML = `${EasterEgg ? JSON.parse(EasterEgg).length : 0} / ???`;
   },
-  esterEggJudy: () => {
+  easterEggJudy: (eggName = "judy") => {
     Game.hero.judy = true;
     setTimeout(() => {
       Game.hero.judy = false;
     }, 5000 * 60);
-    const EasterEggJson = localStorage.getItem("esterEgg");
+    const EasterEggJson = localStorage.getItem("easterEgg");
     let EasterEggObj = { length: 0 };
     if (EasterEggJson) {
       EasterEggObj = JSON.parse(EasterEggJson);
     }
-    if (!EasterEggObj.judy) {
-      EasterEggObj.judy = true;
+    if (!EasterEggObj[eggName]) {
+      EasterEggObj[eggName] = true;
       EasterEggObj.length += 1;
     }
     console.log(document.querySelector(".missionCount"));
