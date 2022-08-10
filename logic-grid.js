@@ -9,62 +9,44 @@ let map = {
   floor: 1,
   layers: [
     [
-      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1,
-      1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
-      1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1,
-      1, 1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
-      1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
+      3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1,
+      2, 1, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 2, 3, 3, 3, 3, 3, 3,
     ],
+
     [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      // 2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0,
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
@@ -74,7 +56,7 @@ let map = {
     8: "blueBlock",
   },
   // 상호타일 -- 상호작용 타일
-  Interactive: [11],
+  Interactive: [11, 12, 13, 14, 15],
   color: {
     lightGreen: "#84dbb8",
     green: "#22ebbf",
@@ -102,11 +84,14 @@ let map = {
       if (this.getTile2(3, col, row)) {
         if (this.getTile2(3, col, row).img === "hills") {
           this.floor = 2;
+          Game.hero.floor = 2;
         } else {
           this.floor = 1;
+          Game.hero.floor = 1;
         }
       } else if (this.getTile2(2, col, row) || this.getTile2(1, col, row)) {
         this.floor = 1;
+        Game.hero.floor = 1;
       }
     }
 
@@ -216,11 +201,11 @@ let map = {
   getY: function (row) {
     return row * this.tsize;
   },
-  rect: function (context, col, row, w, h, color) {
-    const radius = 16;
-    const innerRadius = radius - 4;
-    const x = col * this.tsize;
-    const y = row * this.tsize;
+  rect: function (context, color, w, h, col, row, offsetX = 0, offsetY = 0, textArr = [[], ""]) {
+    const radius = 6;
+    const innerRadius = radius - 2;
+    const x = col * this.tsize + offsetX;
+    const y = row * this.tsize + offsetY;
     // Game.camera.x,y - 카메라 영역 좌측 위의 x값과 y값
     const rx = x - Game.camera.x;
     const ry = y - Game.camera.y;
@@ -229,18 +214,20 @@ let map = {
     const gap = 5;
     if (color === "pink") {
       context.fillStyle = this.color.pink;
-    } else if ("green") {
+    } else if (color === "green") {
       context.fillStyle = this.color.green;
+    } else if (color === "blue") {
+      context.fillStyle = "#2fa2d1";
     } else {
       context.fillStyle = color;
     }
 
-    if (
-      rx + width > 0 &&
-      rx < Game.camera.x + this.rows * this.tsize &&
-      ry + height > 0 &&
-      ry < Game.camera.y + this.cols * this.tsize
-    ) {
+    if (rx + width > 0 && rx < Game.camera.x + this.rows * this.tsize && ry + height > 0 && ry < Game.camera.y + this.cols * this.tsize) {
+      context.strokeRect(rx + 10, ry + height, 10, 10);
+      context.fillRect(rx + 10, ry + height, 10, 10);
+      context.strokeRect(rx + width - 20, ry + height, 10, 10);
+      context.fillRect(rx + width - 20, ry + height, 10, 10);
+
       context.beginPath();
       // 왼쪽 상단 모서리
       context.moveTo(rx + radius, ry);
@@ -258,8 +245,10 @@ let map = {
 
       if (color === "pink") {
         context.fillStyle = this.color.lightPink;
-      } else if ("green") {
+      } else if (color === "green") {
         context.fillStyle = this.color.lightGreen;
+      } else if (color === "blue") {
+        context.fillStyle = "#acdfe3";
       }
       //안쪽선
       context.beginPath();
@@ -276,6 +265,20 @@ let map = {
       // // 선 그리기
       context.stroke();
       context.fill();
+
+      // 게시판안의 텍스트
+      context.fillStyle = "black";
+      context.font = "bold 10pt'Product Sans'";
+      context.textBaseline = "top";
+      context.textAlign = "start";
+      textArr[0].forEach((textLine, idx) => {
+        context.fillText(textLine, rx + 8, ry + 8 + idx * 14);
+      });
+      context.font = "10pt'Product Sans'";
+      context.textBaseline = "bottom";
+      context.textAlign = "end";
+
+      context.fillText("✨" + textArr[1], rx + width - 8, ry + height - 8);
     }
   },
   //상호작용 테두리용으로 만듦
@@ -291,12 +294,7 @@ let map = {
     context.strokeStyle = color;
     context.lineWidth = 5;
 
-    if (
-      rx + width > 0 &&
-      rx < Game.camera.x + this.rows * this.tsize &&
-      ry + height > 0 &&
-      ry < Game.camera.y + this.cols * this.tsize
-    ) {
+    if (rx + width > 0 && rx < Game.camera.x + this.rows * this.tsize && ry + height > 0 && ry < Game.camera.y + this.cols * this.tsize) {
       context.beginPath();
       // 왼쪽 상단 모서리
       context.moveTo(rx + radius, ry);
@@ -336,8 +334,8 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
   // assume followed sprite should be placed at the center of the screen
   // whenever possible 캐릭터 위치값
-  this.width = window.innerWidth - Game.remainX + Game.chat.width;
-  this.height = window.innerHeight - Game.remainY;
+  this.width = window.innerWidth - Game.remainX + Game.chat.width > Game.minCanvasX ? window.innerWidth - Game.remainX + Game.chat.width : Game.minCanvasX;
+  this.height = window.innerHeight - Game.remainY > Game.minCanvasY ? window.innerHeight - Game.remainY : Game.minCanvasY;
   this.following.screenX = this.width / 2;
   this.following.screenY = this.height / 2;
   // make the camera follow the sprite
@@ -354,10 +352,7 @@ Camera.prototype.update = function () {
 
   // left and right sides
   if (window.innerWidth > Game.mediaQ) {
-    if (
-      this.following.x < this.width / 2 ||
-      this.following.x + Game.remainX > this.maxX + this.width / 2
-    ) {
+    if (this.following.x < this.width / 2 || this.following.x + Game.remainX > this.maxX + this.width / 2) {
       this.following.screenX = this.following.x - this.x;
       this.lastWidth = window.innerWidth;
       this.width = this.lastWidth - Game.remainX;
@@ -366,10 +361,7 @@ Camera.prototype.update = function () {
       this.maxX = map.cols * map.tsize - this.width + Game.remainX;
     }
   } else {
-    if (
-      this.following.x < this.width / 2 ||
-      this.following.x + Game.remainX > this.maxX + this.width / 2
-    ) {
+    if (this.following.x < this.width / 2 || this.following.x + Game.remainX > this.maxX + this.width / 2) {
       this.following.screenX = this.following.x - this.x;
       this.lastWidth = window.innerWidth;
       this.width = this.lastWidth - Game.remainX + Game.chat.width;
@@ -399,10 +391,7 @@ Camera.prototype.update = function () {
   //   }
   // }
   // top and bottom sides
-  if (
-    this.following.y < this.height / 2 ||
-    this.following.y + Game.remainY > this.maxY + this.height / 2
-  ) {
+  if (this.following.y < this.height / 2 || this.following.y + Game.remainY > this.maxY + this.height / 2) {
     this.following.screenY = this.following.y - this.y;
     this.lastHeight = window.innerHeight;
     // this.height = this.lastHeight - Game.remainY;
@@ -421,6 +410,8 @@ function Hero(map, x, y) {
   this.height = map.tsize;
   this.dirR = false;
   this.isWalking = false;
+  this.judy = false;
+  this.floor = 2;
   this.displayChatIcon = false;
 
   this.c = 0;
@@ -456,10 +447,11 @@ function Hero(map, x, y) {
   this.bodysImage = Loader.getImage("bodys");
   this.handsImage = Loader.getImage("hands");
   this.AccsImage = Loader.getImage("accs");
+  this.judyImage = Loader.getImage("judy");
   this.chatImage = Loader.getImage("chat");
 }
 
-Hero.SPEED = 256; // pixels per second
+Hero.SPEED = 512; // pixels per second
 
 // tsize에 따른 가능한 픽셀 속도 산출(배열값)
 // 객체지향으로 수정
@@ -474,27 +466,40 @@ Hero.prototype.getDivisors = function () {
   }
   return arr;
 };
+//delta 값은 모니터 주사율, 일종의 핑을 나타내는 지수
 Hero.prototype.move = function (delta, dirX, dirY) {
   // move hero
   // 픽셀 속도 배열값에서 캐릭터 움직값에 가장 가까운 숫자를 찾아 속도지정
   delta = delta > 0.1 ? 0.1 : delta;
   for (let i = 0; i < this.divisorArr.length; i++) {
-    c =
-      this.divisorArr[i] - Hero.SPEED * delta < 0
-        ? -(this.divisorArr[i] - Hero.SPEED * delta)
-        : this.divisorArr[i] - Hero.SPEED * delta;
+    c = this.divisorArr[i] - Hero.SPEED * delta < 0 ? -(this.divisorArr[i] - Hero.SPEED * delta) : this.divisorArr[i] - Hero.SPEED * delta;
 
     if (c < this.min) {
       this.min = c;
       realSpeed = this.divisorArr[i];
     }
   }
+  if (dirX > 1 || dirX < -1 || dirY > 1 || dirY < -1) {
+    if (dirX > 0) {
+      this.x += realSpeed;
+    } else {
+      this.x += -realSpeed;
+    }
+    this.x = Math.round(this.x);
 
-  this.x += dirX * realSpeed;
-  this.x = Math.round(this.x);
+    if (dirY > 0) {
+      this.y += realSpeed;
+    } else {
+      this.y += -realSpeed;
+    }
+    this.y = Math.round(this.y);
+  } else {
+    this.x += dirX * realSpeed;
+    this.x = Math.round(this.x);
 
-  this.y += dirY * realSpeed;
-  this.y = Math.round(this.y);
+    this.y += dirY * realSpeed;
+    this.y = Math.round(this.y);
+  }
 
   // check if we walked into a non-walkable tile
   this._collide();
@@ -572,12 +577,9 @@ Hero.prototype._collide = function () {
 
   // check for collisions on sprite sides
   const blockLeftUp = this.map.isSolidTileAtXY(left, top) || this.map.isInteractiveAtXY(left, top);
-  const blockLeftDown =
-    this.map.isSolidTileAtXY(left, bottom) || this.map.isInteractiveAtXY(left, bottom);
-  const blockRightUp =
-    this.map.isSolidTileAtXY(right, top) || this.map.isInteractiveAtXY(right, top);
-  const blockRightDown =
-    this.map.isSolidTileAtXY(right, bottom) || this.map.isInteractiveAtXY(right, bottom);
+  const blockLeftDown = this.map.isSolidTileAtXY(left, bottom) || this.map.isInteractiveAtXY(left, bottom);
+  const blockRightUp = this.map.isSolidTileAtXY(right, top) || this.map.isInteractiveAtXY(right, top);
+  const blockRightDown = this.map.isSolidTileAtXY(right, bottom) || this.map.isInteractiveAtXY(right, bottom);
 
   // 위로만 부딪혔을 때
   if (blockLeftUp && blockRightUp && !(blockRightDown || blockLeftDown)) {
@@ -688,6 +690,7 @@ Game.load = function () {
     Loader.loadImage("bodys", "../assets/bodys.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
     Loader.loadImage("accs", "../assets/accs.png"),
+    Loader.loadImage("judy", "../assets/judy.png"),
     Loader.loadImage("fences", "../assets/tiles/fences.png"),
     Loader.loadImage("grass", "../assets/tiles/Grass.png"),
     Loader.loadImage("hills", "../assets/tiles/Hills.png"),
@@ -699,7 +702,10 @@ Game.load = function () {
     Loader.loadImage("greenBlock", "../assets/tiles/greenBlock.png"),
     Loader.loadImage("bridge", "../assets/tiles/bridge.png"),
     Loader.loadImage("trees", "../assets/tiles/trees.png"),
+
     Loader.loadImage("chat", "../assets/chat.png"),
+    Loader.loadImage("miniMap", "../assets/minimap.png"),
+    Loader.loadImage("computer", "../assets/computer64.png"),
   ];
 };
 
@@ -717,8 +723,22 @@ Game.init = function () {
   this.greenBlock = Loader.getImage("greenBlock");
   this.bridge = Loader.getImage("bridge");
   this.trees = Loader.getImage("trees");
+  this.computer = Loader.getImage("computer");
+  this.miniMap = Loader.getImage("miniMap");
 
-  this.hero = new Hero(map, 1312, 480);
+  const heroXY = localStorage.getItem("heroXY");
+  let respawnX = 1312;
+  let respawnY = 480;
+  if (heroXY) {
+    respawnX = JSON.parse(heroXY)[0];
+    respawnY = JSON.parse(heroXY)[1];
+    localStorage.removeItem("heroXY");
+  }
+
+  this.hero = new Hero(map, respawnX, respawnY);
+
+  //남쪽섬리스폰
+  // this.hero = new Hero(map, 24 * 64, 23 * 64);
   this.camera = new Camera(map, window.innerWidth, window.innerHeight);
   this.camera.follow(this.hero);
 
@@ -728,6 +748,10 @@ Game.init = function () {
     this.resizeInit();
   };
 
+  this.customBtninit();
+  base.missionCheck();
+  base.missionInit();
+
   socket.on("socketId", (id) => {
     this.hero.id = id;
   });
@@ -736,13 +760,24 @@ Game.init = function () {
   });
 };
 
-Game.remainX = 340;
-Game.remainY = 100;
+Game.remainX = 330;
+Game.remainY = 50;
 Game.mediaQ = 620;
+Game.minCanvasX = 300;
+Game.minCanvasY = 420;
 Game.resizeInit = function () {
   this.chat.width = window.innerWidth < 620 ? 240 : 0;
-  this.canvas.width = window.innerWidth - this.remainX + this.chat.width;
-  this.canvas.height = window.innerHeight - this.remainY;
+  this.canvas.width =
+    window.innerWidth - this.remainX + this.chat.width > Game.minCanvasX ? window.innerWidth - this.remainX + this.chat.width : Game.minCanvasX;
+
+  this.canvas.height = window.innerHeight - this.remainY > Game.minCanvasY ? window.innerHeight - this.remainY : Game.minCanvasY;
+  document.querySelector(".gameAndMission").style.height = this.canvas.height + "px";
+  if (window.innerWidth < 840) {
+    const missionClassList = document.querySelector(".mission").classList;
+    if (!missionClassList.contains("d-none")) {
+      missionClassList.add("d-none");
+    }
+  }
   this.chat.boxResize();
 };
 Game.update = function (delta) {
@@ -799,7 +834,6 @@ Game.update = function (delta) {
     dirX = -1;
     this.hero.tempX = -1;
   }
-
   let locatX = (this.hero.x - 160) % map.tsize !== 0;
   let locatY = (this.hero.y - 160) % map.tsize !== 0;
 
@@ -809,16 +843,30 @@ Game.update = function (delta) {
   if (dirY !== 0 || locatY) {
     dirY = this.hero.tempY;
   }
+
+  document.onmousedown = function leftClick() {
+    let target = window.event.target;
+    if (target.id === "demo") {
+      Game.hero.tempX = Math.floor((Game.camera.x + window.event.x) / 64) - Math.floor(Game.hero.x / 64);
+      dirX = Game.hero.tempX;
+      console.log(Game.hero.tempX);
+    }
+    // else if (dirX <= 1 && dirX >= -1) {    }
+  };
+
+  // document.addEventListener("click", (e) => {
+  //   this.hero.tempX = Math.floor((this.camera.x + e.x) / 64) - Math.floor(this.hero.x / 64);
+  // });
+
   this.hero.move(delta, dirX, dirY);
 
-  //걷는모션
   if (dirX !== 0 || dirY !== 0) {
+    //걷는모션
     this.hero.isWalking = true;
   } else {
     this.hero.isWalking = false;
   }
 
-  this.hero.whichFloor = map.floor;
   const heroCopy = JSON.parse(JSON.stringify(this.hero));
   delete heroCopy.map;
 
@@ -888,22 +936,20 @@ Game._playersDraw = function (floor) {
   }
   const playersKeys = Object.keys(this.players);
   //하단 status표기 (임시)
-  const status = document.querySelector("#status");
-  status.innerHTML = "";
-  playersKeys.forEach((key) => {
-    //임시하단정보
-    const div = document.createElement("div");
-    status.append(div);
-    div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(
-      this.players[key].x / 64
-    )} | y: ${Math.floor(this.players[key].y) / 64 - 0.5}`;
-  });
+  // const status = document.querySelector("#status");
+  // status.innerHTML = "";
+  // playersKeys.forEach((key) => {
+  //   const div = document.createElement("div");
+  //   status.append(div);
+  //   div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64) - 1}`;
+  // });
+  //
 
   playersKeys.forEach((key) => {
-    if (this.players[key].whichFloor !== floor) {
-      return;
-    }
     if (this.players[key].id !== this.hero.id) {
+      if (floor !== this.players[key].floor) {
+        return;
+      }
       //좌우반전
       let flipCheck = 1;
       if (this.players[key].dirR) {
@@ -915,6 +961,24 @@ Game._playersDraw = function (floor) {
       if (this.players[key].isWalking) {
         walkMotion += Math.sin(new Date() / 40);
         walkMotion *= 3;
+      }
+      if (this.players[key].judy) {
+        const m = this.players[key].customInfo.toneColor % 2;
+        this.ctx.drawImage(
+          this.hero.judyImage, // image
+          m * 64, // source x
+          0, // source y
+          64, // source width
+          64, // source height
+          (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+          this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
+          this.players[key].width,
+          this.players[key].height - walkMotion
+        );
+        if (flipCheck === -1) {
+          this.ctx.scale(-1, 1);
+        }
+        return;
       }
       //바디드로잉
       this.ctx.drawImage(
@@ -985,7 +1049,7 @@ Game._playersDraw = function (floor) {
 };
 
 Game._heroDraw = function (floor) {
-  if (floor !== this.hero.whichFloor) {
+  if (floor !== this.hero.floor) {
     return;
   }
   //바디드로잉
@@ -999,6 +1063,24 @@ Game._heroDraw = function (floor) {
   if (this.hero.isWalking) {
     walkMotion += Math.sin(new Date() / 40);
     walkMotion *= 3;
+  }
+  if (this.hero.judy) {
+    const m = this.hero.customInfo.toneColor % 2;
+    this.ctx.drawImage(
+      this.hero.judyImage, // image
+      m * 64, // source x
+      0, // source y
+      64, // source width
+      64, // source height
+      this.hero.screenX * flipCheck - this.hero.width / 2,
+      this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
+      this.hero.width,
+      this.hero.height - walkMotion
+    );
+    if (flipCheck === -1) {
+      this.ctx.scale(-1, 1);
+    }
+    return;
   }
   //바디드로잉
   this.ctx.drawImage(
@@ -1066,31 +1148,28 @@ Game._heroDraw = function (floor) {
   if (flipCheck === -1) {
     this.ctx.scale(-1, 1);
   }
-  //네임바 드로잉
-  this.ctx.beginPath();
-  // 왼쪽 상단 모서리
-  this.ctx.moveTo(
-    this.hero.screenX - this.hero.width / 2,
-    this.hero.screenY - this.hero.height / 2
-  );
 };
 Game._drawNameBox = function () {
   //nameBox 그리기
   const drawEachNameBox = (name, sX, sY) => {
     this.ctx.fillStyle = "white";
     const textWidth = this.ctx.measureText(name).width + 5;
-    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 10, textWidth, 10);
+    this.ctx.fillRect(sX + this.hero.width / 2 - textWidth / 2, sY - 14, textWidth, 14);
+    this.ctx.beginPath();
+    this.ctx.arc(sX + this.hero.width / 2 - textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
+    this.ctx.arc(sX + this.hero.width / 2 + textWidth / 2, sY - 7, 7, 0, 2 * Math.PI, true);
+    this.ctx.fill();
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
+
     this.ctx.fillText(name, sX + this.hero.width / 2, sY);
   };
+
+  this.ctx.font = "8pt'Product Sans'";
   if (!this.hero.displayChatIcon) {
-    drawEachNameBox(
-      this.hero.nickName,
-      this.hero.screenX - this.hero.width / 2,
-      this.hero.screenY - this.hero.height / 2 - 10
-    );
+    drawEachNameBox(this.hero.nickName, this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2 - 10);
   }
+
   if (!this.players) {
     return;
   }
@@ -1124,12 +1203,18 @@ Game._drawNameBox = function () {
   //   drawEachNameBox(player.nickName, player.screenX, player.screenY);
   // });
 };
-Game._drawRect = function () {
-  // map.rect(this.ctx, 5, 4, 3, 3, "green");
-  // map.rect(this.ctx, 4, 3, 2, 2, "pink");
+Game._drawRectInterect = function () {
   if (map.logic) {
     map.rectBorder(this.ctx, map.interCol, map.interRow, 1, 1, "Red");
   }
+  this._text();
+};
+Game._drawRect = function () {
+  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["구독관리플랫폼", "오늘의 구독"], "그린버거팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["PHP풀스택개발자", "파이널프로젝트"], "BB팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["개인프로젝트", "ㅇㅇㅇ쇼핑몰"], "홍길동"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["예시입니다", "XXX페이지"], "DD팀"]);
+  // map.rect(this.ctx, "blue", 2, 1, 34, 23, 20, -25, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
 };
 Game._text = function () {
   if (map.logic) {
@@ -1140,7 +1225,7 @@ Game._text = function () {
     const boxWidth = 20;
     const boxHeight = 10;
 
-    this.ctx.font = "14px serif";
+    this.ctx.font = "12pt'Product Sans'";
     this.ctx.fillStyle = "#00000070";
     this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 1;
@@ -1148,13 +1233,7 @@ Game._text = function () {
     // 왼쪽 상단 모서리
     this.ctx.moveTo(reactTileX + radius - boxWidth, reactTileY - boxHeight);
     // 오른쪽 상단 모서리
-    this.ctx.arcTo(
-      reactTileX + map.tsize + boxWidth,
-      reactTileY - boxHeight,
-      reactTileX + map.tsize + boxWidth,
-      reactTileY,
-      radius
-    );
+    this.ctx.arcTo(reactTileX + map.tsize + boxWidth, reactTileY - boxHeight, reactTileX + map.tsize + boxWidth, reactTileY, radius);
     // 오른쪽 하단 모서리
     this.ctx.arcTo(
       reactTileX + map.tsize + boxWidth,
@@ -1164,38 +1243,79 @@ Game._text = function () {
       radius
     );
     // 왼쪽 하단 모서리
-    this.ctx.arcTo(
-      reactTileX - boxWidth,
-      reactTileY + boxHeight + radius - 2,
-      reactTileX - boxWidth,
-      reactTileY + boxHeight,
-      radius
-    );
+    this.ctx.arcTo(reactTileX - boxWidth, reactTileY + boxHeight + radius - 2, reactTileX - boxWidth, reactTileY + boxHeight, radius);
     // 왼쪽 상단 모서리
-    this.ctx.arcTo(
-      reactTileX - boxWidth,
-      reactTileY - boxHeight,
-      reactTileX + radius - boxWidth,
-      reactTileY - boxHeight,
-      radius
-    );
+    this.ctx.arcTo(reactTileX - boxWidth, reactTileY - boxHeight, reactTileX + radius - boxWidth, reactTileY - boxHeight, radius);
     // 선 그리기
     this.ctx.stroke();
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      "Press [Space]",
-      reactTileX + map.tsize / 2,
-      reactTileY - map.tsize * 0.2 + 20
-    );
+    this.ctx.fillText("Press [Space]", reactTileX + map.tsize / 2, reactTileY - map.tsize * 0.2 + 20);
   }
+};
+Game.switchMap = 1;
+Game._miniMapIcon = function () {
+  const miniMapBtn = document.querySelector(".miniMap");
+  miniMapBtn.addEventListener("click", () => {
+    if (Game.switchMap === 1) {
+      Game.switchMap = 2;
+    } else if (Game.switchMap === 2) {
+      Game.switchMap = 1;
+    }
+  });
+};
+Game._miniMap = function () {
+  const w = map.cols * map.tsize * 0.08;
+  const h = map.rows * map.tsize * 0.08;
+  const screenX = 8;
+  const screenY = 8;
+  let x;
+  let y;
+  const speedX = 4.95;
+  const speedY = 4.9;
+  let playerCount;
+  if (Game.switchMap === 1) {
+    this.ctx.drawImage(this.miniMap, screenX, 30 + screenY, w, h);
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeRect(screenX, 30 + screenY, w, h);
+    this.ctx.strokeRect(screenX, screenY, w, 30);
+    this.ctx.fillStyle = "#f2b400";
+    this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
+    this.ctx.fillStyle = "#000000";
+    this.ctx.font = "15pt'Product Sans'";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
+
+    if (!this.players) {
+      return;
+    }
+    const playerKeys = Object.keys(this.players);
+    playerCount = playerKeys.length - 1;
+    this.ctx.fillStyle = "white";
+    playerKeys.forEach((key) => {
+      x = Math.floor(this.players[key].x / 64) + 4.3;
+      y = Math.floor(this.players[key].y / 64) + 7.2;
+      this.ctx.fillRect(x * speedX - screenX - 3.5, y * speedY + 3, 6, 6);
+    });
+
+    this.ctx.fillStyle = "red";
+    x = Math.floor(this.hero.x / 64) + 4.3;
+    y = Math.floor(this.hero.y / 64) + 7.2;
+    this.ctx.fillRect(x * speedX - screenX - 3.5, y * speedY + 3, 6, 6);
+  }
+};
+
+Game.customBtninit = function () {
+  document.querySelector(".customBtn").addEventListener("click", () => {
+    localStorage.setItem("heroXY", JSON.stringify([this.hero.x, this.hero.y]));
+    location.href = "heroCustomize.html";
+  });
 };
 
 Game.render = function () {
   this._drawTiles(1);
-
   this._playersDraw(1);
   this._heroDraw(1);
 
@@ -1204,8 +1324,10 @@ Game.render = function () {
   this._playersDraw(2);
   this._heroDraw(2);
   this._drawTiles(2);
+  this._drawRect();
 
   this._drawNameBox();
-  this._drawRect();
+  this._drawRectInterect();
   this._text();
+  this._miniMap();
 };
