@@ -244,3 +244,11 @@ iframe {
 .row {
   height: 100%;
 }
+
+.col-xl-4 {
+  height: fit-content;
+}
+
+.col-xs-12 {
+  height: 100%;
+}
