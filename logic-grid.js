@@ -1237,6 +1237,7 @@ Game._miniMap = function () {
     this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
     this.ctx.fillStyle = "#000000";
     this.ctx.font = "15pt'Product Sans'";
+    this.ctx.textAlign = "center";
     this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
 
     if (!this.players) {
