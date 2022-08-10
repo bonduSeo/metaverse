@@ -5,6 +5,12 @@ body {
   height: 100%;
   background-color: var(--yellow-bg) !important;
 }
+body {
+  display: flex;
+}
+main {
+  margin: auto;
+}
 
 h1 {
   text-align: center;
