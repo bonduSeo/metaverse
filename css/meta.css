@@ -232,3 +232,8 @@ a:visited {
 .mission1Btn {
   display: none;
 }
+
+.customBtn,
+.missionToggleBtn {
+  cursor: pointer;
+}

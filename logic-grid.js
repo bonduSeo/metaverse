@@ -754,6 +754,12 @@ Game.resizeInit = function () {
 
   this.canvas.height = window.innerHeight - this.remainY > Game.minCanvasY ? window.innerHeight - this.remainY : Game.minCanvasY;
   document.querySelector(".gameAndMission").style.height = this.canvas.height + "px";
+  if (window.innerWidth < 840) {
+    const missionClassList = document.querySelector(".mission").classList;
+    if (!missionClassList.contains("d-none")) {
+      missionClassList.add("d-none");
+    }
+  }
   this.chat.boxResize();
 };
 Game.update = function (delta) {
