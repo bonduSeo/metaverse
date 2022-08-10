@@ -84,11 +84,14 @@ let map = {
       if (this.getTile2(3, col, row)) {
         if (this.getTile2(3, col, row).img === "hills") {
           this.floor = 2;
+          Game.hero.floor = 2;
         } else {
           this.floor = 1;
+          Game.hero.floor = 1;
         }
       } else if (this.getTile2(2, col, row) || this.getTile2(1, col, row)) {
         this.floor = 1;
+        Game.hero.floor = 1;
       }
     }
 
@@ -407,6 +410,8 @@ function Hero(map, x, y) {
   this.height = map.tsize;
   this.dirR = false;
   this.isWalking = false;
+  this.judy = false;
+  this.floor = 2;
 
   this.c = 0;
   this.tempX = 0;
@@ -441,6 +446,7 @@ function Hero(map, x, y) {
   this.bodysImage = Loader.getImage("bodys");
   this.handsImage = Loader.getImage("hands");
   this.AccsImage = Loader.getImage("accs");
+  this.judyImage = Loader.getImage("judy");
 }
 
 Hero.SPEED = 512; // pixels per second
@@ -666,6 +672,7 @@ Game.load = function () {
     Loader.loadImage("bodys", "../assets/bodys.png"),
     Loader.loadImage("hands", "../assets/hands.png"),
     Loader.loadImage("accs", "../assets/accs.png"),
+    Loader.loadImage("judy", "../assets/judy.png"),
     Loader.loadImage("fences", "../assets/tiles/fences.png"),
     Loader.loadImage("grass", "../assets/tiles/Grass.png"),
     Loader.loadImage("hills", "../assets/tiles/Hills.png"),
@@ -885,7 +892,7 @@ Game._drawGrid = function () {
   }
 };
 
-Game._playersDraw = function () {
+Game._playersDraw = function (floor) {
   if (!this.players) {
     return;
   }
@@ -896,12 +903,15 @@ Game._playersDraw = function () {
   // playersKeys.forEach((key) => {
   //   const div = document.createElement("div");
   //   status.append(div);
-  //   div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64)}`;
+  //   div.innerHTML = `id: ${this.players[key].id} | x: ${Math.floor(this.players[key].x / 64)} | y: ${Math.floor(this.players[key].y / 64) - 1}`;
   // });
   //
 
   playersKeys.forEach((key) => {
     if (this.players[key].id !== this.hero.id) {
+      if (floor !== this.players[key].floor) {
+        return;
+      }
       //좌우반전
       let flipCheck = 1;
       if (this.players[key].dirR) {
@@ -982,7 +992,10 @@ Game._playersDraw = function () {
   });
 };
 
-Game._heroDraw = function () {
+Game._heroDraw = function (floor) {
+  if (floor !== this.hero.floor) {
+    return;
+  }
   //바디드로잉
   let flipCheck = 1;
   if (this.hero.dirR) {
@@ -994,6 +1007,24 @@ Game._heroDraw = function () {
   if (this.hero.isWalking) {
     walkMotion += Math.sin(new Date() / 40);
     walkMotion *= 3;
+  }
+  if (this.hero.judy) {
+    const m = this.hero.customInfo.toneColor % 2;
+    this.ctx.drawImage(
+      this.hero.judyImage, // image
+      m * 64, // source x
+      0, // source y
+      64, // source width
+      64, // source height
+      this.hero.screenX * flipCheck - this.hero.width / 2,
+      this.hero.screenY - this.hero.height / 2 - 2 * walkMotion,
+      this.hero.width,
+      this.hero.height - walkMotion
+    );
+    if (flipCheck === -1) {
+      this.ctx.scale(-1, 1);
+    }
+    return;
   }
   //바디드로잉
   this.ctx.drawImage(
@@ -1061,10 +1092,6 @@ Game._heroDraw = function () {
   if (flipCheck === -1) {
     this.ctx.scale(-1, 1);
   }
-  //네임바 드로잉
-  this.ctx.beginPath();
-  // 왼쪽 상단 모서리
-  this.ctx.moveTo(this.hero.screenX - this.hero.width / 2, this.hero.screenY - this.hero.height / 2);
 };
 Game._drawNameBox = function () {
   //nameBox 그리기
