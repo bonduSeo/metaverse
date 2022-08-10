@@ -962,6 +962,24 @@ Game._playersDraw = function (floor) {
         walkMotion += Math.sin(new Date() / 40);
         walkMotion *= 3;
       }
+      if (this.players[key].judy) {
+        const m = this.players[key].customInfo.toneColor % 2;
+        this.ctx.drawImage(
+          this.hero.judyImage, // image
+          m * 64, // source x
+          0, // source y
+          64, // source width
+          64, // source height
+          (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+          this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
+          this.players[key].width,
+          this.players[key].height - walkMotion
+        );
+        if (flipCheck === -1) {
+          this.ctx.scale(-1, 1);
+        }
+        return;
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
@@ -1193,9 +1211,9 @@ Game._drawRectInterect = function () {
 };
 Game._drawRect = function () {
   map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["구독관리플랫폼", "오늘의 구독"], "그린버거팀"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
-  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["ㅇㅇㅇ", "XXX페이지"], "CC팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["PHP풀스택개발자", "파이널프로젝트"], "BB팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["개인프로젝트", "ㅇㅇㅇ쇼핑몰"], "홍길동"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["예시입니다", "XXX페이지"], "DD팀"]);
   // map.rect(this.ctx, "blue", 2, 1, 34, 23, 20, -25, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
 };
 Game._text = function () {
