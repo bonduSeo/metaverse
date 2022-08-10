@@ -962,6 +962,24 @@ Game._playersDraw = function (floor) {
         walkMotion += Math.sin(new Date() / 40);
         walkMotion *= 3;
       }
+      if (this.players[key].judy) {
+        const m = this.players[key].customInfo.toneColor % 2;
+        this.ctx.drawImage(
+          this.hero.judyImage, // image
+          m * 64, // source x
+          0, // source y
+          64, // source width
+          64, // source height
+          (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
+          this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
+          this.players[key].width,
+          this.players[key].height - walkMotion
+        );
+        if (flipCheck === -1) {
+          this.ctx.scale(-1, 1);
+        }
+        return;
+      }
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
