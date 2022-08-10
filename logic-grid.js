@@ -412,6 +412,7 @@ function Hero(map, x, y) {
   this.isWalking = false;
   this.judy = false;
   this.floor = 2;
+  this.displayChatIcon = false;
 
   this.c = 0;
   this.tempX = 0;
@@ -447,6 +448,7 @@ function Hero(map, x, y) {
   this.handsImage = Loader.getImage("hands");
   this.AccsImage = Loader.getImage("accs");
   this.judyImage = Loader.getImage("judy");
+  this.chatImage = Loader.getImage("chat");
 }
 
 Hero.SPEED = 512; // pixels per second
@@ -1126,11 +1128,25 @@ Game._drawNameBox = function () {
   const playerKeys = Object.keys(this.players);
 
   playerKeys.forEach((key) => {
-    if (this.players[key].id !== this.hero.id) {
-      drawEachNameBox(
-        this.players[key].nickName,
-        this.players[key].x - this.camera.x - this.hero.width / 2,
-        this.players[key].y - this.camera.y - this.hero.height / 2 - 10
+    if (!this.players[key].displayChatIcon) {
+      if (this.players[key].id !== this.hero.id) {
+        drawEachNameBox(
+          this.players[key].nickName,
+          this.players[key].x - this.camera.x - this.hero.width / 2,
+          this.players[key].y - this.camera.y - this.hero.height / 2 - 10
+        );
+      }
+    } else {
+      this.ctx.drawImage(
+        this.hero.chatImage, // image
+        0,
+        0,
+        64, // source width
+        64, // source height
+        this.players[key].x - this.camera.x - this.players[key].width / 4,
+        this.players[key].y - this.camera.y - this.players[key].height,
+        32,
+        32
       );
     }
   });
