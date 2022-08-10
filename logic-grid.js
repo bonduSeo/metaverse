@@ -841,6 +841,7 @@ Game.update = function (delta) {
   if (dirY !== 0 || locatY) {
     dirY = this.hero.tempY;
   }
+
   this.hero.move(delta, dirX, dirY);
 
   if (dirX !== 0 || dirY !== 0) {
