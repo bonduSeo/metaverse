@@ -844,6 +844,20 @@ Game.update = function (delta) {
     dirY = this.hero.tempY;
   }
 
+  document.onmousedown = function leftClick() {
+    let target = window.event.target;
+    if (target.id === "demo") {
+      Game.hero.tempX = Math.floor((Game.camera.x + window.event.x) / 64) - Math.floor(Game.hero.x / 64);
+      dirX = Game.hero.tempX;
+      console.log(Game.hero.tempX);
+    }
+    // else if (dirX <= 1 && dirX >= -1) {    }
+  };
+
+  // document.addEventListener("click", (e) => {
+  //   this.hero.tempX = Math.floor((this.camera.x + e.x) / 64) - Math.floor(this.hero.x / 64);
+  // });
+
   this.hero.move(delta, dirX, dirY);
 
   if (dirX !== 0 || dirY !== 0) {
@@ -1253,6 +1267,7 @@ Game._miniMap = function () {
     this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
     this.ctx.fillStyle = "#000000";
     this.ctx.font = "15pt'Product Sans'";
+    this.ctx.textAlign = "center";
     this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
 
     if (!this.players) {
