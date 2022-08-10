@@ -24,12 +24,12 @@ const base = {
       // 오구 프로젝트
       if (base.interactiveNumber === 12) {
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<iframe id="inlineFrameExample"
+        modalBody.innerHTML = `<div class="row"><div class="col"></div><div class="col"><iframe id="inlineFrameExample"
           title="Inline Frame Example"
           width="100%"
           height="100%"
           src="http://3.39.59.227/home.php">
-          </iframe>`;
+          </iframe></div><div class="col"></div></div>`;
       }
       if (base.interactiveNumber === 13) {
         const modalBody = document.querySelector(".modal-body");
