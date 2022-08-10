@@ -466,6 +466,7 @@ Hero.prototype.getDivisors = function () {
   }
   return arr;
 };
+//delta 값은 모니터 주사율, 일종의 핑을 나타내는 지수
 Hero.prototype.move = function (delta, dirX, dirY) {
   // move hero
   // 픽셀 속도 배열값에서 캐릭터 움직값에 가장 가까운 숫자를 찾아 속도지정
@@ -478,12 +479,27 @@ Hero.prototype.move = function (delta, dirX, dirY) {
       realSpeed = this.divisorArr[i];
     }
   }
+  if (dirX > 1 || dirX < -1 || dirY > 1 || dirY < -1) {
+    if (dirX > 0) {
+      this.x += realSpeed;
+    } else {
+      this.x += -realSpeed;
+    }
+    this.x = Math.round(this.x);
 
-  this.x += dirX * realSpeed;
-  this.x = Math.round(this.x);
+    if (dirY > 0) {
+      this.y += realSpeed;
+    } else {
+      this.y += -realSpeed;
+    }
+    this.y = Math.round(this.y);
+  } else {
+    this.x += dirX * realSpeed;
+    this.x = Math.round(this.x);
 
-  this.y += dirY * realSpeed;
-  this.y = Math.round(this.y);
+    this.y += dirY * realSpeed;
+    this.y = Math.round(this.y);
+  }
 
   // check if we walked into a non-walkable tile
   this._collide();
@@ -818,7 +834,6 @@ Game.update = function (delta) {
     dirX = -1;
     this.hero.tempX = -1;
   }
-
   let locatX = (this.hero.x - 160) % map.tsize !== 0;
   let locatY = (this.hero.y - 160) % map.tsize !== 0;
 
@@ -828,10 +843,25 @@ Game.update = function (delta) {
   if (dirY !== 0 || locatY) {
     dirY = this.hero.tempY;
   }
+
+  document.onmousedown = function leftClick() {
+    let target = window.event.target;
+    if (target.id === "demo") {
+      Game.hero.tempX = Math.floor((Game.camera.x + window.event.x) / 64) - Math.floor(Game.hero.x / 64);
+      dirX = Game.hero.tempX;
+      console.log(Game.hero.tempX);
+    }
+    // else if (dirX <= 1 && dirX >= -1) {    }
+  };
+
+  // document.addEventListener("click", (e) => {
+  //   this.hero.tempX = Math.floor((this.camera.x + e.x) / 64) - Math.floor(this.hero.x / 64);
+  // });
+
   this.hero.move(delta, dirX, dirY);
 
-  //걷는모션
   if (dirX !== 0 || dirY !== 0) {
+    //걷는모션
     this.hero.isWalking = true;
   } else {
     this.hero.isWalking = false;
@@ -1237,6 +1267,7 @@ Game._miniMap = function () {
     this.ctx.fillRect(screenX + 1, 1 + screenY, w - 2, 28);
     this.ctx.fillStyle = "#000000";
     this.ctx.font = "15pt'Product Sans'";
+    this.ctx.textAlign = "center";
     this.ctx.fillText("✨Metaverse", screenX + w * 0.5, 25 + screenY);
 
     if (!this.players) {
