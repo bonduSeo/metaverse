@@ -18,7 +18,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://13.209.108.252:5001/">
+          src="http://13.209.108.252:5000/">
           </iframe>`;
       }
       // 오구 프로젝트
@@ -37,7 +37,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://192.168.0.63:8080/">
+          src="http://3.39.59.227/owner_login.php">
           </iframe>`;
       }
       if (base.interactiveNumber === 14) {
