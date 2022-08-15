@@ -58,12 +58,13 @@ const base = {
   missionCheck: function (num = false) {
     if (num === 15) {
       this.easterEggJudy();
+      return;
     }
-    let missionStatus = { length: 0 };
+    let missionStatus = { length: 0, complete: false };
     const temp = localStorage.getItem("mission1");
     if (temp) {
       missionStatus = JSON.parse(temp);
-      if (missionStatus.length >= 10) {
+      if (missionStatus.complete === true) {
         return;
       }
     }
@@ -78,11 +79,12 @@ const base = {
     const missionCountDiv = document.querySelector(".missionCount");
     missionCountDiv.innerHTML = `${missionStatus.length} / 4`;
 
-    if (missionStatus.length === 4) {
+    if (missionStatus.length >= 4) {
       const missionClearDiv = document.createElement("div");
       const missionClear = document.createElement("button");
       missionClear.className = "missionClear";
-      missionClear.innerHTML = "미션 클리어";
+      missionCountDiv.innerHTML = "미션 클리어!";
+      missionClear.innerHTML = "Click";
       console.log(missionCountDiv);
       missionCountDiv.appendChild(missionClearDiv).append(missionClear);
       missionClear.addEventListener("click", () => {
@@ -97,7 +99,7 @@ const base = {
     });
     const missionStatus = localStorage.getItem("mission1");
     if (missionStatus) {
-      if (JSON.parse(missionStatus).length >= 10) {
+      if (JSON.parse(missionStatus).complete === true) {
         base.missionRewards1();
         //
         return;
@@ -109,7 +111,7 @@ const base = {
   },
   missionRewards1: () => {
     const missionStatus = JSON.parse(localStorage.getItem("mission1"));
-    missionStatus.length = 10;
+    missionStatus.complete = true;
     localStorage.setItem("mission1", JSON.stringify(missionStatus));
 
     if (!Game.hero.nickName.includes("✨")) {
@@ -136,8 +138,16 @@ const base = {
       EasterEggObj[eggName] = true;
       EasterEggObj.length += 1;
     }
-    console.log(document.querySelector(".missionCount"));
-    document.querySelector(".missionCount").innerHTML = `${EasterEggObj.length} / ???`;
+
+    let missionStatus = { length: 0, complete: false };
+    const temp = localStorage.getItem("mission1");
+    if (temp) {
+      missionStatus = JSON.parse(temp);
+      if (missionStatus.complete === true) {
+        console.log(document.querySelector(".missionCount"));
+        document.querySelector(".missionCount").innerHTML = `${EasterEggObj.length} / ???`;
+      }
+    }
     localStorage.setItem("easterEgg", JSON.stringify(EasterEggObj));
   },
 };
