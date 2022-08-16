@@ -479,6 +479,7 @@ Hero.prototype.move = function (delta, dirX, dirY) {
       realSpeed = this.divisorArr[i];
     }
   }
+
   if (dirX > 1 || dirX < -1 || dirY > 1 || dirY < -1) {
     if (dirX > 0) {
       this.x += realSpeed;
@@ -500,7 +501,6 @@ Hero.prototype.move = function (delta, dirX, dirY) {
     this.y += dirY * realSpeed;
     this.y = Math.round(this.y);
   }
-  console.log(delta, realSpeed);
   // check if we walked into a non-walkable tile
   this._collide();
   this._interactive();
