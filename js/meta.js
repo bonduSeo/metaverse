@@ -500,7 +500,7 @@ Hero.prototype.move = function (delta, dirX, dirY) {
     this.y += dirY * realSpeed;
     this.y = Math.round(this.y);
   }
-  console.log(delta, realSpeed);
+  // console.log(delta, realSpeed);
   // check if we walked into a non-walkable tile
   this._collide();
   this._interactive();
@@ -1228,10 +1228,10 @@ Game._drawRectInterect = function () {
   this._text();
 };
 Game._drawRect = function () {
-  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["구독관리플랫폼", "오늘의 구독"], "그린버거팀"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["PHP풀스택개발자", "파이널프로젝트"], "BB팀"]);
-  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["개인프로젝트", "ㅇㅇㅇ쇼핑몰"], "홍길동"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["예시입니다", "XXX페이지"], "DD팀"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["밥친구하기", "<한끼어때>"], "이응과 시옷들"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["여행플랫폼", "<moimmoim>"], "team B"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["영화정보", "<WhatShow>"], "BOAAA"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["FEEL the GLOW", "<LANEISFREE>"], "쌀과자"]);
   // map.rect(this.ctx, "blue", 2, 1, 34, 23, 20, -25, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
 };
 Game._text = function () {
