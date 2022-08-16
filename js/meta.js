@@ -500,7 +500,7 @@ Hero.prototype.move = function (delta, dirX, dirY) {
     this.y += dirY * realSpeed;
     this.y = Math.round(this.y);
   }
-
+  console.log(delta, realSpeed);
   // check if we walked into a non-walkable tile
   this._collide();
   this._interactive();
@@ -1293,7 +1293,6 @@ Game._miniMap = function () {
   let y;
   const speedX = 4.95;
   const speedY = 4.9;
-  let playerCount;
   if (Game.switchMap === 1) {
     this.ctx.drawImage(this.miniMap, screenX, 30 + screenY, w, h);
     this.ctx.lineWidth = 2;
@@ -1310,14 +1309,14 @@ Game._miniMap = function () {
       return;
     }
     const playerKeys = Object.keys(this.players);
-    playerCount = playerKeys.length - 1;
     this.ctx.fillStyle = "white";
     playerKeys.forEach((key) => {
       x = Math.floor(this.players[key].x / 64) + 4.3;
       y = Math.floor(this.players[key].y / 64) + 7.2;
-      this.ctx.fillRect(x * speedX - screenX - 3.5, y * speedY + 3, 6, 6);
+      if (this.players[key].id !== this.hero.id) {
+        this.ctx.fillRect(x * speedX - screenX - 3.5, y * speedY + 3, 6, 6);
+      }
     });
-
     this.ctx.fillStyle = "red";
     x = Math.floor(this.hero.x / 64) + 4.3;
     y = Math.floor(this.hero.y / 64) + 7.2;
