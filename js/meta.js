@@ -1328,7 +1328,7 @@ Game._miniMap = function () {
 Game.customBtninit = function () {
   document.querySelector(".customBtn").addEventListener("click", () => {
     localStorage.setItem("heroXY", JSON.stringify([this.hero.x, this.hero.y]));
-    location.href = "heroCustomize.html";
+    location.href = "/customize";
   });
 };
 

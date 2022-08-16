@@ -84,7 +84,7 @@ Customize.run = function () {
         alert("이름 설정은 필수입니다");
         nickNameLocal.focus();
       } else {
-        location.href = "meta.html";
+        location.href = "/metaverse";
       }
       // const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
     });
