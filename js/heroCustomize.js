@@ -84,7 +84,7 @@ Customize.run = function () {
         alert("이름 설정은 필수입니다");
         nickNameLocal.focus();
       } else {
-        location.href = "meta.html";
+        location.href = "/metaverse";
       }
       // const customInfoLocal = JSON.parse(localStorage.getItem("customInfo"));
     });
@@ -107,7 +107,7 @@ Customize.menuTapSet = function () {
           menuMain[0].style.display = "none";
           menuMain[1].style.display = "block";
           menuMain[2].style.display = "none";
-          menuMain[2].style.display = "none";
+          menuMain[3].style.display = "none";
           break;
         case "body":
           menuMain[0].style.display = "none";
@@ -227,28 +227,13 @@ Customize.drawHero = function () {
   this.ctx.clearRect(0, 0, 300, 200);
 
   //Body
-  this.drawParts(
-    this.ctx,
-    "body",
-    this.hero.customInfo.bodyShape * this.hero.size,
-    this.hero.customInfo.bodyColor * this.hero.size
-  );
+  this.drawParts(this.ctx, "body", this.hero.customInfo.bodyShape * this.hero.size, this.hero.customInfo.bodyColor * this.hero.size);
 
   //Head
-  this.drawParts(
-    this.ctx,
-    "head",
-    this.hero.customInfo.headShape * this.hero.size,
-    this.hero.customInfo.toneColor * this.hero.size
-  );
+  this.drawParts(this.ctx, "head", this.hero.customInfo.headShape * this.hero.size, this.hero.customInfo.toneColor * this.hero.size);
 
   //Hair
-  this.drawParts(
-    this.ctx,
-    "hair",
-    this.hero.customInfo.hairShape * this.hero.size,
-    this.hero.customInfo.hairColor * this.hero.size
-  );
+  this.drawParts(this.ctx, "hair", this.hero.customInfo.hairShape * this.hero.size, this.hero.customInfo.hairColor * this.hero.size);
 
   // //acc
   this.drawParts(this.ctx, "acc", this.hero.customInfo.acc * this.hero.size, 0);

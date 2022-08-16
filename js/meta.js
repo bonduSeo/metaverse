@@ -780,10 +780,14 @@ Game.resizeInit = function () {
   }
   this.chat.boxResize();
 };
+
+Game.mouseX = 0;
+Game.mouseY = 0;
+
 Game.update = function (delta) {
   // handle hero movement with arrow keys
-  var dirX = 0;
-  var dirY = 0;
+  let dirX = 0;
+  let dirY = 0;
   // -----------------------------temp 변수 넣어 블락이동 구현-------------------------------
   if (Keyboard.isDown(Keyboard.LEFT)) {
     this.hero.tempX = -1;
@@ -834,6 +838,17 @@ Game.update = function (delta) {
     dirX = -1;
     this.hero.tempX = -1;
   }
+  document.onmousedown = function leftClick() {
+    let target = window.event.target;
+    if (target.id === "demo") {
+      Game.mouseX = (Math.floor((Game.camera.x + window.event.x) / map.tsize) - Math.floor(Game.hero.x / map.tsize)) * map.tsize;
+      Game.mouseY = (Math.floor((Game.camera.y + window.event.y) / map.tsize) - Math.floor(Game.hero.y / map.tsize)) * map.tsize;
+
+      // Game.dirY = Game.hero.tempY;
+    }
+    // else if (dirX <= 1 && dirX >= -1) {    }
+  };
+
   let locatX = (this.hero.x - 160) % map.tsize !== 0;
   let locatY = (this.hero.y - 160) % map.tsize !== 0;
 
@@ -843,21 +858,24 @@ Game.update = function (delta) {
   if (dirY !== 0 || locatY) {
     dirY = this.hero.tempY;
   }
-
-  document.onmousedown = function leftClick() {
-    let target = window.event.target;
-    if (target.id === "demo") {
-      Game.hero.tempX = Math.floor((Game.camera.x + window.event.x) / 64) - Math.floor(Game.hero.x / 64);
-      dirX = Game.hero.tempX;
-      console.log(Game.hero.tempX);
-    }
-    // else if (dirX <= 1 && dirX >= -1) {    }
-  };
-
-  // document.addEventListener("click", (e) => {
-  //   this.hero.tempX = Math.floor((this.camera.x + e.x) / 64) - Math.floor(this.hero.x / 64);
-  // });
-
+  if (Game.mouseX > 0) {
+    dirX = 1;
+    Game.mouseX -= 8;
+  }
+  if (Game.mouseX < 0) {
+    dirX = -1;
+    Game.mouseX += 8;
+  }
+  if (Game.mouseY > 0) {
+    dirY = 1;
+    Game.mouseY -= 8;
+  }
+  if (Game.mouseY < 0) {
+    dirY = -1;
+    Game.mouseY += 8;
+  }
+  // console.log(Game.hero);
+  // console.log(this.hero);
   this.hero.move(delta, dirX, dirY);
 
   if (dirX !== 0 || dirY !== 0) {
@@ -1310,7 +1328,7 @@ Game._miniMap = function () {
 Game.customBtninit = function () {
   document.querySelector(".customBtn").addEventListener("click", () => {
     localStorage.setItem("heroXY", JSON.stringify([this.hero.x, this.hero.y]));
-    location.href = "heroCustomize.html";
+    location.href = "/customize";
   });
 };
 

@@ -8,10 +8,12 @@ const players = {};
 
 const io = socketIO(server);
 // app.use(express.static(path.join(__dirname, "src")));
+// app.use(express.static(path.join(__dirname, "../")));
+app.use("/", express.static(path.join(__dirname, "../")));
+app.use("/customize", express.static(path.join(__dirname, "../", "heroCustomize.html")));
+app.use("/metaverse", express.static(path.join(__dirname, "../", "meta.html")));
 
-app.use(express.static(path.join(__dirname, "../")));
-
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => console.log(`server is running ${PORT}`));
 
@@ -21,7 +23,6 @@ io.on("connection", (socket) => {
   // io.emit("socketId", socket.id);
 
   socket.on("chat", (chat) => {
-    //되돌려주는코드
     io.emit("chat", chat);
   });
 
@@ -30,9 +31,10 @@ io.on("connection", (socket) => {
     if (!(player["id"] === "")) {
       players[socket.id] = player;
     }
-    //되돌려주는코드
-    io.emit("players", players);
   });
+  setInterval(() => {
+    io.emit("players", players);
+  }, 17);
 
   socket.on("disconnect", (reason) => {
     // console.log("끊김 : " + socket.id);
