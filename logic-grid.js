@@ -1293,7 +1293,6 @@ Game._miniMap = function () {
   let y;
   const speedX = 4.95;
   const speedY = 4.9;
-  let playerCount;
   if (Game.switchMap === 1) {
     this.ctx.drawImage(this.miniMap, screenX, 30 + screenY, w, h);
     this.ctx.lineWidth = 2;
@@ -1310,7 +1309,6 @@ Game._miniMap = function () {
       return;
     }
     const playerKeys = Object.keys(this.players);
-    playerCount = playerKeys.length - 1;
     this.ctx.fillStyle = "white";
     playerKeys.forEach((key) => {
       x = Math.floor(this.players[key].x / 64) + 4.3;
