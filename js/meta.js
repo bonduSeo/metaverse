@@ -267,12 +267,15 @@ let map = {
 
       // 게시판안의 텍스트
       context.fillStyle = "black";
-      context.font = "bold 10pt'Product Sans'";
+      context.font = "8pt'Product Sans'";
       context.textBaseline = "top";
       context.textAlign = "start";
-      textArr[0].forEach((textLine, idx) => {
-        context.fillText(textLine, rx + 8, ry + 8 + idx * 14);
-      });
+
+      context.fillText(textArr[0][0], rx + 8, ry + 8 + 0);
+      context.font = "bold 12pt'Product Sans'";
+
+      context.fillText(textArr[0][1], rx + 8, ry + 8 + 14);
+
       context.font = "10pt'Product Sans'";
       context.textBaseline = "bottom";
       context.textAlign = "end";
@@ -1237,10 +1240,10 @@ Game._drawRectInterect = function () {
   this._text();
 };
 Game._drawRect = function () {
-  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["밥친구하기", "<한끼어때>"], "이응과 시옷들"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["여행플랫폼", "<moimmoim>"], "team B"]);
-  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["영화정보", "<WhatShow>"], "BOAAA"]);
-  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["FEEL the GLOW", "<LANEISFREE>"], "쌀과자"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 23, 0, -32, [["날씨기반 메뉴 추천", "한끼어때"], "이응과 시옷들"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 23, 0, -32, [["국내여행 동행 플랫폼", "moimmoim"], "team B"]);
+  map.rect(this.ctx, "blue", 2, 1, 20, 29, 0, -32, [["영화정보 대통합 플랫폼", "WhatShow"], "BOAAA"]);
+  map.rect(this.ctx, "blue", 2, 1, 37, 29, 0, -32, [["FEEL the GLOW", "LANEISFREE"], "쌀과자"]);
   // map.rect(this.ctx, "blue", 2, 1, 34, 23, 20, -25, [["ㅇㅇㅇ", "XXX페이지"], "DD팀"]);
 };
 Game._text = function () {
