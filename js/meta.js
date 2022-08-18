@@ -50,7 +50,6 @@ let map = {
     ],
   ],
   // 블록타일 -- 충돌 발생하는 타일
-  // block: [3, 5],
   blocksLayer: {
     7: "redBlock",
     8: "blueBlock",
@@ -70,8 +69,8 @@ let map = {
     return this.layers[layer][row * map.cols + col];
   },
   isSolidTileAtXY: function (x, y) {
-    var col = Math.floor(x / this.tsize);
-    var row = Math.floor(y / this.tsize);
+    let col = Math.floor(x / this.tsize);
+    let row = Math.floor(y / this.tsize);
 
     let currentTile;
 
@@ -172,16 +171,16 @@ let map = {
   },
   // 상호작용할 대상의 타일넘버 구하기
   InteractiveObject: function (x, y) {
-    var col = Math.floor(x / this.tsize);
-    var row = Math.floor(y / this.tsize);
+    let col = Math.floor(x / this.tsize);
+    let row = Math.floor(y / this.tsize);
 
     // tiles 3 and 5 are solid -- the rest are walkable
     // loop through all layers and return TRUE if any tile is solid
     return this.layers.reduce(
       function (res, layer, index) {
         var tile = this.getTile(index, col, row);
-        var InteractiveObj = this.Interactive[this.Interactive.indexOf(tile)];
-        return InteractiveObj;
+
+        return tile;
       }.bind(this)
     );
   },
@@ -849,8 +848,8 @@ Game.update = function (delta) {
     // else if (dirX <= 1 && dirX >= -1) {    }
   };
 
-  let locatX = (this.hero.x - 160) % map.tsize !== 0;
-  let locatY = (this.hero.y - 160) % map.tsize !== 0;
+  let locatX = (this.hero.x - map.tsize / 2) % map.tsize !== 0;
+  let locatY = (this.hero.y - map.tsize / 2) % map.tsize !== 0;
 
   if (dirX !== 0 || locatX) {
     dirX = this.hero.tempX;
