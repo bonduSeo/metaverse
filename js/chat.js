@@ -2,6 +2,7 @@ Game.chat.bodyColor = ["#4387f6", "#ffbd29", "#ff301f", "#009f2b"];
 Game.chat.init = function () {
   const chatDiv = document.querySelector(".chat");
   const chatContext = chatDiv.querySelector(".chatContext");
+
   socket.on("chat", (chat) => {
     const eachChatDiv = document.createElement("div");
     eachChatDiv.className = "eachChatDiv";

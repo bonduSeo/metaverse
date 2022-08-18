@@ -27,14 +27,13 @@ io.on("connection", (socket) => {
   });
 
   socket.on("players", (player) => {
-    // console.log(player);
     if (!(player["id"] === "")) {
       players[socket.id] = player;
     }
   });
   setInterval(() => {
     io.emit("players", players);
-  }, 17);
+  }, 17 / 2);
 
   socket.on("disconnect", (reason) => {
     // console.log("끊김 : " + socket.id);
