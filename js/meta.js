@@ -885,8 +885,18 @@ Game.update = function (delta) {
     this.hero.isWalking = false;
   }
 
-  const heroCopy = JSON.parse(JSON.stringify(this.hero));
-  delete heroCopy.map;
+  const heroCopy = {
+    x: this.hero.x,
+    y: this.hero.y,
+    isWalking: this.hero.isWalking,
+    judy: this.hero.judy,
+    floor: this.hero.floor,
+    displayChatIcon: this.hero.displayChatIcon,
+    customInfo: this.hero.customInfo,
+    nickName: this.hero.nickName,
+    id: this.hero.id,
+    dirR: this.hero.dirR,
+  };
 
   socket.emit("players", heroCopy);
 
@@ -988,10 +998,10 @@ Game._playersDraw = function (floor) {
           0, // source y
           64, // source width
           64, // source height
-          (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-          this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
-          this.players[key].width,
-          this.players[key].height - walkMotion
+          (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+          this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
+          map.tsize,
+          map.tsize - walkMotion
         );
         if (flipCheck === -1) {
           this.ctx.scale(-1, 1);
@@ -1001,63 +1011,63 @@ Game._playersDraw = function (floor) {
       //바디드로잉
       this.ctx.drawImage(
         this.hero.bodysImage, // image
-        this.players[key].customInfo.bodyShape * this.players[key].width, // source x
-        this.players[key].customInfo.bodyColor * this.players[key].height, // source y
-        this.players[key].width, // source width
-        this.players[key].height, // source height
-        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
-        this.players[key].width,
-        this.players[key].height - walkMotion
+        this.players[key].customInfo.bodyShape * map.tsize, // source x
+        this.players[key].customInfo.bodyColor * map.tsize, // source y
+        map.tsize, // source width
+        map.tsize, // source height
+        (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+        this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
+        map.tsize,
+        map.tsize - walkMotion
       );
       //머리드로잉
       this.ctx.drawImage(
         this.hero.headsImage, // image
-        this.players[key].customInfo.headShape * this.players[key].width, // source x
-        this.players[key].customInfo.toneColor * this.players[key].height, // source y
-        this.players[key].width, // source width
-        this.players[key].height, // source height
-        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
+        this.players[key].customInfo.headShape * map.tsize, // source x
+        this.players[key].customInfo.toneColor * map.tsize, // source y
+        map.tsize, // source width
+        map.tsize, // source height
+        (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+        this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
         this.hero.width,
         this.hero.height - walkMotion
       );
       //헤어드로잉
       this.ctx.drawImage(
         this.hero.hairsImage, // image
-        this.players[key].customInfo.hairShape * this.players[key].width, // source x
-        this.players[key].customInfo.hairColor * this.players[key].height, // source y
-        this.players[key].width, // source width
-        this.players[key].height, // source height
-        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
-        this.players[key].width,
-        this.players[key].height - walkMotion
+        this.players[key].customInfo.hairShape * map.tsize, // source x
+        this.players[key].customInfo.hairColor * map.tsize, // source y
+        map.tsize, // source width
+        map.tsize, // source height
+        (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+        this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
+        map.tsize,
+        map.tsize - walkMotion
       );
 
       // acc 드로잉
       this.ctx.drawImage(
         this.hero.AccsImage, // image
-        this.players[key].customInfo.acc * this.players[key].width, // source x
+        this.players[key].customInfo.acc * map.tsize, // source x
         0,
-        this.players[key].width, // source width
-        this.players[key].height, // source height
-        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
-        this.players[key].width,
-        this.players[key].height - walkMotion
+        map.tsize, // source width
+        map.tsize, // source height
+        (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+        this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
+        map.tsize,
+        map.tsize - walkMotion
       );
       // hands 드로잉
       this.ctx.drawImage(
         this.hero.handsImage, // image
         0,
-        this.players[key].customInfo.toneColor * this.players[key].height, // source x
-        this.players[key].width, // source width
-        this.players[key].height, // source height
-        (this.players[key].x - this.camera.x) * flipCheck - this.players[key].width / 2,
-        this.players[key].y - this.camera.y - this.players[key].height / 2 - 2 * walkMotion,
-        this.players[key].width,
-        this.players[key].height - walkMotion
+        this.players[key].customInfo.toneColor * map.tsize, // source x
+        map.tsize, // source width
+        map.tsize, // source height
+        (this.players[key].x - this.camera.x) * flipCheck - map.tsize / 2,
+        this.players[key].y - this.camera.y - map.tsize / 2 - 2 * walkMotion,
+        map.tsize,
+        map.tsize - walkMotion
       );
       if (flipCheck === -1) {
         this.ctx.scale(-1, 1);
@@ -1209,8 +1219,8 @@ Game._drawNameBox = function () {
         0,
         64, // source width
         64, // source height
-        this.players[key].x - this.camera.x - this.players[key].width / 4,
-        this.players[key].y - this.camera.y - this.players[key].height,
+        this.players[key].x - this.camera.x - map.tsize / 4,
+        this.players[key].y - this.camera.y - map.tsize,
         32,
         32
       );
