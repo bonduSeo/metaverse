@@ -25,12 +25,13 @@ const base = {
       if (base.interactiveNumber === 12) {
         const modalBody = document.querySelector(".modal-body");
         modalBody.innerHTML = `<iframe id="inlineFrameExample"
-          title="Inline Frame Example"     
+          title="Inline Frame Example"
           width="100%"
-          height="100%"     
+          height="100%"
           src="http://192.168.0.42:8080/">
           </iframe>`;
       }
+
       //모임
       if (base.interactiveNumber === 13) {
         const modalBody = document.querySelector(".modal-body");
