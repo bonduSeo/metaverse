@@ -693,7 +693,7 @@ Game.load = function () {
     Loader.loadImage("hands", "../assets/hands.png"),
     Loader.loadImage("accs", "../assets/accs.png"),
     Loader.loadImage("judy", "../assets/judy.png"),
-    Loader.loadImage("fences", "../assets/tiles/fences.png"),
+    Loader.loadImage("fences", "../assets/tiles/Fences.png"),
     Loader.loadImage("grass", "../assets/tiles/Grass.png"),
     Loader.loadImage("hills", "../assets/tiles/Hills.png"),
     Loader.loadImage("tilledDirt", "../assets/tiles/TilledDirt.png"),
