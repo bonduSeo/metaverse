@@ -18,18 +18,18 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://13.209.108.252:5000/">
           </iframe>`;
       }
       // 오구 프로젝트
       if (base.interactiveNumber === 12) {
         const modalBody = document.querySelector(".modal-body");
-        modalBody.innerHTML = `<iframe id="inlineFrameExample"
-          title="Inline Frame Example"
+        modalBody.innerHTML = `<div class="row"><div class="col-xl-4 col-md-3 col-sm-1"></div><div class="col-xl-4 col-md-6 col-sm-10 col-xs-12"><iframe id="inlineFrameExample"
+          title="Inline Frame Example"     
           width="100%"
-          height="100%"
-          src="http://34.64.33.196:5000/">
-          </iframe>`;
+          height="100%"     
+          src="http://3.39.59.227/home.php">
+          </iframe></div><div class="col-xl-4 col-md-3 col-sm-1"></div></div>`;
       }
       if (base.interactiveNumber === 13) {
         const modalBody = document.querySelector(".modal-body");
@@ -37,7 +37,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://3.39.59.227/owner_login.php">
           </iframe>`;
       }
       if (base.interactiveNumber === 14) {
@@ -46,7 +46,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://192.168.0.63:8080/">
           </iframe>`;
       }
       if (base.interactiveNumber === 15) {
