@@ -18,7 +18,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://34.64.164.15:5000/">
           </iframe>`;
       }
       // 오구 프로젝트
@@ -28,7 +28,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://34.64.164.15:5000/">
           </iframe>`;
       }
       if (base.interactiveNumber === 13) {
@@ -37,7 +37,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://34.64.164.15:5000/">
           </iframe>`;
       }
       if (base.interactiveNumber === 14) {
@@ -46,7 +46,7 @@ const base = {
           title="Inline Frame Example"
           width="100%"
           height="100%"
-          src="http://34.64.33.196:5000/">
+          src="http://34.64.164.15:5000/">
           </iframe>`;
       }
       if (base.interactiveNumber === 15) {
